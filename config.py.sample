@@ -1,0 +1,15 @@
+
+'''
+Fichier de configuration générale de l'application
+'''
+
+SQLALCHEMY_DATABASE_URI = "postgresql://monuser:monpassachanger@localhost/geonature2db"
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+
+DEBUG=True
+
+SESSION_TYPE = 'filesystem'
+SECRET_KEY = 'super secret key'
+COOKIE_EXPIRATION = 3600
+COOKIE_AUTORENEW = True

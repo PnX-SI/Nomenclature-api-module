@@ -1,0 +1,25 @@
+#config PostgreSQL
+
+#effacer la base de donnée existante lors de l'installation
+drop_apps_db=false
+
+#host hébergeant la base de données
+db_host=localhost
+
+#port de la base de données
+db_port=5432
+
+#nom de la base de données de l'application
+db_name=geonature2db
+
+#nom de l'utilisateur propriétaire de la base PostgreSQL
+user_pg=monuser
+
+#user propriétaire de la base geonaturedb
+user_pg_pass=monpassachanger
+
+#config Python
+#Python3 est requis
+
+#path vers python à n'utiliser que dans le cas de python3
+python_path=/usr/bin/python3.5
