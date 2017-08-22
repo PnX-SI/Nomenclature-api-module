@@ -2,7 +2,7 @@
 
 Flask (Python) module for Nomenclature API.
 
-It is used in [GeoNature](https://github.com/PnX-SI/GeoNature) but can also be used as a standalone API service to manage and returns various nomenclatures. 
+It is used in [GeoNature](https://github.com/PnX-SI/GeoNature) but can also be used as a standalone API service to manage and returns various nomenclatures with their hierarchy. 
 
 Can be used as a standalone module or as git submodule. 
 
