@@ -39,6 +39,10 @@ FROM JAIPASCAPTE
 
 # Usage
 
+# API
+
+* Récupération des termes d'une nomenclature : ```/nomenclature/6[?regne=Animalia[&group2_inpn=Bivalves]]```
+* Récupération des termes d'un ensemble de nomenclature : ```/nomenclatures?id_type=22&id_type=6[&regne=Animalia[&group2_inpn=Bivalves]]```
 
 # Installation
 
