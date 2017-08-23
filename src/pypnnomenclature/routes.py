@@ -12,20 +12,25 @@ db = SQLAlchemy()
 
 routes = Blueprint('nomenclatures', __name__)
 
-@routes.route('/<int:idType>', methods=['GET'])
+@routes.route('/nomenclature/<int:idType>', methods=['GET'])
 @json_resp
 def getNomenclatureByTypeAndTaxonomy(idType):
+    """
+        Route : liste des termes d'une nomenclature
+        Possibilité de filtrer par regne et group2Inpn
+    """
     regne = request.args.get('regne')
     group2Inpn = request.args.get('group2_inpn')
 
     q = db.session.query(TNomenclatures)\
-        .filter_by(id_type = idType)
+        .filter_by(id_type = idType)\
+        .filter_by(active = True)
 
     if regne :
         q = q.join(VNomenclatureTaxonomie, VNomenclatureTaxonomie.id_nomenclature == TNomenclatures.id_nomenclature)\
             .filter(VNomenclatureTaxonomie.regne.in_(('all',regne)))
-    if group2Inpn :
-        q = q.filter(VNomenclatureTaxonomie.group2_inpn.in_(('group2_inpn',group2Inpn)))
+        if group2Inpn :
+            q = q.filter(VNomenclatureTaxonomie.group2_inpn.in_(('group2_inpn',group2Inpn)))
     data = q.all()
     if data:
         return [n.as_dict() for n in data]
