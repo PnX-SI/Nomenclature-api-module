@@ -35,3 +35,32 @@ def getNomenclatureByTypeAndTaxonomy(idType):
     if data:
         return [n.as_dict() for n in data]
     return {'message': 'id_nom not found'}, 404
+
+
+@routes.route('/nomenclatures', methods=['GET'])
+@json_resp
+def getNomenclaturesByTypeListAndTaxonomy():
+    """
+        Route : liste des termes d'un ensemble de nomenclatures
+        Possibilité de filtrer par regne et group2Inpn
+    """
+    regne = request.args.get('regne')
+    group2Inpn = request.args.get('group2_inpn')
+    types = request.args.getlist('id_type')
+
+    results = {}
+    for idType in types :
+        q = db.session.query(TNomenclatures)\
+            .filter_by(id_type = idType)\
+            .filter_by(active = True)
+
+        if regne :
+            q = q.join(VNomenclatureTaxonomie, VNomenclatureTaxonomie.id_nomenclature == TNomenclatures.id_nomenclature)\
+                .filter(VNomenclatureTaxonomie.regne.in_(('all',regne)))
+            if group2Inpn :
+                q = q.filter(VNomenclatureTaxonomie.group2_inpn.in_(('group2_inpn',group2Inpn)))
+        data = q.all()
+        results[idType] = [n.as_dict() for n in data]
+    if results:
+        return results
+    return {'message': 'not found'}, 404
