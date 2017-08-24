@@ -4,6 +4,8 @@ from __future__ import (unicode_literals, print_function,
                         absolute_import, division)
 
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import ForeignKey
+
 from .utils import serializableModel
 
 db = SQLAlchemy()
@@ -12,7 +14,7 @@ class TNomenclatures(serializableModel, db.Model):
     __tablename__ = 't_nomenclatures'
     __table_args__ = {'schema':'ref_nomenclatures'}
     id_nomenclature = db.Column(db.Integer, primary_key=True)
-    id_type =  db.Column(db.Integer)
+    id_type =  db.Column(db.Integer,ForeignKey('ref_nomenclatures.BibNomenclaturesTypes.id_type') )
     mnemonique = db.Column(db.Unicode)
     label_default = db.Column(db.Unicode)
     definition_default = db.Column(db.Unicode)

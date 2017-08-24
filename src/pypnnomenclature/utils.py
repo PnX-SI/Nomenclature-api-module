@@ -2,19 +2,28 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask import json, Response
 
+from sqlalchemy import inspect
+from sqlalchemy.orm import class_mapper, ColumnProperty, RelationshipProperty
+
 from functools import wraps
 
 db = SQLAlchemy()
 
 class serializableModel(db.Model):
     __abstract__ = True
-
     def as_dict(self, recursif=False):
-        return {column.key: getattr(self, column.key)
-                if not isinstance(column.type, (db.Date, db.DateTime))
-                else json.dumps(getattr(self, column.key))
-                for column in self.__table__.columns }
+        obj={}
+        for prop in class_mapper(self.__class__).iterate_properties:
+            if isinstance(prop, ColumnProperty)  :
+                column = self.__table__.columns[prop.key]
+                if isinstance(column.type, (db.Date, db.DateTime)) :
+                    obj[prop.key] =str(getattr(self, prop.key))
+                else :
+                    obj[prop.key] =getattr(self, prop.key)
+            if ((isinstance(prop,RelationshipProperty)) and (recursif)):
+                obj[prop.key] = [d.as_dict(recursif) for d in getattr(self, prop.key)]
 
+        return obj
 
 def json_resp(fn):
     '''
