@@ -44,7 +44,7 @@ def getNomenclaturesByTypeListAndTaxonomy():
         response =  queryAndFormatNomenclature(idType, regne, group2Inpn)
         if response:
             results.append(response)
-    
+
     if results:
         return results
     return {'message': 'not found'}, 404
@@ -63,7 +63,7 @@ def queryAndFormatNomenclature(idType, regne, group2Inpn):
         q = q.join(VNomenclatureTaxonomie, VNomenclatureTaxonomie.id_nomenclature == TNomenclatures.id_nomenclature)\
             .filter(VNomenclatureTaxonomie.regne.in_(('all',regne)))
         if group2Inpn :
-            q = q.filter(VNomenclatureTaxonomie.group2_inpn.in_(('group2_inpn',group2Inpn)))
+            q = q.filter(VNomenclatureTaxonomie.group2_inpn.in_(('all',group2Inpn)))
     data = q.all()
     response = nomenclature.as_dict()
     if data:
