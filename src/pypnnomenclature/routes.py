@@ -12,6 +12,7 @@ db = SQLAlchemy()
 
 routes = Blueprint('nomenclatures', __name__)
 
+
 @routes.route('/nomenclature/<int:idType>', methods=['GET'])
 @json_resp
 def getNomenclatureByTypeAndTaxonomy(idType):
@@ -22,7 +23,7 @@ def getNomenclatureByTypeAndTaxonomy(idType):
     regne = request.args.get('regne')
     group2Inpn = request.args.get('group2_inpn')
 
-    response =  queryAndFormatNomenclature(idType, regne, group2Inpn)
+    response = queryAndFormatNomenclature(idType, regne, group2Inpn)
     if (not response):
         return {'message': 'Nomenclature not found'}, 404
     return response
@@ -40,8 +41,8 @@ def getNomenclaturesByTypeListAndTaxonomy():
     types = request.args.getlist('id_type')
 
     results = []
-    for idType in types :
-        response =  queryAndFormatNomenclature(idType, regne, group2Inpn)
+    for idType in types:
+        response = queryAndFormatNomenclature(idType, regne, group2Inpn)
         if response:
             results.append(response)
 
@@ -49,22 +50,30 @@ def getNomenclaturesByTypeListAndTaxonomy():
         return results
     return {'message': 'not found'}, 404
 
+
 def queryAndFormatNomenclature(idType, regne, group2Inpn):
-    nomenclature = db.session.query(BibNomenclaturesTypes).filter_by(id_type=idType).first()
+    nomenclature = db.session.query(BibNomenclaturesTypes)\
+        .filter_by(id_type=idType).first()
     if (not nomenclature):
         return None
 
-    #Terme de nomenclatures
+    # Terme de nomenclatures
     q = db.session.query(TNomenclatures)\
-        .filter_by(id_type = idType)\
-        .filter_by(active = True)
+        .filter_by(id_type=idType)\
+        .filter_by(active=True)
 
-    if regne :
-        q = q.join(VNomenclatureTaxonomie, VNomenclatureTaxonomie.id_nomenclature == TNomenclatures.id_nomenclature)\
-            .filter(VNomenclatureTaxonomie.regne.in_(('all',regne)))
-        if group2Inpn :
-            q = q.filter(VNomenclatureTaxonomie.group2_inpn.in_(('all',group2Inpn)))
+    if regne:
+        q = q.join(
+            VNomenclatureTaxonomie,
+            VNomenclatureTaxonomie.id_nomenclature ==
+            TNomenclatures.id_nomenclature
+        ).filter(VNomenclatureTaxonomie.regne.in_(('all', regne)))
+        if group2Inpn:
+            q = q.filter(
+                VNomenclatureTaxonomie.group2_inpn.in_(('all', group2Inpn))
+            )
     data = q.all()
+
     response = nomenclature.as_dict()
     if data:
         response["values"] = [n.as_dict() for n in data]
