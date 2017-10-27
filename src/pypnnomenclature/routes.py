@@ -5,7 +5,11 @@ from __future__ import (unicode_literals, print_function,
 from flask import Blueprint, request
 from flask_sqlalchemy import SQLAlchemy
 
-from .models import VNomenclatureTaxonomie, TNomenclatures, BibNomenclaturesTypes
+from .models import (
+    VNomenclatureTaxonomie,
+    TNomenclatures,
+    BibNomenclaturesTypes
+)
 from .utils import json_resp
 
 db = SQLAlchemy()
@@ -72,7 +76,11 @@ def queryAndFormatNomenclature(idType, regne, group2Inpn):
             q = q.filter(
                 VNomenclatureTaxonomie.group2_inpn.in_(('all', group2Inpn))
             )
-    data = q.all()
+    try:
+        data = q.all()
+    except Exception as e:
+        db.session.rollback()
+        raise
 
     response = nomenclature.as_dict()
     if data:
