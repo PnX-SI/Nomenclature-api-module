@@ -19,6 +19,7 @@ class TNomenclatures(serializableModel, db.Model):
         db.Integer,
         ForeignKey('ref_nomenclatures.BibNomenclaturesTypes.id_type')
     )
+    cd_nomenclature = db.Column(db.Unicode)
     mnemonique = db.Column(db.Unicode)
     label_default = db.Column(db.Unicode)
     definition_default = db.Column(db.Unicode)
