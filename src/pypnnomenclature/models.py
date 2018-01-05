@@ -5,7 +5,7 @@ from __future__ import (unicode_literals, print_function,
 
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import ForeignKey
-
+from sqlalchemy.sql import select, func
 from .utils import serializableModel
 
 db = SQLAlchemy()
@@ -40,6 +40,12 @@ class TNomenclatures(serializableModel, db.Model):
     active = db.Column(db.BOOLEAN)
     meta_create_date = db.Column(db.DateTime)
     meta_update_date = db.Column(db.DateTime)
+
+    @staticmethod
+    def get_default_nomenclature(id_type, id_organism=0):
+        q = select([func.ref_nomenclatures.get_default_nomenclature_value(id_type, id_organism).label('default')])
+        result = db.session.execute(q)
+        return result.fetchone()['default']
 
 
 class BibNomenclaturesTypes(serializableModel, db.Model):
