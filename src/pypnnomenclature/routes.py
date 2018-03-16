@@ -5,14 +5,9 @@ from __future__ import (unicode_literals, print_function,
 from flask import Blueprint, request
 from flask_sqlalchemy import SQLAlchemy
 
-from .models import (
-    VNomenclatureTaxonomie,
-    TNomenclatures,
-    BibNomenclaturesTypes
-)
+from .repository import get_nomenclature_list
 from .utils import json_resp
 
-db = SQLAlchemy()
 
 routes = Blueprint('nomenclatures', __name__)
 
@@ -27,7 +22,7 @@ def getNomenclatureByTypeAndTaxonomy(idType):
     regne = request.args.get('regne')
     group2Inpn = request.args.get('group2_inpn')
 
-    response = queryAndFormatNomenclature(idType, regne, group2Inpn)
+    response = get_nomenclature_list(idType, regne, group2Inpn)
     if (not response):
         return {'message': 'Nomenclature not found'}, 404
     return response
@@ -46,43 +41,10 @@ def getNomenclaturesByTypeListAndTaxonomy():
 
     results = []
     for idType in types:
-        response = queryAndFormatNomenclature(idType, regne, group2Inpn)
+        response = get_nomenclature_list(idType, regne, group2Inpn)
         if response:
             results.append(response)
 
     if results:
         return results
     return {'message': 'not found'}, 404
-
-
-def queryAndFormatNomenclature(idType, regne, group2Inpn):
-    nomenclature = db.session.query(BibNomenclaturesTypes)\
-        .filter_by(id_type=idType).first()
-    if (not nomenclature):
-        return None
-
-    # Terme de nomenclatures
-    q = db.session.query(TNomenclatures)\
-        .filter_by(id_type=idType)\
-        .filter_by(active=True)
-
-    if regne:
-        q = q.join(
-            VNomenclatureTaxonomie,
-            VNomenclatureTaxonomie.id_nomenclature ==
-            TNomenclatures.id_nomenclature
-        ).filter(VNomenclatureTaxonomie.regne.in_(('all', regne)))
-        if group2Inpn:
-            q = q.filter(
-                VNomenclatureTaxonomie.group2_inpn.in_(('all', group2Inpn))
-            )
-    try:
-        data = q.all()
-    except Exception as e:
-        db.session.rollback()
-        raise
-
-    response = nomenclature.as_dict()
-    if data:
-        response["values"] = [n.as_dict() for n in data]
-    return response

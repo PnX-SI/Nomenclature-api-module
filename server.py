@@ -1,10 +1,8 @@
 # coding: utf8
 from flask import Flask, request
-from flask_sqlalchemy import SQLAlchemy
 import importlib
 import datetime
-
-db = SQLAlchemy()
+from src.pypnnomenclature.env import DB
 app_globals = {}
 
 
@@ -15,7 +13,7 @@ def init_app():
         app = Flask(__name__)
 
     app.config.from_pyfile('config.py')
-    db.init_app(app)
+    DB.init_app(app)
 
     from routes import routes
     app.register_blueprint(routes, url_prefix='/')

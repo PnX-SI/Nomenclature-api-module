@@ -7,10 +7,12 @@ from sqlalchemy.orm import class_mapper, ColumnProperty, RelationshipProperty
 
 from functools import wraps
 
-db = SQLAlchemy()
+
+from .env import DB
 
 
-class serializableModel(db.Model):
+
+class serializableModel(DB.Model):
     __abstract__ = True
 
     def as_dict(self, recursif=False):
@@ -18,7 +20,7 @@ class serializableModel(db.Model):
         for prop in class_mapper(self.__class__).iterate_properties:
             if isinstance(prop, ColumnProperty):
                 column = self.__table__.columns[prop.key]
-                if isinstance(column.type, (db.Date, db.DateTime)):
+                if isinstance(column.type, (DB.Date, DB.DateTime)):
                     obj[prop.key] = str(getattr(self, prop.key))
                 else:
                     obj[prop.key] = getattr(self, prop.key)
