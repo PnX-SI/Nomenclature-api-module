@@ -8,7 +8,11 @@ from .models import (
 )
 from .env import DB
 
-def get_nomenclature_list(id_type, regne=None, group2_inpn=None, hierarchy=None, filter=None):
+
+
+def get_nomenclature_list(
+    id_type, regne=None, group2_inpn=None, hierarchy=None, filter=None
+):
     '''
         Récupération de la liste des termes d'un type de nomenclature
     '''
@@ -40,14 +44,38 @@ def get_nomenclature_list(id_type, regne=None, group2_inpn=None, hierarchy=None,
         q = q.filter(TNomenclatures.hierarchy.like("{}%".format(hierarchy)))
 
     # @TODO Autres filtres
-
     try:
         data = q.all()
     except Exception as e:
         DB.session.rollback()
         raise
-
+    
+    
     response = nomenclature.as_dict()
     if data:
         response["values"] = [n.as_dict() for n in data]
     return response
+
+
+def get_nomenclature_list_formated(nomenclature_params, mapping):
+    '''
+        Permet de récupérer la liste des données d'une nomenclature et de la 
+            formater de façon particulière
+        !! pour le momment ne traite que les objets de type nomenclature 
+            et pas nomenclature api
+        exemple: 
+        {
+            'id': {'object': 'nomenclature', 'field': 'id_nomenclature'},
+            'libelle': {'object': 'nomenclature', 'field': 'label_default'}
+        }
+    '''
+    data = list()
+    nomenclature_data = get_nomenclature_list(**nomenclature_params)
+
+    if 'values' not in nomenclature_data:
+        return data
+
+    for term in nomenclature_data['values']:
+        data.append({val: term[mapping[val]['field']] for val in mapping})
+
+    return data
