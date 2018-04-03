@@ -42,7 +42,20 @@ def get_nomenclature_list(
     # Filtrer sur la hiérarchie
     if hierarchy:
         q = q.filter(TNomenclatures.hierarchy.like("{}%".format(hierarchy)))
+    
 
+    # Ordonnancement
+    if 'orderby' in filter:
+        orderCol = getattr(
+            TNomenclatures,
+            filter['orderby']
+        )
+
+        if 'order' in filter:
+            if filter['order'] == 'desc':
+                orderCol = orderCol.desc()
+
+        q = q.order_by(orderCol)
     # @TODO Autres filtres
     try:
         data = q.all()

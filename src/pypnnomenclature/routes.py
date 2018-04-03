@@ -22,7 +22,7 @@ def getNomenclatureByTypeAndTaxonomy(idType):
     regne = request.args.get('regne')
     group2Inpn = request.args.get('group2_inpn')
 
-    response = get_nomenclature_list(idType, regne, group2Inpn)
+    response = get_nomenclature_list(idType, regne, group2Inpn, filter=request.args)
     if (not response):
         return {'message': 'Nomenclature not found'}, 404
     return response
@@ -41,7 +41,7 @@ def getNomenclaturesByTypeListAndTaxonomy():
 
     results = []
     for idType in types:
-        response = get_nomenclature_list(idType, regne, group2Inpn)
+        response = get_nomenclature_list(idType, regne, group2Inpn, filter=request.args)
         if response:
             results.append(response)
 
