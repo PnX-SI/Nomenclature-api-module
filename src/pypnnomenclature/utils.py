@@ -1,8 +1,6 @@
 # coding: utf8
-from flask_sqlalchemy import SQLAlchemy
 from flask import json, Response
 
-from sqlalchemy import inspect
 from sqlalchemy.orm import class_mapper, ColumnProperty, RelationshipProperty
 
 from functools import wraps

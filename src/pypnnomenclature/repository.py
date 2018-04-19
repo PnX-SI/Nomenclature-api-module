@@ -9,13 +9,14 @@ from .models import (
 from .env import DB
 
 
-
 def get_nomenclature_list(
-    id_type, regne=None, group2_inpn=None, hierarchy=None, filter=None
+    id_type, regne=None, group2_inpn=None, hierarchy=None, filter_params=None
 ):
     '''
         Récupération de la liste des termes d'un type de nomenclature
     '''
+    if filter_params is None:
+        filter_params = []
     nomenclature = DB.session.query(BibNomenclaturesTypes)\
         .filter_by(id_type=id_type).first()
 
@@ -42,28 +43,27 @@ def get_nomenclature_list(
     # Filtrer sur la hiérarchie
     if hierarchy:
         q = q.filter(TNomenclatures.hierarchy.like("{}%".format(hierarchy)))
-    
 
     # Ordonnancement
-    if 'orderby' in filter:
-        orderCol = getattr(
+    if 'orderby' in filter_params:
+        order_col = getattr(
             TNomenclatures,
-            filter['orderby']
+            filter_params['orderby']
         )
 
-        if 'order' in filter:
-            if filter['order'] == 'desc':
-                orderCol = orderCol.desc()
+        if 'order' in filter_params:
+            if filter_params['order'] == 'desc':
+                order_col = order_col.desc()
 
-        q = q.order_by(orderCol)
+        q = q.order_by(order_col)
     # @TODO Autres filtres
     try:
         data = q.all()
     except Exception as e:
         DB.session.rollback()
         raise
-    
-    
+
+
     response = nomenclature.as_dict()
     if data:
         response["values"] = [n.as_dict() for n in data]
@@ -72,11 +72,11 @@ def get_nomenclature_list(
 
 def get_nomenclature_list_formated(nomenclature_params, mapping):
     '''
-        Permet de récupérer la liste des données d'une nomenclature et de la 
+        Permet de récupérer la liste des données d'une nomenclature et de la
             formater de façon particulière
-        !! pour le momment ne traite que les objets de type nomenclature 
+        !! pour le momment ne traite que les objets de type nomenclature
             et pas nomenclature api
-        exemple: 
+        exemple:
         {
             'id': {'object': 'nomenclature', 'field': 'id_nomenclature'},
             'libelle': {'object': 'nomenclature', 'field': 'label_default'}

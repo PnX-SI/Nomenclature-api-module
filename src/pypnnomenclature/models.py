@@ -9,13 +9,14 @@ from .utils import serializableModel
 
 from .env import DB
 
+
 class TNomenclatures(serializableModel, DB.Model):
     __tablename__ = 't_nomenclatures'
     __table_args__ = {'schema': 'ref_nomenclatures'}
     id_nomenclature = DB.Column(DB.Integer, primary_key=True)
     id_type = DB.Column(
         DB.Integer,
-        ForeignKey('ref_nomenclatures.BibNomenclaturesTypes.id_type')
+        ForeignKey('ref_nomenclatures.bib_nomenclatures_types.id_type')
     )
     cd_nomenclature = DB.Column(DB.Unicode)
     mnemonique = DB.Column(DB.Unicode)
@@ -41,7 +42,12 @@ class TNomenclatures(serializableModel, DB.Model):
 
     @staticmethod
     def get_default_nomenclature(id_type, id_organism=0):
-        q = select([func.ref_nomenclatures.get_default_nomenclature_value(id_type, id_organism).label('default')])
+        q = select([
+            func.ref_nomenclatures.get_default_nomenclature_value(
+                id_type,
+                id_organism
+            ).label('default')
+        ])
         result = DB.session.execute(q)
         return result.fetchone()['default']
 
