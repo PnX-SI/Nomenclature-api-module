@@ -35,6 +35,18 @@ class BibNomenclaturesTypes(serializableModel, DB.Model):
 
     def __repr__(self):
         return self.label_default
+        
+    @staticmethod
+    def get_default_nomenclature(id_type, id_organism=0):
+        q = select([
+            func.ref_nomenclatures.get_default_nomenclature_value(
+                id_type,
+                id_organism
+            ).label('default')
+        ])
+        result = DB.session.execute(q)
+        return result.fetchone()['default']
+
 
 class TNomenclatures(serializableModel, DB.Model):
     __tablename__ = 't_nomenclatures'
