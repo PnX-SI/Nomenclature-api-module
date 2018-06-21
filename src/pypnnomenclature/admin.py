@@ -10,7 +10,7 @@ from .models import (
 
 class TNomenclaturesAdmin(ModelView):
     page_size = 10
-    column_searchable_list = ['id_type', 'mnemonique', 'id_nomenclature']
+    column_searchable_list = ['id_type', 'mnemonique', 'id_nomenclature', BibNomenclaturesTypes.label_default]
     form_columns = [
       'id_nomenclature',
       'nomenclature_type_name',
@@ -71,8 +71,5 @@ admin = Admin(
   template_mode='bootstrap3',
   url='/nomenclatures/admin',
   )
-admin.add_view(BibNomenclaturesTypesAdmin(BibNomenclaturesTypes, DB.session, name="Nomenclatures"))
+admin.add_view(BibNomenclaturesTypesAdmin(BibNomenclaturesTypes, DB.session, name="Type de nomenclatures"))
 admin.add_view(TNomenclaturesAdmin(TNomenclatures, DB.session, name="Items de nomenclatures"))
-
-
-
