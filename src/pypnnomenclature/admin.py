@@ -1,16 +1,34 @@
 from flask import current_app
-from flask_admin import Admin
+from flask_admin import Admin, expose
 from flask_admin.contrib.sqla import ModelView
+from flask_admin.contrib.sqla.filters import BaseSQLAFilter
 from .env import DB
 from .models import (
     TNomenclatures,
     BibNomenclaturesTypes
 )
 
+class TNomenclatureFiltersType(BaseSQLAFilter):
+    # Override to create an appropriate query and apply a filter to said query with the passed value from the filter UI
+    def apply(self, query, value, alias=None):
+        return query.filter(TNomenclatures.id_type == value)
+    # readable operation name. This appears in the middle filter line drop-down
+    def operation(self):
+        return u'equals'
+    def get_options(self, view):
+        return [(nomenclature.id_type, nomenclature.label_default)
+         for nomenclature in BibNomenclaturesTypes.query.order_by(BibNomenclaturesTypes.label_default)]
+
+class TNomenclatureFiltersId(BaseSQLAFilter):
+    # Override to create an appropriate query and apply a filter to said query with the passed value from the filter UI
+    def apply(self, query, value, alias=None):
+        return query.filter(TNomenclatures.id_nomenclature == value)
+    # readable operation name. This appears in the middle filter line drop-down
+    def operation(self):
+        return u'equals'
 
 class TNomenclaturesAdmin(ModelView):
     page_size = 10
-    column_searchable_list = ['id_type', 'mnemonique', 'id_nomenclature', BibNomenclaturesTypes.label_default]
     form_columns = [
       'id_nomenclature',
       'nomenclature_type_name',
@@ -38,11 +56,43 @@ class TNomenclaturesAdmin(ModelView):
       'statut',
       'active'
     ]
-    page_size = 15    
+    page_size = 15
+
+    column_filters = [
+        TNomenclatureFiltersType(column=None, name='Type de nomenclature'),
+        TNomenclatureFiltersId(column=None, name='Id nomenclature')
+        ]
+
+    # Need this so the filter options are always up-to-date
+    @expose('/')
+    def index_view(self):
+        self._refresh_filters_cache()
+        return super(TNomenclaturesAdmin, self).index_view()
+
+class BibNomenclatureFiltersLabel(BaseSQLAFilter):
+    # Override to create an appropriate query and apply a filter to said query with the passed value from the filter UI
+    def apply(self, query, value, alias=None):
+        return query.filter(BibNomenclaturesTypes.label_default == value)
+    # readable operation name. This appears in the middle filter line drop-down
+    def operation(self):
+        return u'equals'
+    def get_options(self, view):
+        return [(nomenclature.label_default, nomenclature.label_default)
+         for nomenclature in BibNomenclaturesTypes.query.order_by(BibNomenclaturesTypes.label_default)]
+
+class BibNomenclatureFiltersID(BaseSQLAFilter):
+    # Override to create an appropriate query and apply a filter to said query with the passed value from the filter UI
+    def apply(self, query, value, alias=None):
+        return query.filter(BibNomenclaturesTypes.id_type == value)
+    # readable operation name. This appears in the middle filter line drop-down
+    def operation(self):
+        return u'equals'
+    # def get_options(self, view):
+    #     return [(nomenclature.label_default, nomenclature.label_default)
+    #      for nomenclature in BibNomenclaturesTypes.query.order_by(BibNomenclaturesTypes.label_default)]
 
 class BibNomenclaturesTypesAdmin(ModelView):
     page_size = 10
-    column_searchable_list = ['label_default', 'id_type']
     column_list = [
       'id_type',
       'mnemonique',
@@ -63,6 +113,17 @@ class BibNomenclaturesTypesAdmin(ModelView):
       'source',
       'statut'
     ]
+
+    column_filters = [
+        BibNomenclatureFiltersLabel(column=None, name='Type de nomenclature'),
+        BibNomenclatureFiltersID(column=None, name='Id type')
+        ]
+
+    # Need this so the filter options are always up-to-date
+    @expose('/')
+    def index_view(self):
+        self._refresh_filters_cache()
+        return super(BibNomenclaturesTypesAdmin, self).index_view()
 
 
 admin = Admin(
