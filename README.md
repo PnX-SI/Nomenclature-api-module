@@ -41,8 +41,14 @@ FROM JAIPASCAPTE
 
 # API
 
-* Récupération des termes d'une nomenclature : ```/nomenclature/6[?regne=Animalia[&group2_inpn=Bivalves]]```
-* Récupération des termes d'un ensemble de nomenclature : ```/nomenclatures?id_type=22&id_type=6[&regne=Animalia[&group2_inpn=Bivalves]]```
+* Récupération des termes d'une nomenclature à partir de l'identifiant : ```/nomenclature/6[?regne=Animalia[&group2_inpn=Bivalves]]```
+ DEPRECIE
+
+* Récupération des termes d'une nomenclature à partir du code mnemonique :```/nomenclature/STADE_VIE[?regne=Animalia[&group2_inpn=Bivalves]]```
+* Récupération des termes d'un ensemble de nomenclature :
+  * ```/nomenclatures?id_type=22&id_type=6[&regne=Animalia[&group2_inpn=Bivalves]]```  DEPRECIE
+  * ```/nomenclatures?code_type=STADE_VIE&code_type=REF_HAB[&regne=Animalia[&group2_inpn=Bivalves]]```
+
 
 # Interface d'administration des données
 
