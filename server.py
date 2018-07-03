@@ -20,8 +20,7 @@ def init_app():
 
     # import admin
     with app.app_context():
-        from admin import admin
-
+        from admin import *
     return app
 
 

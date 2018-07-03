@@ -152,12 +152,15 @@ class BibNomenclaturesTypesAdmin(ModelView):
         return super(BibNomenclaturesTypesAdmin, self).index_view()
 
 
+"""
+    Configuration de l'admin
+"""
 admin = Admin(
   current_app,
   name="Backoffice d'administration des nomenclatures",
   template_mode='bootstrap3',
   url='/nomenclatures/admin',
-  )
+)
 
 admin.add_view(
     BibNomenclaturesTypesAdmin(
