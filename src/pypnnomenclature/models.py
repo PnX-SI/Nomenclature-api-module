@@ -4,10 +4,48 @@ from __future__ import (unicode_literals, print_function,
                         absolute_import, division)
 
 from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship
 from sqlalchemy.sql import select, func
 from .utils import serializableModel
 
 from .env import DB
+
+class BibNomenclaturesTypes(serializableModel, DB.Model):
+    __tablename__ = 'bib_nomenclatures_types'
+    __table_args__ = {'schema': 'ref_nomenclatures'}
+    id_type = DB.Column(DB.Integer, primary_key=True)
+    mnemonique = DB.Column(DB.Unicode)
+    label_default = DB.Column(DB.Unicode)
+    definition_default = DB.Column(DB.Unicode)
+    label_fr = DB.Column(DB.Unicode)
+    definition_fr = DB.Column(DB.Unicode)
+    label_en = DB.Column(DB.Unicode)
+    definition_en = DB.Column(DB.Unicode)
+    label_es = DB.Column(DB.Unicode)
+    definition_es = DB.Column(DB.Unicode)
+    label_de = DB.Column(DB.Unicode)
+    definition_de = DB.Column(DB.Unicode)
+    label_it = DB.Column(DB.Unicode)
+    definition_it = DB.Column(DB.Unicode)
+    source = DB.Column(DB.Unicode)
+    statut = DB.Column(DB.Unicode)
+    meta_create_date = DB.Column(DB.DateTime)
+    meta_update_date = DB.Column(DB.DateTime)
+    nomenclature_items = relationship("TNomenclatures")
+
+    def __repr__(self):
+        return self.label_default
+        
+    @staticmethod
+    def get_default_nomenclature(id_type, id_organism=0):
+        q = select([
+            func.ref_nomenclatures.get_default_nomenclature_value(
+                id_type,
+                id_organism
+            ).label('default')
+        ])
+        result = DB.session.execute(q)
+        return result.fetchone()['default']
 
 
 class TNomenclatures(serializableModel, DB.Model):
@@ -39,40 +77,15 @@ class TNomenclatures(serializableModel, DB.Model):
     active = DB.Column(DB.BOOLEAN)
     meta_create_date = DB.Column(DB.DateTime)
     meta_update_date = DB.Column(DB.DateTime)
+    nomenclature_type_name = relationship("BibNomenclaturesTypes", back_populates="nomenclature_items")
+
 
     @staticmethod
     def get_default_nomenclature(id_type, id_organism=0):
-        q = select([
-            func.ref_nomenclatures.get_default_nomenclature_value(
-                id_type,
-                id_organism
-            ).label('default')
-        ])
+        q = select([func.ref_nomenclatures.get_default_nomenclature_value(id_type, id_organism).label('default')])
         result = DB.session.execute(q)
         return result.fetchone()['default']
 
-
-class BibNomenclaturesTypes(serializableModel, DB.Model):
-    __tablename__ = 'bib_nomenclatures_types'
-    __table_args__ = {'schema': 'ref_nomenclatures'}
-    id_type = DB.Column(DB.Integer, primary_key=True)
-    mnemonique = DB.Column(DB.Unicode)
-    label_default = DB.Column(DB.Unicode)
-    definition_default = DB.Column(DB.Unicode)
-    label_fr = DB.Column(DB.Unicode)
-    definition_fr = DB.Column(DB.Unicode)
-    label_en = DB.Column(DB.Unicode)
-    definition_en = DB.Column(DB.Unicode)
-    label_es = DB.Column(DB.Unicode)
-    definition_es = DB.Column(DB.Unicode)
-    label_de = DB.Column(DB.Unicode)
-    definition_de = DB.Column(DB.Unicode)
-    label_it = DB.Column(DB.Unicode)
-    definition_it = DB.Column(DB.Unicode)
-    source = DB.Column(DB.Unicode)
-    statut = DB.Column(DB.Unicode)
-    meta_create_date = DB.Column(DB.DateTime)
-    meta_update_date = DB.Column(DB.DateTime)
 
 
 class VNomenclatureTaxonomie(serializableModel, DB.Model):

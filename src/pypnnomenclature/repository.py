@@ -85,6 +85,9 @@ def get_nomenclature_list_formated(nomenclature_params, mapping):
     data = list()
     nomenclature_data = get_nomenclature_list(**nomenclature_params)
 
+    if not nomenclature_data:
+        return None
+
     if 'values' not in nomenclature_data:
         return data
 

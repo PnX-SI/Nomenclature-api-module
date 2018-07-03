@@ -44,6 +44,10 @@ FROM JAIPASCAPTE
 * Récupération des termes d'une nomenclature : ```/nomenclature/6[?regne=Animalia[&group2_inpn=Bivalves]]```
 * Récupération des termes d'un ensemble de nomenclature : ```/nomenclatures?id_type=22&id_type=6[&regne=Animalia[&group2_inpn=Bivalves]]```
 
+# Interface d'administration des données
+
+ * Accessible via l'url /nomenclatures/admin
+
 # Installation
 
 Cloner repository and then launch in the folder:
