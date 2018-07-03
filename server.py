@@ -18,8 +18,9 @@ def init_app():
     from routes import routes
     app.register_blueprint(routes, url_prefix='/')
 
-    #import admin
-    from admin import *
+    # import admin
+    with app.app_context():
+        from admin import admin
 
     return app
 

@@ -8,24 +8,37 @@ from .models import (
     BibNomenclaturesTypes
 )
 
+
 class TNomenclatureFiltersType(BaseSQLAFilter):
-    # Override to create an appropriate query and apply a filter to said query with the passed value from the filter UI
+
+    # Override to create an appropriate query and apply a filter to
+    # said query with the passed value from the filter UI
     def apply(self, query, value, alias=None):
         return query.filter(TNomenclatures.id_type == value)
+
     # readable operation name. This appears in the middle filter line drop-down
     def operation(self):
         return u'equals'
+
     def get_options(self, view):
-        return [(nomenclature.id_type, nomenclature.label_default)
-         for nomenclature in BibNomenclaturesTypes.query.order_by(BibNomenclaturesTypes.label_default)]
+        return [
+            (nomenclature.id_type, nomenclature.label_default)
+            for nomenclature
+            in BibNomenclaturesTypes.query.order_by(BibNomenclaturesTypes.label_default) # noqa
+        ]
+
 
 class TNomenclatureFiltersId(BaseSQLAFilter):
-    # Override to create an appropriate query and apply a filter to said query with the passed value from the filter UI
+
+    # Override to create an appropriate query and apply a filter to said query
+    # with the passed value from the filter UI
     def apply(self, query, value, alias=None):
         return query.filter(TNomenclatures.id_nomenclature == value)
+
     # readable operation name. This appears in the middle filter line drop-down
     def operation(self):
         return u'equals'
+
 
 class TNomenclaturesAdmin(ModelView):
     page_size = 10
@@ -45,7 +58,7 @@ class TNomenclaturesAdmin(ModelView):
     ]
     column_list = [
       'id_nomenclature',
-      'nomenclature_type_name', 
+      'nomenclature_type_name',
       'mnemonique',
       'cd_nomenclature',
       'label_default',
@@ -69,27 +82,40 @@ class TNomenclaturesAdmin(ModelView):
         self._refresh_filters_cache()
         return super(TNomenclaturesAdmin, self).index_view()
 
+
 class BibNomenclatureFiltersLabel(BaseSQLAFilter):
-    # Override to create an appropriate query and apply a filter to said query with the passed value from the filter UI
+    # Override to create an appropriate query and apply a filter to said query
+    # with the passed value from the filter UI
     def apply(self, query, value, alias=None):
         return query.filter(BibNomenclaturesTypes.label_default == value)
+
     # readable operation name. This appears in the middle filter line drop-down
     def operation(self):
         return u'equals'
+
     def get_options(self, view):
-        return [(nomenclature.label_default, nomenclature.label_default)
-         for nomenclature in BibNomenclaturesTypes.query.order_by(BibNomenclaturesTypes.label_default)]
+        return [
+            (nomenclature.label_default, nomenclature.label_default)
+            for nomenclature
+            in BibNomenclaturesTypes.query.order_by(BibNomenclaturesTypes.label_default) # noqa
+        ]
+
 
 class BibNomenclatureFiltersID(BaseSQLAFilter):
-    # Override to create an appropriate query and apply a filter to said query with the passed value from the filter UI
+
+    # Override to create an appropriate query and apply a filter to said query
+    # with the passed value from the filter UI
     def apply(self, query, value, alias=None):
         return query.filter(BibNomenclaturesTypes.id_type == value)
+
     # readable operation name. This appears in the middle filter line drop-down
     def operation(self):
         return u'equals'
+
     # def get_options(self, view):
     #     return [(nomenclature.label_default, nomenclature.label_default)
     #      for nomenclature in BibNomenclaturesTypes.query.order_by(BibNomenclaturesTypes.label_default)]
+
 
 class BibNomenclaturesTypesAdmin(ModelView):
     page_size = 10
@@ -132,5 +158,15 @@ admin = Admin(
   template_mode='bootstrap3',
   url='/nomenclatures/admin',
   )
-admin.add_view(BibNomenclaturesTypesAdmin(BibNomenclaturesTypes, DB.session, name="Type de nomenclatures"))
-admin.add_view(TNomenclaturesAdmin(TNomenclatures, DB.session, name="Items de nomenclatures"))
+
+admin.add_view(
+    BibNomenclaturesTypesAdmin(
+        BibNomenclaturesTypes, DB.session, name="Type de nomenclatures"
+    )
+)
+
+admin.add_view(
+    TNomenclaturesAdmin(
+        TNomenclatures, DB.session, name="Items de nomenclatures"
+    )
+)
