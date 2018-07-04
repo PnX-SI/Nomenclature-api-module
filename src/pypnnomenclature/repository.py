@@ -44,7 +44,7 @@ def get_nomenclature_list(
     # Filtrer sur la hiérarchie
     if hierarchy:
         q = q.filter(TNomenclatures.hierarchy.like("{}%".format(hierarchy)))
-    if current_app.config['ENABLE_TAXONOMIC_FILTERS']:
+    if current_app.config['ENABLE_NOMENCLATURE_TAXONOMIC_FILTERS']:
         # Filtrer en fonction du groupe taxonomie
         if regne:
             q = q.join(
