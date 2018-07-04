@@ -1,11 +1,13 @@
 '''
     Méthode permettant de manipuler les objets de la nomenclature
 '''
+from flask import current_app
+
 from .models import (
-    VNomenclatureTaxonomie,
     TNomenclatures,
     BibNomenclaturesTypes
 )
+from .models import VNomenclatureTaxonomie
 from .env import DB
 
 
@@ -39,22 +41,21 @@ def get_nomenclature_list(
         .filter_by(active=True)
     )
 
-    # Filtrer en fonction du groupe taxonomie
-    if regne:
-        q = q.join(
-            VNomenclatureTaxonomie,
-            VNomenclatureTaxonomie.id_nomenclature ==
-            TNomenclatures.id_nomenclature
-        ).filter(VNomenclatureTaxonomie.regne.in_(('all', regne)))
-        if group2_inpn:
-            q = q.filter(
-                VNomenclatureTaxonomie.group2_inpn.in_(('all', group2_inpn))
-            )
-
     # Filtrer sur la hiérarchie
     if hierarchy:
         q = q.filter(TNomenclatures.hierarchy.like("{}%".format(hierarchy)))
-
+    if current_app.config['ENABLE_TAXONOMIC_FILTERS']:
+        # Filtrer en fonction du groupe taxonomie
+        if regne:
+            q = q.join(
+                VNomenclatureTaxonomie,
+                VNomenclatureTaxonomie.id_nomenclature ==
+                TNomenclatures.id_nomenclature
+            ).filter(VNomenclatureTaxonomie.regne.in_(('all', regne)))
+            if group2_inpn:
+                q = q.filter(
+                    VNomenclatureTaxonomie.group2_inpn.in_(('all', group2_inpn))
+                )
     # Ordonnancement
     if 'orderby' in filter_params:
         order_col = getattr(

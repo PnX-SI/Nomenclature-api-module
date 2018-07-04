@@ -87,7 +87,7 @@ class TNomenclatures(serializableModel, DB.Model):
         return result.fetchone()['default']
 
 
-
+#Modèle utilisé seulement si l'extension 'taxonomie' du module est activée et installée
 class VNomenclatureTaxonomie(serializableModel, DB.Model):
     __tablename__ = 'v_nomenclature_taxonomie'
     __table_args__ = {'schema': 'ref_nomenclatures'}
@@ -122,3 +122,4 @@ class VNomenclatureTaxonomie(serializableModel, DB.Model):
     nomenclature_definition_it = DB.Column(DB.Unicode)
     id_broader = DB.Column(DB.Integer)
     hierarchy = DB.Column(DB.Unicode)
+
