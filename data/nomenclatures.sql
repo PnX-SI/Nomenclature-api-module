@@ -71,7 +71,8 @@ $$
         OR mycdnomenclature IS NULL) THEN
       RETURN true;
     ELSE
-	    RAISE EXCEPTION 'Error : cd_nomenclature and nomenclature type didn''t match. Use cd_nomenclature in corresponding type (mnemonique field). See ref_nomenclatures.t_nomenclatures.id_type and ref_nomenclatures.bib_nomenclatures_types.mnemonique';
+	    RAISE EXCEPTION 'Error : cd_nomenclature --> % and nomenclature type --> % didn''t match.', mycdnomenclature, mytype
+	    USING HINT = 'Use cd_nomenclature in corresponding type (mnemonique field). See ref_nomenclatures.t_nomenclatures.id_type and ref_nomenclatures.bib_nomenclatures_types.mnemonique';
     END IF;
     RETURN false;
   END;
