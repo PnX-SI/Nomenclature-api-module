@@ -103,22 +103,6 @@ $BODY$
   LANGUAGE plpgsql IMMUTABLE
   COST 100;
 
-
-CREATE OR REPLACE FUNCTION get_cd_nomenclature(myidnomenclature integer)
-  RETURNS character varying AS
-$BODY$
---Function which return the cd_nomenclature from an an id_nomenclature
-DECLARE thecdnomenclature character varying;
-  BEGIN
-SELECT INTO thecdnomenclature cd_nomenclature
-FROM ref_nomenclatures.t_nomenclatures n
-WHERE myidnomenclature = n.id_nomenclature;
-return thecdnomenclature;
-  END;
-$BODY$
-  LANGUAGE plpgsql IMMUTABLE
-  COST 100;
-
 ----------
 --TABLES--
 ----------
@@ -378,7 +362,7 @@ CREATE OR REPLACE VIEW v_preuve_exist AS
     n.hierarchy
    FROM ref_nomenclatures.t_nomenclatures n
      LEFT JOIN ref_nomenclatures.cor_taxref_nomenclature ctn ON ctn.id_nomenclature = n.id_nomenclature
-  WHERE n.id_type = 15
+  WHERE n.mnemonique = 'PREUVE_EXIST'
   AND n.active = true;
 --USAGE :
 --SELECT * FROM ref_nomenclatures.v_preuve_exist;
