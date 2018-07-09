@@ -1,5 +1,5 @@
-Flask==0.12.2
-Flask-SQLAlchemy==2.2
+flask==0.12.2
+sqlalchemy==1.1.13
+flask-sqlalchemy==2.3.2
 psycopg2==2.7.3
-SQLAlchemy==1.1.13
 Flask-Admin==1.5.1
