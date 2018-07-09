@@ -174,9 +174,21 @@ CREATE TABLE bib_nomenclatures_types (
 );
 COMMENT ON TABLE bib_nomenclatures_types IS 'Description of the SINP nomenclatures list.';
 
+CREATE SEQUENCE bib_nomenclatures_types_id_type_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+ALTER SEQUENCE bib_nomenclatures_types_id_type_seq OWNED BY bib_nomenclatures_types.id_type;
+ALTER TABLE ONLY bib_nomenclatures_types ALTER COLUMN id_type SET DEFAULT nextval('bib_nomenclatures_types_id_type_seq'::regclass);
+
+
+
+
 CREATE TABLE t_nomenclatures (
     id_nomenclature integer NOT NULL,
-    id_type integer,
+    id_type integer NOT NULL,
     cd_nomenclature character varying(255) NOT NULL,
     mnemonique character varying(255),
     label_default character varying(255),

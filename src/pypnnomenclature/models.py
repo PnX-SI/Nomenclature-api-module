@@ -10,6 +10,7 @@ from .utils import serializableModel
 
 from .env import DB
 
+
 class BibNomenclaturesTypes(serializableModel, DB.Model):
     __tablename__ = 'bib_nomenclatures_types'
     __table_args__ = {'schema': 'ref_nomenclatures'}
@@ -35,17 +36,17 @@ class BibNomenclaturesTypes(serializableModel, DB.Model):
 
     def __repr__(self):
         return self.label_default
-        
+
     @staticmethod
-    def get_default_nomenclature(id_type, id_organism=0):
+    def get_default_nomenclature(mnemonique, id_organism=0):
         q = select([
             func.ref_nomenclatures.get_default_nomenclature_value(
-                id_type,
-                id_organism
+                mnemonique, id_organism
             ).label('default')
         ])
         result = DB.session.execute(q)
         return result.fetchone()['default']
+
 
 
 class TNomenclatures(serializableModel, DB.Model):
@@ -77,17 +78,24 @@ class TNomenclatures(serializableModel, DB.Model):
     active = DB.Column(DB.BOOLEAN)
     meta_create_date = DB.Column(DB.DateTime)
     meta_update_date = DB.Column(DB.DateTime)
-    nomenclature_type_name = relationship("BibNomenclaturesTypes", back_populates="nomenclature_items")
-
+    nomenclature_type_name = relationship(
+        "BibNomenclaturesTypes",
+        back_populates="nomenclature_items"
+    )
 
     @staticmethod
-    def get_default_nomenclature(id_type, id_organism=0):
-        q = select([func.ref_nomenclatures.get_default_nomenclature_value(id_type, id_organism).label('default')])
+    def get_default_nomenclature(mnemonique, id_organism=0):
+        q = select([
+            func.ref_nomenclatures.get_default_nomenclature_value(
+                mnemonique, id_organism
+            ).label('default')
+        ])
         result = DB.session.execute(q)
         return result.fetchone()['default']
 
 
-#Modèle utilisé seulement si l'extension 'taxonomie' du module est activée et installée
+# Modèle utilisé seulement si l'extension 'taxonomie'
+# du module est activée et installée
 class VNomenclatureTaxonomie(serializableModel, DB.Model):
     __tablename__ = 'v_nomenclature_taxonomie'
     __table_args__ = {'schema': 'ref_nomenclatures'}

@@ -107,8 +107,10 @@ INSERT INTO bib_nomenclatures_types (id_type, mnemonique, label_fr, definition_f
 ,(115, 'METHO_RECUEIL', 'Méthode de recueil des données', 'Nomenclature de l''ensemble de techniques, savoir-faire et outils mobilisés pour collecter des données.', 'SINP', 'Validé', '2017-11-02 00:00:00', '2017-11-02 00:00:00')
 ,(116, 'TYPE_SITE', 'Type de sites', 'Nomenclature des types de sites suivi dans gn_monitoring.', 'GEONATURE', 'Non validé', '2018-03-13 00:00:00', '2018-03-13 00:00:00')
 ,(117, 'TYPE_MEDIA', 'Type de médias', 'Nomenclature des types de médias.', 'GEONATURE', 'Non validé', '2018-04-12 00:00:00', '2018-04-12 00:00:00')
-
 ;
+
+SELECT setval('ref_nomenclatures.bib_nomenclatures_types_id_type_seq', (SELECT max(id_type) FROM ref_nomenclatures.bib_nomenclatures_types), true);
+
 
 UPDATE bib_nomenclatures_types SET label_default = label_MYDEFAULTLANGUAGE;
 UPDATE bib_nomenclatures_types SET definition_default = definition_MYDEFAULTLANGUAGE;
