@@ -193,7 +193,7 @@ admin = Admin(
   current_app,
   name="Backoffice d'administration des nomenclatures",
   template_mode='bootstrap3',
-  url='/nomenclatures/admin',
+  url=current_app.config.get('URL_ADMIN_NOMENCLATURES') or '/nomenclatures/admin',
 )
 
 admin.add_view(
