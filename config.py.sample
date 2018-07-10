@@ -17,4 +17,4 @@ COOKIE_AUTORENEW = True
 # Ajoute les filtres taxonomiques à l'API 
 # Necessite d'avoir executer le script 'nomenclature_taxonomie.sql' qui installe les tables necessaires
 ENABLE_NOMENCLATURE_TAXONOMIC_FILTERS = True
-URL_ADMIN = "/nomenclatures/admin"
+URL_ADMIN_NOMENCLATURES = "/nomenclatures/admin"
