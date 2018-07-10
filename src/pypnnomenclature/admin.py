@@ -27,6 +27,25 @@ class TNomenclatureFiltersType(BaseSQLAFilter):
             in BibNomenclaturesTypes.query.order_by(BibNomenclaturesTypes.label_default) # noqa
         ]
 
+class TNomenclatureFiltersMnemonique(BaseSQLAFilter):
+
+    # Override to create an appropriate query and apply a filter to
+    # said query with the passed value from the filter UI
+    def apply(self, query, value, alias=None):
+        return query.filter(TNomenclatures.id_type == value)
+
+    # readable operation name. This appears in the middle filter line drop-down
+    def operation(self):
+        return u'equals'
+
+    def get_options(self, view):
+        return [
+            (nomenclature.id_type, nomenclature.mnemonique)
+            for nomenclature
+            in BibNomenclaturesTypes.query.order_by(BibNomenclaturesTypes.mnemonique) # noqa
+        ]
+
+
 
 class TNomenclatureFiltersId(BaseSQLAFilter):
 
@@ -72,7 +91,8 @@ class TNomenclaturesAdmin(ModelView):
 
     column_filters = [
         TNomenclatureFiltersType(column=None, name='Type de nomenclature'),
-        TNomenclatureFiltersId(column=None, name='Id nomenclature')
+        TNomenclatureFiltersId(column=None, name='Id nomenclature'),
+        TNomenclatureFiltersMnemonique(column=None, name='Mnemonique'),
         ]
 
     # Need this so the filter options are always up-to-date
