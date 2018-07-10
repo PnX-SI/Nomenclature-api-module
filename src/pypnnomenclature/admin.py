@@ -43,7 +43,6 @@ class TNomenclatureFiltersId(BaseSQLAFilter):
 class TNomenclaturesAdmin(ModelView):
     page_size = 10
     form_columns = [
-      'id_nomenclature',
       'nomenclature_type_name',
       'cd_nomenclature',
       'mnemonique',
@@ -112,9 +111,24 @@ class BibNomenclatureFiltersID(BaseSQLAFilter):
     def operation(self):
         return u'equals'
 
-    # def get_options(self, view):
-    #     return [(nomenclature.label_default, nomenclature.label_default)
-    #      for nomenclature in BibNomenclaturesTypes.query.order_by(BibNomenclaturesTypes.label_default)]
+class BibNomenclatureFiltersMnemonique(BaseSQLAFilter):
+
+    # Override to create an appropriate query and apply a filter to said query
+    # with the passed value from the filter UI
+    def apply(self, query, value, alias=None):
+        return query.filter(BibNomenclaturesTypes.mnemonique == value)
+
+    def get_options(self, view):
+        return [
+            (nomenclature.mnemonique, nomenclature.mnemonique)
+            for nomenclature
+            in BibNomenclaturesTypes.query.order_by(BibNomenclaturesTypes.mnemonique) # noqa
+        ]
+
+    # readable operation name. This appears in the middle filter line drop-down
+    def operation(self):
+        return u'equals'
+
 
 
 class BibNomenclaturesTypesAdmin(ModelView):
@@ -130,7 +144,6 @@ class BibNomenclaturesTypesAdmin(ModelView):
     ]
     column_display_pk = True
     form_columns = [
-      'id_type',
       'mnemonique',
       'label_default',
       'definition_default',
@@ -142,7 +155,8 @@ class BibNomenclaturesTypesAdmin(ModelView):
 
     column_filters = [
         BibNomenclatureFiltersLabel(column=None, name='Type de nomenclature'),
-        BibNomenclatureFiltersID(column=None, name='Id type')
+        BibNomenclatureFiltersID(column=None, name='Id type'),
+        BibNomenclatureFiltersMnemonique(column=None, name='Mnémonique')
         ]
 
     # Need this so the filter options are always up-to-date
