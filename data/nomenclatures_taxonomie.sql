@@ -95,7 +95,7 @@ $BODY$
     WHERE cd_nom = mycdnom
     AND (id_nomenclature = mynomenclatureid OR id_nomenclature = 0);
   IF sensitivityid IS NULL THEN
-    sensitivityid = 163;
+    sensitivityid = ref_nomenclatures.get_id_nomenclature('NIV_PRECIS', '5');
   END IF;
   RETURN sensitivityid;
   END;
