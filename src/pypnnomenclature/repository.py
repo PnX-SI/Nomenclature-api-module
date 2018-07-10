@@ -1,49 +1,61 @@
 '''
     Méthode permettant de manipuler les objets de la nomenclature
 '''
+from flask import current_app
+
 from .models import (
-    VNomenclatureTaxonomie,
     TNomenclatures,
     BibNomenclaturesTypes
 )
+from .models import VNomenclatureTaxonomie
 from .env import DB
 
 
 def get_nomenclature_list(
-    id_type, regne=None, group2_inpn=None, hierarchy=None, filter_params=None
+    id_type=None, code_type=None,
+    regne=None, group2_inpn=None, hierarchy=None, filter_params=None
 ):
     '''
         Récupération de la liste des termes d'un type de nomenclature
     '''
+
+    q = DB.session.query(BibNomenclaturesTypes)
+
     if filter_params is None:
         filter_params = []
-    nomenclature = DB.session.query(BibNomenclaturesTypes)\
-        .filter_by(id_type=id_type).first()
+
+    if code_type:
+        nomenclature = q.filter_by(mnemonique=code_type).first()
+    elif id_type:
+        nomenclature = q.filter_by(id_type=id_type).first()
+    else:
+        nomenclature = None
 
     if (not nomenclature):
         return None
 
     # Terme de nomenclatures
-    q = DB.session.query(TNomenclatures)\
-        .filter_by(id_type=id_type)\
+    q = (
+        DB.session.query(TNomenclatures)
+        .filter_by(id_type=nomenclature.id_type)
         .filter_by(active=True)
-
-    # Filtrer en fonction du groupe taxonomie
-    if regne:
-        q = q.join(
-            VNomenclatureTaxonomie,
-            VNomenclatureTaxonomie.id_nomenclature ==
-            TNomenclatures.id_nomenclature
-        ).filter(VNomenclatureTaxonomie.regne.in_(('all', regne)))
-        if group2_inpn:
-            q = q.filter(
-                VNomenclatureTaxonomie.group2_inpn.in_(('all', group2_inpn))
-            )
+    )
 
     # Filtrer sur la hiérarchie
     if hierarchy:
         q = q.filter(TNomenclatures.hierarchy.like("{}%".format(hierarchy)))
-
+    if current_app.config['ENABLE_NOMENCLATURE_TAXONOMIC_FILTERS']:
+        # Filtrer en fonction du groupe taxonomie
+        if regne:
+            q = q.join(
+                VNomenclatureTaxonomie,
+                VNomenclatureTaxonomie.id_nomenclature ==
+                TNomenclatures.id_nomenclature
+            ).filter(VNomenclatureTaxonomie.regne.in_(('all', regne)))
+            if group2_inpn:
+                q = q.filter(
+                    VNomenclatureTaxonomie.group2_inpn.in_(('all', group2_inpn))
+                )
     # Ordonnancement
     if 'orderby' in filter_params:
         order_col = getattr(
@@ -62,7 +74,6 @@ def get_nomenclature_list(
     except Exception as e:
         DB.session.rollback()
         raise
-
 
     response = nomenclature.as_dict()
     if data:

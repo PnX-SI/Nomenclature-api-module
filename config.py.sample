@@ -13,3 +13,8 @@ SESSION_TYPE = 'filesystem'
 SECRET_KEY = 'super secret key'
 COOKIE_EXPIRATION = 3600
 COOKIE_AUTORENEW = True
+
+# Ajoute les filtres taxonomiques à l'API 
+# Necessite d'avoir executer le script 'nomenclature_taxonomie.sql' qui installe les tables necessaires
+ENABLE_NOMENCLATURE_TAXONOMIC_FILTERS = True
+URL_ADMIN_NOMENCLATURES = "/nomenclatures/admin"

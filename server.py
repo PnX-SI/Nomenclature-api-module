@@ -16,12 +16,11 @@ def init_app():
     DB.init_app(app)
 
     from routes import routes
-    app.register_blueprint(routes, url_prefix='/')
+    app.register_blueprint(routes, url_prefix='/nomenclatures')
 
     # import admin
     with app.app_context():
         from admin import admin
-
     return app
 
 
