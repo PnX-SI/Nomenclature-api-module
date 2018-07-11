@@ -14,7 +14,7 @@ CHANGELOG
 
 **Nouveautés**
 
-* Création d'une interface d'administration (Flask-admin) pour gérer les nomenclatures et leurs types. URL paramétrable avec ``ADMIN_NOMENCLATURES`` dans le fichier ``config.py`` (``/nomenclatures/admin`` par défaut)
+* Création d'une interface d'administration (Flask-admin) pour gérer les nomenclatures et leurs types. URL paramétrable avec ``URL_ADMIN_NOMENCLATURES`` dans le fichier ``config.py`` (``/nomenclatures/admin`` par défaut)
 * Intégration des scripts SQL dans le dépôt du module et suppression du dépôt GeoNature (#3)
 * Gestion des conflits de nomenclatures en ne définissant ni n'utilisant les ``id_type`` ni ``id_nomenclature`` dans le SQL et le code du module et des applications qui utilisent la nomenclature (#9) 
 * Ajout de fonctions pour retrouver ces ID à partir des codes des nomenclatures et des mnemoniques des types (SQL et API)
