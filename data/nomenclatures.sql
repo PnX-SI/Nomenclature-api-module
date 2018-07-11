@@ -149,6 +149,27 @@ $BODY$
   LANGUAGE plpgsql IMMUTABLE
   COST 100;
 
+CREATE OR REPLACE FUNCTION ref_nomenclatures.get_nomenclature_label_by_cdnom_mnemonique_and_language(
+    mytype character varying,
+    mycdnomenclature character varying,
+    mylanguage character varying)
+  RETURNS character varying AS
+$BODY$
+--Function which return the label from the cd_nomenclature, the code_type and the language
+DECLARE
+	labelfield character varying;
+	thelabel character varying;
+  BEGIN
+  labelfield = 'label_'||mylanguage;
+  EXECUTE format( ' SELECT  %s
+  FROM ref_nomenclatures.t_nomenclatures n
+  WHERE cd_nomenclature = $1 AND id_type = ref_nomenclatures.get_id_nomenclature_type($2)',labelfield )INTO thelabel USING mycdnomenclature, mytype;
+return thelabel;
+  END;
+$BODY$
+  LANGUAGE plpgsql IMMUTABLE
+  COST 100;
+
 ----------
 --TABLES--
 ----------
@@ -182,8 +203,6 @@ CREATE SEQUENCE bib_nomenclatures_types_id_type_seq
     CACHE 1;
 ALTER SEQUENCE bib_nomenclatures_types_id_type_seq OWNED BY bib_nomenclatures_types.id_type;
 ALTER TABLE ONLY bib_nomenclatures_types ALTER COLUMN id_type SET DEFAULT nextval('bib_nomenclatures_types_id_type_seq'::regclass);
-
-
 
 
 CREATE TABLE t_nomenclatures (
