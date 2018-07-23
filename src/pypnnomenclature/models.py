@@ -32,7 +32,6 @@ class BibNomenclaturesTypes(serializableModel, DB.Model):
     statut = DB.Column(DB.Unicode)
     meta_create_date = DB.Column(DB.DateTime)
     meta_update_date = DB.Column(DB.DateTime)
-    nomenclature_items = relationship("TNomenclatures")
 
     def __repr__(self):
         return self.label_default
@@ -78,10 +77,6 @@ class TNomenclatures(serializableModel, DB.Model):
     active = DB.Column(DB.BOOLEAN)
     meta_create_date = DB.Column(DB.DateTime)
     meta_update_date = DB.Column(DB.DateTime)
-    nomenclature_type_name = relationship(
-        "BibNomenclaturesTypes",
-        back_populates="nomenclature_items"
-    )
 
     @staticmethod
     def get_default_nomenclature(mnemonique, id_organism=0):
@@ -131,3 +126,25 @@ class VNomenclatureTaxonomie(serializableModel, DB.Model):
     id_broader = DB.Column(DB.Integer)
     hierarchy = DB.Column(DB.Unicode)
 
+
+
+#Model for Admin
+class BibNomenclaturesTypesAdmin(BibNomenclaturesTypes):
+    __tablename__ = 'bib_nomenclatures_types'
+    __table_args__ = {
+        'schema': 'ref_nomenclatures',
+        'extend_existing': True
+    }
+    nomenclature_items = relationship("TNomenclaturesAdmin")    
+
+
+class TNomenclaturesAdmin(TNomenclatures):
+    __tablename__ = 't_nomenclatures'
+    __table_args__ = {
+        'schema': 'ref_nomenclatures',
+        'extend_existing': True
+    }
+    nomenclature_type_name = relationship(
+        "BibNomenclaturesTypesAdmin",
+        back_populates="nomenclature_items"
+    )
