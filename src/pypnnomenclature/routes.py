@@ -65,6 +65,7 @@ def get_nomenclature_by_type_list_and_taxonomy():
     """
     regne = request.args.get('regne')
     group2inpn = request.args.get('group2_inpn')
+    types = []
     if 'id_type' in request.args:
         types = request.args.getlist('id_type')
         param = 'id_type'
@@ -73,8 +74,6 @@ def get_nomenclature_by_type_list_and_taxonomy():
         param = 'code_type'
 
     results = []
-
-
     for id_type in types:
         response = get_nomenclature_list(**{
             param: id_type,

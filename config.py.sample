@@ -1,11 +1,9 @@
-
 '''
 Fichier de configuration générale de l'application
 '''
 
 SQLALCHEMY_DATABASE_URI = "postgresql://monuser:monpassachanger@localhost/geonature2db"
 SQLALCHEMY_TRACK_MODIFICATIONS = False
-
 
 DEBUG=True
 
@@ -14,6 +12,9 @@ SECRET_KEY = 'super secret key'
 COOKIE_EXPIRATION = 3600
 COOKIE_AUTORENEW = True
 
-# Ajoute les filtres taxonomiques à l'API 
-# Necessite d'avoir executer le script 'nomenclature_taxonomie.sql' qui installe les tables necessaires
+# Ajouter les filtres taxonomiques à l'API 
+# Nécessite d'avoir exécuté le script 'data/nomenclature_taxonomie.sql' qui installe les tables nécessaires
 ENABLE_NOMENCLATURE_TAXONOMIC_FILTERS = True
+
+# URL de l'interface d'administration
+URL_ADMIN_NOMENCLATURES = "/nomenclatures/admin"
