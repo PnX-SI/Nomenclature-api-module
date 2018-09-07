@@ -5,9 +5,21 @@ CHANGELOG
 1.1.1 (unreleased)
 ------------------
 
+**Nouveautés**
+
+* Ajout d'une fonction BDD de récupération du label à partir du cd_nomenclature, code_type et de la langue (``get_nomenclature_label_by_cdnom_mnemonique_and_language``)
+* Ajout d'une fonction BDD de récupération du label à partir de l'id_nomenclature et de la langue (``get_nomenclature_label_by_cdnom_mnemonique``)
+* Ajout d'une fonction BDD de récupération du label à partir d'un id_nomenclature (``get_nomenclature_label``)
+* Création d'une fonction Python retournant l'identifiant d'une nomenclature à partir de ses codes mnemoniques (``get_nomenclature_id_term``)
+* Création d'un script SQL de mise à jour de la BDD
+
 **Corrections**
 
-*
+* Correction d'un bug sur la dfonction BB ``get_nomenclature_by_type_list_and_taxonomy`` si on ne passe passe pas d'``id_type`` ou de ``code_type``
+
+**Notes de version**
+
+* Exécuter le script ``data/update1.1.0to1.1.1.sql``
 
 1.1.0 (2018-07-10)
 ------------------
