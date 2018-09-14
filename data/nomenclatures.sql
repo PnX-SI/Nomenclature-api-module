@@ -12,6 +12,7 @@ SET search_path = ref_nomenclatures, pg_catalog;
 -------------
 --FUNCTIONS--
 -------------
+
 CREATE OR REPLACE FUNCTION get_id_nomenclature_type(mytype character varying) RETURNS integer
 IMMUTABLE
 LANGUAGE plpgsql AS
@@ -28,8 +29,8 @@ CREATE OR REPLACE FUNCTION get_default_nomenclature_value(mytype character varyi
 IMMUTABLE
 LANGUAGE plpgsql AS
 $$
---Function that return the default nomenclature id with wanteds nomenclature type (mnemonique), organism id
---Return -1 if nothing matche with given parameters
+--Function that return the default nomenclature id with wanted nomenclature type (mnemonique), organism id
+--Return -1 if nothing matches with given parameters
   DECLARE
     thenomenclatureid integer;
   BEGIN
@@ -133,6 +134,23 @@ $BODY$
   LANGUAGE plpgsql IMMUTABLE
   COST 100;
 
+CREATE OR REPLACE FUNCTION get_nomenclature_label(
+    myidnomenclature integer DEFAULT NULL
+    )
+  RETURNS character varying AS
+$BODY$
+--Function which return the label from the id_nomenclature
+DECLARE
+	thelabel character varying;
+  BEGIN
+  SELECT INTO thelabel label_default
+  FROM ref_nomenclatures.t_nomenclatures n
+  WHERE id_nomenclature = myidnomenclature;
+return thelabel;
+  END;
+$BODY$
+  LANGUAGE plpgsql IMMUTABLE
+  COST 100;
 
 CREATE OR REPLACE FUNCTION get_cd_nomenclature(myidnomenclature integer)
   RETURNS character varying AS
@@ -192,6 +210,7 @@ $BODY$
 ----------
 --TABLES--
 ----------
+
 CREATE TABLE bib_nomenclatures_types (
     id_type integer NOT NULL,
     mnemonique character varying(255),
@@ -212,7 +231,7 @@ CREATE TABLE bib_nomenclatures_types (
     meta_create_date timestamp without time zone DEFAULT now(),
     meta_update_date timestamp without time zone DEFAULT now()
 );
-COMMENT ON TABLE bib_nomenclatures_types IS 'Description of the SINP nomenclatures list.';
+COMMENT ON TABLE bib_nomenclatures_types IS 'Types of nomenclature (SINP, CAMPanule, GeoNature...)';
 
 CREATE SEQUENCE bib_nomenclatures_types_id_type_seq
     START WITH 1
@@ -283,6 +302,7 @@ COMMENT ON TABLE cor_application_nomenclature
 ---------------
 --PRIMARY KEY--
 ---------------
+
 ALTER TABLE ONLY cor_nomenclatures_relations
     ADD CONSTRAINT pk_cor_nomenclatures_relations PRIMARY KEY (id_nomenclature_l, id_nomenclature_r, relation_type);
 
@@ -302,6 +322,7 @@ ALTER TABLE ONLY cor_application_nomenclature
 --------------
 --CONSTRAINS--
 --------------
+
 ALTER TABLE bib_nomenclatures_types
   ADD CONSTRAINT unique_bib_nomenclatures_types_mnemonique UNIQUE (mnemonique);
 
@@ -312,19 +333,18 @@ ALTER TABLE ONLY defaults_nomenclatures_value
 ---------------
 --FOREIGN KEY--
 ---------------
+
 ALTER TABLE ONLY cor_nomenclatures_relations
     ADD CONSTRAINT fk_cor_nomenclatures_relations_id_nomenclature_l FOREIGN KEY (id_nomenclature_l) REFERENCES t_nomenclatures(id_nomenclature);
 
 ALTER TABLE ONLY cor_nomenclatures_relations
     ADD CONSTRAINT fk_cor_nomenclatures_relations_id_nomenclature_r FOREIGN KEY (id_nomenclature_r) REFERENCES t_nomenclatures(id_nomenclature);
 
-
 ALTER TABLE ONLY t_nomenclatures
     ADD CONSTRAINT fk_t_nomenclatures_id_broader FOREIGN KEY (id_broader) REFERENCES t_nomenclatures(id_nomenclature);
 
 ALTER TABLE ONLY t_nomenclatures
     ADD CONSTRAINT fk_t_nomenclatures_id_type FOREIGN KEY (id_type) REFERENCES bib_nomenclatures_types(id_type) ON UPDATE CASCADE;
-
 
 ALTER TABLE ONLY defaults_nomenclatures_value
     ADD CONSTRAINT fk_defaults_nomenclatures_value_mnemonique_type FOREIGN KEY (mnemonique_type) REFERENCES bib_nomenclatures_types(mnemonique) ON UPDATE CASCADE;
@@ -335,7 +355,6 @@ ALTER TABLE ONLY defaults_nomenclatures_value
 ALTER TABLE ONLY defaults_nomenclatures_value
     ADD CONSTRAINT fk_defaults_nomenclatures_value_id_nomenclature FOREIGN KEY (id_nomenclature) REFERENCES t_nomenclatures(id_nomenclature) ON UPDATE CASCADE;
 
-
 ALTER TABLE ONLY cor_application_nomenclature
   ADD CONSTRAINT fk_cor_application_nomenclature_id_nomenclature FOREIGN KEY (id_nomenclature) REFERENCES ref_nomenclatures.t_nomenclatures (id_nomenclature) MATCH SIMPLE ON UPDATE CASCADE ON DELETE NO ACTION;
 
@@ -345,11 +364,13 @@ ALTER TABLE ONLY cor_application_nomenclature ADD CONSTRAINT fk_cor_application_
 ---------
 --INDEX--
 ---------
+
 CREATE INDEX index_t_nomenclatures_bib_nomenclatures_types_fkey ON t_nomenclatures USING btree (id_type);
 
 ------------
 --TRIGGERS--
 ------------
+
 CREATE TRIGGER tri_meta_dates_change_bib_nomenclatures_types
   BEFORE INSERT OR UPDATE
   ON bib_nomenclatures_types
