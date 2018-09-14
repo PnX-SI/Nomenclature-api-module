@@ -1,11 +1,19 @@
 # coding: utf-8
 
-#Do not import unicode_literals it generate an error when install module with pip
-from __future__ import ( print_function,
+# Do not import unicode_literals it generate an error when install module with pip
+from __future__ import (print_function,
                         absolute_import, division)
 
 import re
 import setuptools
+
+
+def get_version(path="src/pypnnomenclature/__init__.py"):
+    """ Return the version of by with regex intead of importing it"""
+    init_content = open(path, "rt").read()
+    pattern = r"^__version__ = ['\"]([^'\"]*)['\"]"
+    return re.search(pattern, init_content, re.M).group(1)
+
 
 setuptools.setup(
     name='pypnnomenclature',
