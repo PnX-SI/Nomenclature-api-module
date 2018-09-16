@@ -2,7 +2,7 @@
 CHANGELOG
 =========
 
-1.1.1 (unreleased)
+1.2.0 (unreleased)
 ------------------
 
 **Nouveautés**
@@ -12,14 +12,15 @@ CHANGELOG
 * Ajout d'une fonction BDD de récupération du label à partir d'un id_nomenclature (``get_nomenclature_label``)
 * Création d'une fonction Python retournant l'identifiant d'une nomenclature à partir de ses codes mnemoniques (``get_nomenclature_id_term``)
 * Création d'un script SQL de mise à jour de la BDD
+* Mise à jou rde Flask (0.12.2 à 1.0.2)
 
 **Corrections**
 
-* Correction d'un bug sur la dfonction BB ``get_nomenclature_by_type_list_and_taxonomy`` si on ne passe passe pas d'``id_type`` ou de ``code_type``
+* Correction d'un bug sur la fonction BDD ``get_nomenclature_by_type_list_and_taxonomy`` si on ne passe passe pas d'``id_type`` ou de ``code_type``
 
 **Notes de version**
 
-* Exécuter le script ``data/update1.1.0to1.1.1.sql``
+* Exécuter le script ``data/update1.1.0to1.2.0.sql``
 
 1.1.0 (2018-07-10)
 ------------------
