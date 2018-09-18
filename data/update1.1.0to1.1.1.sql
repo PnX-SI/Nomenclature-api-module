@@ -40,7 +40,7 @@ $BODY$
   COST 100;
   
   
-  CREATE OR REPLACE FUNCTION ref_nomenclaures.get_nomenclature_label(
+  CREATE OR REPLACE FUNCTION ref_nomenclatures.get_nomenclature_label(
     myidnomenclature integer DEFAULT NULL
     )
   RETURNS character varying AS
