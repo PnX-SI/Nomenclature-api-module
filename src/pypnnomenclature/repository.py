@@ -9,6 +9,7 @@ from .models import (
 )
 from .models import VNomenclatureTaxonomie
 from .env import DB
+from sqlalchemy import text
 
 
 def get_nomenclature_list(
@@ -106,3 +107,30 @@ def get_nomenclature_list_formated(nomenclature_params, mapping):
         data.append({val: term[mapping[val]['field']] for val in mapping})
 
     return data
+
+
+def get_nomenclature_id_term(cd_type, cd_term, raise_exp=True):
+    '''
+        Fonction retournant l'identifiant d'un term
+        à partir de ses codes mnemoniques
+
+        paramètres:
+        ----------
+            cd_type : code mnemonique du type de vocabulaire
+            cd_term : code du terme recherché
+            raise_exp : spécifie le comportement de la
+                fonction en cas d'exeception
+    '''
+
+    t = text(
+        "SELECT ref_nomenclatures.get_id_nomenclature(:cd_type, :cd_term) as id"
+    )
+    try:
+        value = DB.session.query('id').from_statement(
+            t.params(cd_type=cd_type, cd_term=cd_term)
+        ).first()
+        return value
+    except Exception as e:
+        if raise_exp:
+            raise e
+        return None
