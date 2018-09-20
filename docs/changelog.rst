@@ -12,7 +12,7 @@ CHANGELOG
 * Ajout d'une fonction BDD de récupération du label à partir d'un id_nomenclature (``get_nomenclature_label``)
 * Création d'une fonction Python retournant l'identifiant d'une nomenclature à partir de ses codes mnemoniques (``get_nomenclature_id_term``)
 * Création d'un script SQL de mise à jour de la BDD
-* Mise à jou rde Flask (0.12.2 à 1.0.2)
+* Mise à jour de Flask (0.12.2 à 1.0.2)
 
 **Corrections**
 
