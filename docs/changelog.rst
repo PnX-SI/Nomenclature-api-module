@@ -2,7 +2,7 @@
 CHANGELOG
 =========
 
-1.2.0 (2018-09-19)
+1.2.1 (2018-09-20)
 ------------------
 
 **Nouveautés**
@@ -20,7 +20,8 @@ CHANGELOG
 
 **Notes de version**
 
-* Exécuter le script ``data/update1.1.0to1.2.0.sql``
+* Exécuter le script ``data/update1.1.0to1.2.1.sql``
+* Ne pas prendre en compte la version 1.2.0 qui est une erreur de manipulation
 
 1.1.0 (2018-07-10)
 ------------------
