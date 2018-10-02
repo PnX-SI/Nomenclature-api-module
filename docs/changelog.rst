@@ -7,7 +7,7 @@ CHANGELOG
 
 **Corrections**
 
-* 
+* Mise à jour psycopg2 (2.7.3 à 2.7.5)
 
 1.2.1 (2018-09-20)
 ------------------
