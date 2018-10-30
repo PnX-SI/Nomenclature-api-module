@@ -27,7 +27,6 @@ def get_nomenclature_list(
     '''
 
     q = DB.session.query(BibNomenclaturesTypes)
-    #q = BibNomenclaturesTypes.query
     if filter_params is None:
         filter_params = []
 
@@ -47,7 +46,6 @@ def get_nomenclature_list(
         .filter_by(id_type=nomenclature.id_type)
         .filter_by(active=True)
     )
-    #q = TNomenclatures.query.filter_by(id_type=nomenclature.id_type).filter_by(active=True)
 
     # Filtrer sur la hiérarchie
     if hierarchy:
