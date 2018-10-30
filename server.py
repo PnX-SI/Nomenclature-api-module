@@ -15,11 +15,12 @@ def init_app():
     app.config.from_pyfile('config.py')
     DB.init_app(app)
 
-    from routes import routes
-    app.register_blueprint(routes, url_prefix='/nomenclatures')
-
-    # import admin
     with app.app_context():
+        from routes import routes
+        app.register_blueprint(routes, url_prefix='/nomenclatures')
+
+        # import admin
+    
         from admin import admin
     return app
 

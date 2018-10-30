@@ -2,13 +2,21 @@
 # coding: utf8
 from __future__ import (unicode_literals, print_function,
                         absolute_import, division)
-
+from importlib import import_module
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import select, func
 from .utils import serializableModel
 
-from .env import DB
+#from .env import DB
+
+from flask import current_app
+
+USE_AS_SUBMODULE = current_app.config.get('USE_AS_SUBMODULE', True)
+if USE_AS_SUBMODULE:
+    DB = current_app.config['DB']
+else:
+    DB = import_module('.env', 'pypnnomenclature').DB
 
 
 class BibNomenclaturesTypes(serializableModel, DB.Model):

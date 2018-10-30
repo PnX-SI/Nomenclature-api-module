@@ -18,3 +18,8 @@ ENABLE_NOMENCLATURE_TAXONOMIC_FILTERS = True
 
 # URL de l'interface d'administration
 URL_ADMIN_NOMENCLATURES = "/nomenclatures/admin"
+
+# L'application est-elle utilisée comme un sous-module d'une application parente ?
+# Si c'est un sous module, on utilise l'instance DB fournit par la config de l'application parente
+# Si c'est une application indépendante, on utilise la variable DB du fichier env.py
+USE_AS_SUBMODULE = False
