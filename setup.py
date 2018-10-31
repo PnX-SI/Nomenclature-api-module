@@ -8,7 +8,7 @@ import re
 import setuptools
 
 
-def get_version(path="src/pypnnomenclature/__init__.py"):
+def get_version(path="src/VERSION"):
     """ Return the version of by with regex intead of importing it"""
     init_content = open(path, "rt").read()
     pattern = r"^__version__ = ['\"]([^'\"]*)['\"]"
@@ -17,7 +17,7 @@ def get_version(path="src/pypnnomenclature/__init__.py"):
 
 setuptools.setup(
     name='pypnnomenclature',
-    version='0.0.0',
+    version=get_version(),
     description="Python lib related to nomenclatures",
     long_description=open('README.md').read().strip(),
     author="Les parcs nationaux de France",
