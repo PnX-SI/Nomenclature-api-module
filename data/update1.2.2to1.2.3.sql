@@ -19,4 +19,4 @@ $BODY$
   COST 100;
 
 --suppression d'une fonction doublon (même signature que celle ci-dessus du fait de la valeur par défault transmise)
-DROP FUNCTION ref_nomenclatures.get_nomenclature_label(myidnomenclature integer DEFAULT NULL::integer);
+DROP FUNCTION ref_nomenclatures.get_nomenclature_label(myidnomenclature integer);
