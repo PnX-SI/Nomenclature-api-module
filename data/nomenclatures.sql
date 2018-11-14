@@ -133,24 +133,6 @@ $BODY$
   LANGUAGE plpgsql IMMUTABLE
   COST 100;
 
-CREATE OR REPLACE FUNCTION get_nomenclature_label(
-    myidnomenclature integer DEFAULT NULL
-    )
-  RETURNS character varying AS
-$BODY$
---Function which return the label from the id_nomenclature
-DECLARE
-	thelabel character varying;
-  BEGIN
-  SELECT INTO thelabel label_default
-  FROM ref_nomenclatures.t_nomenclatures n
-  WHERE id_nomenclature = myidnomenclature;
-return thelabel;
-  END;
-$BODY$
-  LANGUAGE plpgsql IMMUTABLE
-  COST 100;
-
 CREATE OR REPLACE FUNCTION get_cd_nomenclature(myidnomenclature integer)
   RETURNS character varying AS
 $BODY$
