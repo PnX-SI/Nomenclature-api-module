@@ -127,7 +127,7 @@ DECLARE
   EXECUTE format( ' SELECT  %s
   FROM ref_nomenclatures.t_nomenclatures n
   WHERE id_nomenclature = $1',labelfield)INTO thelabel USING myidnomenclature;
-return mylanguage;
+return thelabel;
   END;
 $BODY$
   LANGUAGE plpgsql IMMUTABLE
