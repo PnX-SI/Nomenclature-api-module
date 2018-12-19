@@ -7,7 +7,12 @@ CHANGELOG
 
 **Corrections**
 
-*
+* Optimisation des accès à la BDD en utilisant l'instance ``DB`` de l'application dans laquelle est utilisée ce sous-module. Cependant si elle n'existe pas, alors l'instance ``DB`` de SQLAlchemy est créée automatiquement #17
+* Correction de la fonction ``ref_nomenclatures.get_nomenclature_label``
+
+**Notes de version**
+
+* data/update1.2.2to1.2.3.sql
 
 1.2.2 (2018-10-17)
 ------------------
