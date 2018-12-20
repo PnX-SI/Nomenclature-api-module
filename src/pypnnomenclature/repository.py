@@ -1,6 +1,7 @@
 '''
     Méthode permettant de manipuler les objets de la nomenclature
 '''
+from importlib import import_module
 from flask import current_app
 
 from .models import (
@@ -8,9 +9,14 @@ from .models import (
     BibNomenclaturesTypes
 )
 from .models import VNomenclatureTaxonomie
-from .env import DB
 from sqlalchemy import text
 
+
+USE_AS_SUBMODULE = current_app.config.get('USE_AS_SUBMODULE', True)
+if USE_AS_SUBMODULE:
+    DB = current_app.config['DB']
+else:
+    DB = import_module('.env', 'pypnnomenclature').DB
 
 def get_nomenclature_list(
     id_type=None, code_type=None,
@@ -21,7 +27,6 @@ def get_nomenclature_list(
     '''
 
     q = DB.session.query(BibNomenclaturesTypes)
-
     if filter_params is None:
         filter_params = []
 

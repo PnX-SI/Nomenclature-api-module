@@ -10,6 +10,7 @@ from .utils import json_resp
 
 routes = Blueprint('nomenclatures', __name__)
 
+
 @routes.route('/nomenclature/<int:id_type>', methods=['GET'])
 @json_resp
 def get_nomenclature_by_type_and_taxonomy(id_type):
