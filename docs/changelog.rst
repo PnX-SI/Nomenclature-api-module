@@ -2,12 +2,26 @@
 CHANGELOG
 =========
 
-1.2.3 (unreleased)
+1.2.4 (unreleased)
 ------------------
 
 **Corrections**
 
-*
+* 
+
+1.2.3 (2018-12-20)
+------------------
+
+**Corrections**
+
+* Optimisation des accès à la BDD en utilisant l'instance ``DB`` de l'application dans laquelle est utilisée ce sous-module. Cependant si elle n'existe pas, alors l'instance ``DB`` de SQLAlchemy est créée automatiquement (#17)
+* Correction de la fonction ``ref_nomenclatures.get_nomenclature_label``
+* Récupération dynamique du numéro de version du module à partir du fichier ``VERSION``
+* Mise à jour de Flask-admin de 1.5.1 à 1.5.3 pour corriger des vulnérabilités XSS
+
+**Notes de version**
+
+* Exécuter le script ``data/update1.2.2to1.2.3.sql``
 
 1.2.2 (2018-10-17)
 ------------------
