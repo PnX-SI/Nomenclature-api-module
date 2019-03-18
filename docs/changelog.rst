@@ -8,7 +8,11 @@ CHANGELOG
 **Corrections**
 
 * Suppression d'un item de nomenclature absent du standard SINP
-* Ajouts d'items sur les types 'valeur de confidentialité' et 'Sociabilité' (PR @xavyeah39) 
+* Ajouts d'items sur les types 'valeur de confidentialité' et 'Sociabilité' (PR @xavyeah39)
+
+**Notes de version**
+
+* Exécuter le script https://github.com/PnX-SI/Nomenclature-api-module/blob/master/data/update1.2.3to1.2.4.sql
 
 1.2.3 (2018-12-20)
 ------------------
