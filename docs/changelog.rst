@@ -2,12 +2,12 @@
 CHANGELOG
 =========
 
-1.2.4 (unreleased)
+1.2.4
 ------------------
 
 **Corrections**
 
-* 
+* Suppression d'un item de nomenclature absent du standard SINP
 
 1.2.3 (2018-12-20)
 ------------------
