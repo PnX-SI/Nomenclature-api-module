@@ -596,7 +596,6 @@ INSERT INTO cor_taxref_nomenclature VALUES
 --STATUT DE L'OBSERVATION--
 ---------------------------
 ,(get_id_nomenclature('STATUT_OBS', 'No'), 'all', 'all', now(), NULL)
-,(get_id_nomenclature('STATUT_OBS', 'NSP'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('STATUT_OBS', 'Pr'), 'all', 'all', now(), NULL)
 
 ------------------------
@@ -869,4 +868,4 @@ INSERT INTO cor_taxref_nomenclature VALUES
 ,(get_id_nomenclature('NIVEAU_TERRITORIAL', '4'), 'Fungi', 'all', now(), NULL)
 ,(get_id_nomenclature('NIVEAU_TERRITORIAL', '5'), 'Fungi', 'all', now(), NULL)
 ,(get_id_nomenclature('NIVEAU_TERRITORIAL', '6'), 'Fungi', 'all', now(), NULL)
-
+;
