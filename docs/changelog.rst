@@ -2,13 +2,13 @@
 CHANGELOG
 =========
 
-1.2.4
+1.2.4 (2019-03-18)
 ------------------
 
 **Corrections**
 
 * Suppression d'un item de nomenclature absent du standard SINP
-* Ajouts d'items sur les types 'valeur de confidentialité' et 'Sociabilité (PR @xavyeah39) 
+* Ajouts d'items sur les types 'valeur de confidentialité' et 'Sociabilité' (PR @xavyeah39) 
 
 1.2.3 (2018-12-20)
 ------------------
