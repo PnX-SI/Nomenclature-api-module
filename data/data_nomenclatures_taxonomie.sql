@@ -596,7 +596,6 @@ INSERT INTO cor_taxref_nomenclature VALUES
 --STATUT DE L'OBSERVATION--
 ---------------------------
 ,(get_id_nomenclature('STATUT_OBS', 'No'), 'all', 'all', now(), NULL)
-,(get_id_nomenclature('STATUT_OBS', 'NSP'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('STATUT_OBS', 'Pr'), 'all', 'all', now(), NULL)
 
 ------------------------
