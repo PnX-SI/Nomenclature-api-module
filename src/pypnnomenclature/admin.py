@@ -24,8 +24,9 @@ class TNomenclatureFiltersType(BaseSQLAFilter):
         return [
             (nomenclature.id_type, nomenclature.label_default)
             for nomenclature
-            in BibNomenclaturesTypesAdmin.query.order_by(BibNomenclaturesTypesAdmin.label_default) # noqa
+            in BibNomenclaturesTypesAdmin.query.order_by(BibNomenclaturesTypesAdmin.label_default)  # noqa
         ]
+
 
 class TNomenclatureFiltersMnemonique(BaseSQLAFilter):
 
@@ -42,9 +43,8 @@ class TNomenclatureFiltersMnemonique(BaseSQLAFilter):
         return [
             (nomenclature.id_type, nomenclature.mnemonique)
             for nomenclature
-            in BibNomenclaturesTypesAdmin.query.order_by(BibNomenclaturesTypesAdmin.mnemonique) # noqa
+            in BibNomenclaturesTypesAdmin.query.order_by(BibNomenclaturesTypesAdmin.mnemonique)  # noqa
         ]
-
 
 
 class TNomenclatureFiltersId(BaseSQLAFilter):
@@ -62,30 +62,30 @@ class TNomenclatureFiltersId(BaseSQLAFilter):
 class TNomenclaturesAdminConfig(ModelView):
     page_size = 10
     form_columns = [
-      'nomenclature_type_name',
-      'cd_nomenclature',
-      'mnemonique',
-      'label_fr',
-      'definition_fr',
-      'label_default',
-      'definition_default',
-      'statut',
-      'active',
-      'hierarchy',
-      'id_broader'
+        'nomenclature_type_name',
+        'cd_nomenclature',
+        'mnemonique',
+        'label_fr',
+        'definition_fr',
+        'label_default',
+        'definition_default',
+        'statut',
+        'active',
+        'hierarchy',
+        'id_broader'
     ]
     column_list = [
-      'id_nomenclature',
-      'nomenclature_type_name',
-      'mnemonique',
-      'cd_nomenclature',
-      'label_default',
-      'definition_default',
-      'label_fr',
-      'definition_fr',
-      'id_type',
-      'statut',
-      'active'
+        'id_nomenclature',
+        'nomenclature_type_name',
+        'mnemonique',
+        'cd_nomenclature',
+        'label_default',
+        'definition_default',
+        'label_fr',
+        'definition_fr',
+        'id_type',
+        'statut',
+        'active'
     ]
     page_size = 15
 
@@ -93,7 +93,7 @@ class TNomenclaturesAdminConfig(ModelView):
         TNomenclatureFiltersType(column=None, name='Type de nomenclature'),
         TNomenclatureFiltersId(column=None, name='Id nomenclature'),
         TNomenclatureFiltersMnemonique(column=None, name='Mnemonique'),
-        ]
+    ]
 
     # Need this so the filter options are always up-to-date
     @expose('/')
@@ -116,7 +116,7 @@ class BibNomenclatureFiltersLabel(BaseSQLAFilter):
         return [
             (nomenclature.label_default, nomenclature.label_default)
             for nomenclature
-            in BibNomenclaturesTypesAdmin.query.order_by(BibNomenclaturesTypesAdmin.label_default) # noqa
+            in BibNomenclaturesTypesAdmin.query.order_by(BibNomenclaturesTypesAdmin.label_default)  # noqa
         ]
 
 
@@ -131,6 +131,7 @@ class BibNomenclatureFiltersID(BaseSQLAFilter):
     def operation(self):
         return u'equals'
 
+
 class BibNomenclatureFiltersMnemonique(BaseSQLAFilter):
 
     # Override to create an appropriate query and apply a filter to said query
@@ -142,7 +143,7 @@ class BibNomenclatureFiltersMnemonique(BaseSQLAFilter):
         return [
             (nomenclature.mnemonique, nomenclature.mnemonique)
             for nomenclature
-            in BibNomenclaturesTypesAdmin.query.order_by(BibNomenclaturesTypesAdmin.mnemonique) # noqa
+            in BibNomenclaturesTypesAdmin.query.order_by(BibNomenclaturesTypesAdmin.mnemonique)  # noqa
         ]
 
     # readable operation name. This appears in the middle filter line drop-down
@@ -150,60 +151,36 @@ class BibNomenclatureFiltersMnemonique(BaseSQLAFilter):
         return u'equals'
 
 
-
 class BibNomenclaturesTypesAdminConfig(ModelView):
     page_size = 10
     column_list = [
-      'id_type',
-      'mnemonique',
-      'label_default',
-      'definition_default',
-      'label_fr',
-      'source',
-      'statut'
+        'id_type',
+        'mnemonique',
+        'label_default',
+        'definition_default',
+        'label_fr',
+        'source',
+        'statut'
     ]
     column_display_pk = True
     form_columns = [
-      'mnemonique',
-      'label_default',
-      'definition_default',
-      'label_fr',
-      'definition_fr',
-      'source',
-      'statut'
+        'mnemonique',
+        'label_default',
+        'definition_default',
+        'label_fr',
+        'definition_fr',
+        'source',
+        'statut'
     ]
 
     column_filters = [
         BibNomenclatureFiltersLabel(column=None, name='Type de nomenclature'),
         BibNomenclatureFiltersID(column=None, name='Id type'),
         BibNomenclatureFiltersMnemonique(column=None, name='Mnémonique')
-        ]
+    ]
 
     # Need this so the filter options are always up-to-date
     @expose('/')
     def index_view(self):
         self._refresh_filters_cache()
         return super(BibNomenclaturesTypesAdminConfig, self).index_view()
-
-
-"""
-    Configuration de l'admin
-"""
-admin = Admin(
-  current_app,
-  name="Backoffice d'administration des nomenclatures",
-  template_mode='bootstrap3',
-  url=current_app.config.get('URL_ADMIN_NOMENCLATURES') or '/nomenclatures/admin',
-)
-
-admin.add_view(
-    BibNomenclaturesTypesAdminConfig(
-        BibNomenclaturesTypesAdmin, DB.session, name="Type de nomenclatures"
-    )
-)
-
-admin.add_view(
-    TNomenclaturesAdminConfig(
-        TNomenclaturesAdmin, DB.session, name="Items de nomenclatures"
-    )
-)

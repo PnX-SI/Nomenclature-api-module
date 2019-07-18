@@ -17,9 +17,11 @@ def get_nomenclature_by_type_and_taxonomy(id_type):
     """
      => Déprécié pour des raisons de volatilité des identifiants en BD
 
-        Route : liste des termes d'une nomenclature
-            basées sur les identifiants de nomenclature
-        Possibilité de filtrer par regne et group2Inpn
+    .. :quickref: Nomenclatures;   
+
+    Route : liste des termes d'une nomenclature basées sur les identifiants de nomenclature
+    Possibilité de filtrer par regne et group2Inpn
+
     """
     regne = request.args.get('regne')
     group2inpn = request.args.get('group2_inpn')
@@ -42,6 +44,8 @@ def get_nomenclature_by_mnemonique_and_taxonomy(code_type):
         Route : liste des termes d'une nomenclature
         basées sur le code mnemonique du type de nomenclature
         Possibilité de filtrer par regne et group2Inpn
+
+        .. :quickref: Nomenclatures;
     """
     regne = request.args.get('regne')
     group2inpn = request.args.get('group2_inpn')
@@ -63,6 +67,8 @@ def get_nomenclature_by_type_list_and_taxonomy():
     """
         Route : liste des termes d'un ensemble de nomenclatures
         Possibilité de filtrer par regne et group2Inpn
+
+        .. :quickref: Nomenclatures;
     """
     regne = request.args.get('regne')
     group2inpn = request.args.get('group2_inpn')
