@@ -18,7 +18,7 @@ setuptools.setup(
     name='pypnnomenclature',
     version=get_version(),
     description="Python lib related to nomenclatures",
-    long_description=open('README.md').read().strip(),
+    long_description=open('README.md', encoding="utf-8").read().strip(),
     author="Les parcs nationaux de France",
     url='https://github.com/PnX-SI/Nomenclature-api-module',
     packages=setuptools.find_packages('src'),
