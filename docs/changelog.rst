@@ -2,12 +2,12 @@
 CHANGELOG
 =========
 
-1.2.6 (unreleased)
+1.2.6 (2019-07-19)
 ------------------
 
 **Corrections**
 
-* 
+* Le module Flask-admin a été retiré du sous-module. Il est désormais à la charge de l'application qui utilise le sous-module de l'instancié.
 
 1.2.5 (2019-05-29)
 ------------------
