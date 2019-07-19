@@ -1,5 +1,5 @@
 from flask import current_app
-from flask_admin import Admin, expose
+from flask_admin import expose
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.contrib.sqla.filters import BaseSQLAFilter
 from .env import DB
