@@ -114,6 +114,45 @@ def get_nomenclature_list_formated(nomenclature_params, mapping):
     return data
 
 
+def get_nomenclature_with_taxonomy_list():
+    '''
+        Fetch nomenclature definition list with taxonomy
+    '''
+
+    q = DB.session \
+        .query(BibNomenclaturesTypes) \
+        .filter_by(statut='Validé') \
+        .order_by('mnemonique')
+
+    nomenclature_types = q.all()
+
+    data = list()
+
+    for t in nomenclature_types:
+        nomenclature_type_dict = {k: v for k, v in t.as_dict().items() if k in ['id_type', 'mnemonique', 'label_default']}
+
+        nomenclatures = list()
+
+        for n in t.nomenclatures:
+            nomenclature_dict = {k: v for k, v in n.as_dict().items() if k in ['id_nomenclature', 'cd_nomenclature', 'mnemonique', 'label_default']}
+
+            taxref = list()
+
+            for tr in n.taxref:
+                taxref_dict = {k: v for k, v in tr.as_dict().items() if k in ['regne', 'group2_inpn']}
+                taxref.append(taxref_dict)
+
+            nomenclature_dict['taxref'] = taxref
+
+            nomenclatures.append(nomenclature_dict)
+
+        nomenclature_type_dict['nomenclatures'] = nomenclatures
+
+        data.append(nomenclature_type_dict)
+
+    return data
+
+
 def get_nomenclature_id_term(cd_type, cd_term, raise_exp=True):
     '''
         Fonction retournant l'identifiant d'un term

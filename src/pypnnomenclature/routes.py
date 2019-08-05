@@ -2,9 +2,9 @@
 from __future__ import (unicode_literals, print_function,
                         absolute_import, division)
 
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 
-from .repository import get_nomenclature_list
+import repository
 from .utils import json_resp
 
 
@@ -26,7 +26,7 @@ def get_nomenclature_by_type_and_taxonomy(id_type):
     regne = request.args.get('regne')
     group2inpn = request.args.get('group2_inpn')
 
-    response = get_nomenclature_list(**{
+    response = repository.get_nomenclature_list(**{
         'id_type': id_type,
         'regne': regne,
         'group2_inpn': group2inpn,
@@ -50,7 +50,7 @@ def get_nomenclature_by_mnemonique_and_taxonomy(code_type):
     regne = request.args.get('regne')
     group2inpn = request.args.get('group2_inpn')
 
-    response = get_nomenclature_list(**{
+    response = repository.get_nomenclature_list(**{
         'code_type': code_type,
         'regne': regne,
         'group2_inpn': group2inpn,
@@ -82,7 +82,7 @@ def get_nomenclature_by_type_list_and_taxonomy():
 
     results = []
     for id_type in types:
-        response = get_nomenclature_list(**{
+        response = repository.get_nomenclature_list(**{
             param: id_type,
             'regne': regne,
             'group2_inpn': group2inpn,
@@ -94,3 +94,11 @@ def get_nomenclature_by_type_list_and_taxonomy():
     if results:
         return results
     return {'message': 'not found'}, 404
+
+
+@routes.route('/nomenclatures/taxonomy', methods=['GET'])
+@json_resp
+def get_nomenclature_with_taxonomy_list():
+    response = repository.get_nomenclature_with_taxonomy_list()
+    
+    return response

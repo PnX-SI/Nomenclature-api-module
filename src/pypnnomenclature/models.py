@@ -38,6 +38,12 @@ class BibNomenclaturesTypes(serializableModel, DB.Model):
     meta_create_date = DB.Column(DB.DateTime)
     meta_update_date = DB.Column(DB.DateTime)
 
+    nomenclatures = relationship(
+        'TNomenclatures',
+        primaryjoin='and_(TNomenclatures.id_type == BibNomenclaturesTypes.id_type, TNomenclatures.active == True)',
+        lazy='joined'
+    )
+ 
     def __repr__(self):
         return self.label_default
 
@@ -83,6 +89,11 @@ class TNomenclatures(serializableModel, DB.Model):
     meta_create_date = DB.Column(DB.DateTime)
     meta_update_date = DB.Column(DB.DateTime)
 
+    taxref = relationship(
+        'CorTaxrefNomenclature',
+        lazy='joined'
+    )
+
     @staticmethod
     def get_default_nomenclature(mnemonique, id_organism=0):
         q = select([
@@ -92,6 +103,18 @@ class TNomenclatures(serializableModel, DB.Model):
         ])
         result = DB.session.execute(q)
         return result.fetchone()['default']
+
+
+class CorTaxrefNomenclature(serializableModel, DB.Model):
+    __tablename__ = 'cor_taxref_nomenclature'
+    __table_args__ = {'schema': 'ref_nomenclatures'}
+    id_nomenclature = DB.Column(
+        DB.Integer,
+        ForeignKey('ref_nomenclatures.t_nomenclatures.id_nomenclature'),
+        primary_key=True
+    )
+    regne = DB.Column(DB.Unicode, primary_key=True)
+    group2_inpn = DB.Column(DB.Unicode, primary_key=True)
 
 
 # Modèle utilisé seulement si l'extension 'taxonomie'
