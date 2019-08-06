@@ -129,12 +129,32 @@ def get_nomenclature_with_taxonomy_list():
     data = list()
 
     for t in nomenclature_types:
-        nomenclature_type_dict = {k: v for k, v in t.as_dict().items() if k in ['id_type', 'mnemonique', 'label_default']}
+        nomenclature_type_dict = {k: v for k, v in t.as_dict().items() if k in [
+            'id_type',
+            'mnemonique',
+            'label_default',
+            'label_de',
+            'label_en',
+            'label_es',
+            'label_fr',
+            'label_it'
+        ]}
 
         nomenclatures = list()
 
         for n in t.nomenclatures:
-            nomenclature_dict = {k: v for k, v in n.as_dict().items() if k in ['id_nomenclature', 'cd_nomenclature', 'mnemonique', 'label_default']}
+            nomenclature_dict = {k: v for k, v in n.as_dict().items() if k in [
+                'id_nomenclature',
+                'cd_nomenclature',
+                'mnemonique',
+                'hierarchy',
+                'label_default',
+                'label_de',
+                'label_en',
+                'label_es',
+                'label_fr',
+                'label_it'
+            ]}
 
             taxref = list()
 

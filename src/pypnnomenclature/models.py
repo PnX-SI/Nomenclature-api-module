@@ -41,7 +41,8 @@ class BibNomenclaturesTypes(serializableModel, DB.Model):
     nomenclatures = relationship(
         'TNomenclatures',
         primaryjoin='and_(TNomenclatures.id_type == BibNomenclaturesTypes.id_type, TNomenclatures.active == True)',
-        lazy='joined'
+        lazy='joined',
+        order_by='TNomenclatures.hierarchy'
     )
  
     def __repr__(self):
