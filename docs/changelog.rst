@@ -13,7 +13,7 @@ CHANGELOG
 
 **Corrections**
 
-* Le module Flask-admin a été retiré du sous-module. Il est désormais à la charge de l'application qui utilise le sous-module de l'instancié.
+* Le module Flask-admin a été retiré du sous-module. Il est désormais à la charge de l'application qui utilise le sous-module de l'instancier.
 
 1.2.5 (2019-05-29)
 ------------------
