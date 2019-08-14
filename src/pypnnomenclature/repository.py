@@ -18,6 +18,7 @@ if USE_AS_SUBMODULE:
 else:
     DB = import_module('.env', 'pypnnomenclature').DB
 
+
 def get_nomenclature_list(
     id_type=None, code_type=None,
     regne=None, group2_inpn=None, hierarchy=None, filter_params=None
@@ -60,7 +61,8 @@ def get_nomenclature_list(
             ).filter(VNomenclatureTaxonomie.regne.in_(('all', regne)))
             if group2_inpn:
                 q = q.filter(
-                    VNomenclatureTaxonomie.group2_inpn.in_(('all', group2_inpn))
+                    VNomenclatureTaxonomie.group2_inpn.in_(
+                        ('all', group2_inpn))
                 )
     # Ordonnancement
     if 'orderby' in filter_params:
@@ -121,11 +123,9 @@ def get_nomenclature_with_taxonomy_list():
 
     q = DB.session \
         .query(BibNomenclaturesTypes) \
-        .filter_by(statut='Validé') \
         .order_by('mnemonique')
 
     nomenclature_types = q.all()
-
     data = list()
 
     for t in nomenclature_types:
@@ -159,7 +159,8 @@ def get_nomenclature_with_taxonomy_list():
             taxref = list()
 
             for tr in n.taxref:
-                taxref_dict = {k: v for k, v in tr.as_dict().items() if k in ['regne', 'group2_inpn']}
+                taxref_dict = {k: v for k, v in tr.as_dict().items() if k in [
+                    'regne', 'group2_inpn']}
                 taxref.append(taxref_dict)
 
             nomenclature_dict['taxref'] = taxref

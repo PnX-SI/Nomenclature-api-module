@@ -42,9 +42,10 @@ class BibNomenclaturesTypes(serializableModel, DB.Model):
         'TNomenclatures',
         primaryjoin='and_(TNomenclatures.id_type == BibNomenclaturesTypes.id_type, TNomenclatures.active == True)',
         lazy='joined',
-        order_by='TNomenclatures.hierarchy'
+        order_by='TNomenclatures.hierarchy',
+
     )
- 
+
     def __repr__(self):
         return self.label_default
 
@@ -57,7 +58,6 @@ class BibNomenclaturesTypes(serializableModel, DB.Model):
         ])
         result = DB.session.execute(q)
         return result.fetchone()['default']
-
 
 
 class TNomenclatures(serializableModel, DB.Model):
@@ -92,7 +92,7 @@ class TNomenclatures(serializableModel, DB.Model):
 
     taxref = relationship(
         'CorTaxrefNomenclature',
-        lazy='joined'
+        lazy='select'
     )
 
     @staticmethod
@@ -156,15 +156,14 @@ class VNomenclatureTaxonomie(serializableModel, DB.Model):
     hierarchy = DB.Column(DB.Unicode)
 
 
-
-#Model for Admin
+# Model for Admin
 class BibNomenclaturesTypesAdmin(BibNomenclaturesTypes):
     __tablename__ = 'bib_nomenclatures_types'
     __table_args__ = {
         'schema': 'ref_nomenclatures',
         'extend_existing': True
     }
-    nomenclature_items = relationship("TNomenclaturesAdmin")    
+    nomenclature_items = relationship("TNomenclaturesAdmin")
 
 
 class TNomenclaturesAdmin(TNomenclatures):
