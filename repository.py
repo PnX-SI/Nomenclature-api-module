@@ -14,4 +14,4 @@ SRCDIR = os.path.join(CURDIR, 'src')
 
 sys.path.append(SRCDIR)
 
-from pypnnomenclature.repository import * # noqa
+from pypnnomenclature.repository import *  # noqa
