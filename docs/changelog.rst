@@ -11,6 +11,10 @@ CHANGELOG
 1.2.6 (2019-07-19)
 ------------------
 
+**Nouveautés**
+
+* Ajout d'une route pour remettre à plat toutes les nomenclatures et leur correspondances taxonomique (PR @sgrimault)
+
 **Corrections**
 
 * Le module Flask-admin a été retiré du sous-module. Il est désormais à la charge de l'application qui utilise le sous-module de l'instancier.
