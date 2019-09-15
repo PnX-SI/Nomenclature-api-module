@@ -8,7 +8,7 @@ CHANGELOG
 
 **Nouveautés**
 
-* Ajout d'une route pour remettre à plat toutes les nomenclatures et leur correspondances taxonomique (PR @sgrimault)
+* Ajout d'une route pour remettre à plat toutes les nomenclatures et leurs correspondances taxonomiques (par @sgrimault)
 * Passage à Flask 1.1.1
 
 **Corrections**
@@ -33,7 +33,7 @@ CHANGELOG
 **Corrections**
 
 * Suppression d'un item de nomenclature absent du standard SINP
-* Ajouts d'items sur les types 'valeur de confidentialité' et 'Sociabilité' (PR @xavyeah39)
+* Ajouts d'items sur les types 'Valeur de confidentialité' et 'Sociabilité' (PR @xavyeah39)
 
 **Notes de version**
 
