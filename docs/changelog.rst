@@ -3,12 +3,12 @@ CHANGELOG
 =========
 
 
-1.2.7 (unreleased)
+1.2.7 (2019-09-16)
 ------------------
 
 **Nouveautés**
 
-* Ajout d'une route pour remettre à plat toutes les nomenclatures et leur correspondances taxonomique (PR @sgrimault)
+* Ajout d'une route pour remettre à plat toutes les nomenclatures et leurs correspondances taxonomiques (PR @sgrimault)
 * Passage à Flask 1.1.1
 
 **Corrections**
