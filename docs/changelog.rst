@@ -11,8 +11,6 @@ CHANGELOG
 * Ajout d'une route pour remettre à plat toutes les nomenclatures et leurs correspondances taxonomiques (par @sgrimault)
 * Passage à Flask 1.1.1
 
-**Corrections**
-
 1.2.6 (2019-07-19)
 ------------------
 
