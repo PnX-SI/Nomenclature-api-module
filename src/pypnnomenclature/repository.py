@@ -18,6 +18,7 @@ if USE_AS_SUBMODULE:
 else:
     DB = import_module('.env', 'pypnnomenclature').DB
 
+
 def get_nomenclature_list(
     id_type=None, code_type=None,
     regne=None, group2_inpn=None, hierarchy=None, filter_params=None
@@ -60,7 +61,8 @@ def get_nomenclature_list(
             ).filter(VNomenclatureTaxonomie.regne.in_(('all', regne)))
             if group2_inpn:
                 q = q.filter(
-                    VNomenclatureTaxonomie.group2_inpn.in_(('all', group2_inpn))
+                    VNomenclatureTaxonomie.group2_inpn.in_(
+                        ('all', group2_inpn))
                 )
     # Ordonnancement
     if 'orderby' in filter_params:
@@ -110,6 +112,64 @@ def get_nomenclature_list_formated(nomenclature_params, mapping):
 
     for term in nomenclature_data['values']:
         data.append({val: term[mapping[val]['field']] for val in mapping})
+
+    return data
+
+
+def get_nomenclature_with_taxonomy_list():
+    '''
+        Fetch nomenclature definition list with taxonomy
+    '''
+
+    q = DB.session \
+        .query(BibNomenclaturesTypes) \
+        .order_by('mnemonique')
+
+    nomenclature_types = q.all()
+    data = list()
+
+    for t in nomenclature_types:
+        nomenclature_type_dict = {k: v for k, v in t.as_dict().items() if k in [
+            'id_type',
+            'mnemonique',
+            'label_default',
+            'label_de',
+            'label_en',
+            'label_es',
+            'label_fr',
+            'label_it'
+        ]}
+
+        nomenclatures = list()
+
+        for n in t.nomenclatures:
+            nomenclature_dict = {k: v for k, v in n.as_dict().items() if k in [
+                'id_nomenclature',
+                'cd_nomenclature',
+                'mnemonique',
+                'hierarchy',
+                'label_default',
+                'label_de',
+                'label_en',
+                'label_es',
+                'label_fr',
+                'label_it'
+            ]}
+
+            taxref = list()
+
+            for tr in n.taxref:
+                taxref_dict = {k: v for k, v in tr.as_dict().items() if k in [
+                    'regne', 'group2_inpn']}
+                taxref.append(taxref_dict)
+
+            nomenclature_dict['taxref'] = taxref
+
+            nomenclatures.append(nomenclature_dict)
+
+        nomenclature_type_dict['nomenclatures'] = nomenclatures
+
+        data.append(nomenclature_type_dict)
 
     return data
 

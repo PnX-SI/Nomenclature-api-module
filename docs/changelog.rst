@@ -2,12 +2,23 @@
 CHANGELOG
 =========
 
+
+1.2.7 (2019-09-16)
+------------------
+
+**Nouveautés**
+
+* Ajout d'une route pour remettre à plat toutes les nomenclatures et leurs correspondances taxonomiques (par @sgrimault)
+* Passage à Flask 1.1.1
+
+**Corrections**
+
 1.2.6 (2019-07-19)
 ------------------
 
 **Corrections**
 
-* Le module Flask-admin a été retiré du sous-module. Il est désormais à la charge de l'application qui utilise le sous-module de l'instancié.
+* Le module Flask-admin a été retiré du sous-module. Il est désormais à la charge de l'application qui utilise le sous-module de l'instancier.
 
 1.2.5 (2019-05-29)
 ------------------
@@ -22,7 +33,7 @@ CHANGELOG
 **Corrections**
 
 * Suppression d'un item de nomenclature absent du standard SINP
-* Ajouts d'items sur les types 'valeur de confidentialité' et 'Sociabilité' (PR @xavyeah39)
+* Ajouts d'items sur les types 'Valeur de confidentialité' et 'Sociabilité' (PR @xavyeah39)
 
 **Notes de version**
 
