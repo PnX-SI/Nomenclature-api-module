@@ -663,7 +663,7 @@ INSERT INTO t_nomenclatures (id_type, cd_nomenclature, mnemonique, label_fr, def
 ,(get_id_nomenclature_type('HAB_INTERET_COM'), '2', 'Non', 'Non : l''habitat n''est pas d''intérêt communautaire', 'Non : l''habitat n''est pas d''intérêt communautaire', 'SINP', 'Validé', 0,'121.002', '09/05/2018', '09/05/2018', true)
 ,(get_id_nomenclature_type('HAB_INTERET_COM'), '3', 'OuiPrio', 'Oui, prioritaire : Oui, l''habitat est d''intérêt communautaire prioritaire. Exemple : Pelouses calcicoles riches en orchidées.', 'Oui, prioritaire : Oui, l''habitat est d''intérêt communautaire prioritaire. Exemple : Pelouses calcicoles riches en orchidées.', 'SINP', 'Validé', 0, '121.003', '09/05/2018', '09/05/2018', true)
 -- exposition
-(get_id_nomenclature_type('EXPOSITION'), 'E', 'E', 'Est', 'Est : 78.75° - 101.25°', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
+,(get_id_nomenclature_type('EXPOSITION'), 'E', 'E', 'Est', 'Est : 78.75° - 101.25°', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
 ,(get_id_nomenclature_type('EXPOSITION'), 'ENE', 'ENE', 'Est-Nord-Est', 'Est-Nord-Est : 56.25° - 78.75°', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
 ,(get_id_nomenclature_type('EXPOSITION'), 'ESE', 'ESE', 'Est-Sud-Est', 'Est-Sud-Est : 101.25° - 123.75°', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
 ,(get_id_nomenclature_type('EXPOSITION'), 'N', 'N', 'Nord', 'Nord : 348.75° - 11.25°', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
