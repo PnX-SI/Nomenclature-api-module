@@ -647,7 +647,7 @@ INSERT INTO t_nomenclatures (id_type, cd_nomenclature, mnemonique, label_fr, def
 ,(get_id_nomenclature_type('TECHNIQUE_COLLECT_HAB'), '9.2', '9.2', 'Caméra tractée ou téléguidée', 'Caméra tractée ou téléguidée', 'SINP', 'Validé', 0, '09/05/2018', '09/05/2018', true)
 ,(get_id_nomenclature_type('TECHNIQUE_COLLECT_HAB'), '9.3', '9.3',  'Observation marine photographique (observation photographique en plongée)', 'SINP', 'Validé', 0, '119.029', '09/05/2018', '09/05/2018', true)
 ,(get_id_nomenclature_type('TECHNIQUE_COLLECT_HAB'), '9.4', '9.4', 'Observation photographique aérienne, prise de vue aérienne, suivie d''une photointerprétation', 'Observation photographique aérienne, prise de vue aérienne, suivie d''une photointerprétation', 'SINP', 'Validé', 0, '119.030', '09/05/2018', '09/05/2018', true)
-,(get_id_nomenclature_type('TECHNIQUE_COLLECT_HAB'), '9.5', '9.5', , 'Observation photographique terrestre suivie d''une photointerprétation.', 'Observation photographique terrestre suivie d''une photointerprétation.', 'SINP', 'Validé', 0, '119.031',  '09/05/2018', '09/05/2018', true)
+,(get_id_nomenclature_type('TECHNIQUE_COLLECT_HAB'), '9.5', '9.5', 'Observation photographique terrestre suivie d''une photointerprétation.', 'Observation photographique terrestre suivie d''une photointerprétation.', 'SINP', 'Validé', 0, '119.031',  '09/05/2018', '09/05/2018', true)
 ,(get_id_nomenclature_type('TECHNIQUE_COLLECT_HAB'), '10', '10',  'Autre, préciser', 'Autre, préciser', 'SINP', 'Validé', 0, '119.032',  '09/05/2018', '09/05/2018', true)
 
 
