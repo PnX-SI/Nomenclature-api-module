@@ -1,31 +1,37 @@
-'''
+"""
     Méthode permettant de manipuler les objets de la nomenclature
-'''
+"""
 from importlib import import_module
 from flask import current_app
 
 from .models import (
     TNomenclatures,
-    BibNomenclaturesTypes
+    BibNomenclaturesTypes,
+    TNomenclatureTaxonomy,
+    VNomenclatureTaxonomie,
+    BibNomenclaturesTypeTaxo
 )
-from .models import VNomenclatureTaxonomie
 from sqlalchemy import text
 
 
-USE_AS_SUBMODULE = current_app.config.get('USE_AS_SUBMODULE', True)
+USE_AS_SUBMODULE = current_app.config.get("USE_AS_SUBMODULE", True)
 if USE_AS_SUBMODULE:
-    DB = current_app.config['DB']
+    DB = current_app.config["DB"]
 else:
-    DB = import_module('.env', 'pypnnomenclature').DB
+    DB = import_module(".env", "pypnnomenclature").DB
 
 
 def get_nomenclature_list(
-    id_type=None, code_type=None,
-    regne=None, group2_inpn=None, hierarchy=None, filter_params=None
+    id_type=None,
+    code_type=None,
+    regne=None,
+    group2_inpn=None,
+    hierarchy=None,
+    filter_params=None,
 ):
-    '''
+    """
         Récupération de la liste des termes d'un type de nomenclature
-    '''
+    """
 
     q = DB.session.query(BibNomenclaturesTypes)
     if filter_params is None:
@@ -38,7 +44,7 @@ def get_nomenclature_list(
     else:
         nomenclature = None
 
-    if (not nomenclature):
+    if not nomenclature:
         return None
 
     # Terme de nomenclatures
@@ -51,28 +57,25 @@ def get_nomenclature_list(
     # Filtrer sur la hiérarchie
     if hierarchy:
         q = q.filter(TNomenclatures.hierarchy.like("{}%".format(hierarchy)))
-    if current_app.config['ENABLE_NOMENCLATURE_TAXONOMIC_FILTERS']:
+    if current_app.config["ENABLE_NOMENCLATURE_TAXONOMIC_FILTERS"]:
         # Filtrer en fonction du groupe taxonomie
         if regne:
             q = q.join(
                 VNomenclatureTaxonomie,
-                VNomenclatureTaxonomie.id_nomenclature ==
-                TNomenclatures.id_nomenclature
-            ).filter(VNomenclatureTaxonomie.regne.in_(('all', regne)))
+                VNomenclatureTaxonomie.id_nomenclature
+                == TNomenclatures.id_nomenclature,
+            ).filter(VNomenclatureTaxonomie.regne.in_(("all", regne)))
             if group2_inpn:
                 q = q.filter(
                     VNomenclatureTaxonomie.group2_inpn.in_(
-                        ('all', group2_inpn))
+                        ("all", group2_inpn))
                 )
     # Ordonnancement
-    if 'orderby' in filter_params:
-        order_col = getattr(
-            TNomenclatures,
-            filter_params['orderby']
-        )
+    if "orderby" in filter_params:
+        order_col = getattr(TNomenclatures, filter_params["orderby"])
 
-        if 'order' in filter_params:
-            if filter_params['order'] == 'desc':
+        if "order" in filter_params:
+            if filter_params["order"] == "desc":
                 order_col = order_col.desc()
 
         q = q.order_by(order_col)
@@ -90,7 +93,7 @@ def get_nomenclature_list(
 
 
 def get_nomenclature_list_formated(nomenclature_params, mapping):
-    '''
+    """
         Permet de récupérer la liste des données d'une nomenclature et de la
             formater de façon particulière
         !! pour le momment ne traite que les objets de type nomenclature
@@ -100,74 +103,68 @@ def get_nomenclature_list_formated(nomenclature_params, mapping):
             'id': {'object': 'nomenclature', 'field': 'id_nomenclature'},
             'libelle': {'object': 'nomenclature', 'field': 'label_default'}
         }
-    '''
+    """
     data = list()
     nomenclature_data = get_nomenclature_list(**nomenclature_params)
 
     if not nomenclature_data:
         return None
 
-    if 'values' not in nomenclature_data:
+    if "values" not in nomenclature_data:
         return data
 
-    for term in nomenclature_data['values']:
-        data.append({val: term[mapping[val]['field']] for val in mapping})
+    for term in nomenclature_data["values"]:
+        data.append({val: term[mapping[val]["field"]] for val in mapping})
 
     return data
 
 
 def get_nomenclature_with_taxonomy_list():
-    '''
+    """
         Fetch nomenclature definition list with taxonomy
-    '''
+    """
 
-    q = DB.session \
-        .query(BibNomenclaturesTypes) \
-        .order_by('mnemonique')
+    q = DB.session.query(BibNomenclaturesTypeTaxo).order_by("mnemonique")
 
     nomenclature_types = q.all()
     data = list()
 
     for t in nomenclature_types:
-        nomenclature_type_dict = {k: v for k, v in t.as_dict().items() if k in [
-            'id_type',
-            'mnemonique',
-            'label_default',
-            'label_de',
-            'label_en',
-            'label_es',
-            'label_fr',
-            'label_it'
-        ]}
+        nomenclature_type_dict = t.as_dict(
+            columns=[
+                "id_type",
+                "mnemonique",
+                "label_default",
+                "label_de",
+                "label_en",
+                "label_es",
+                "label_fr",
+                "label_it",
+            ]
+        )
 
         nomenclatures = list()
 
         for n in t.nomenclatures:
-            nomenclature_dict = {k: v for k, v in n.as_dict().items() if k in [
-                'id_nomenclature',
-                'cd_nomenclature',
-                'mnemonique',
-                'hierarchy',
-                'label_default',
-                'label_de',
-                'label_en',
-                'label_es',
-                'label_fr',
-                'label_it'
-            ]}
+            nomenclature_dict = n.as_dict(columns=[
+                "id_nomenclature",
+                "cd_nomenclature",
+                "mnemonique",
+                "hierarchy",
+                "label_default",
+                "label_de",
+                "label_en",
+                "label_es",
+                "label_fr",
+                "label_it",
+            ])
 
-            taxref = list()
-
-            for tr in n.taxref:
-                taxref_dict = {k: v for k, v in tr.as_dict().items() if k in [
-                    'regne', 'group2_inpn']}
-                taxref.append(taxref_dict)
-
-            nomenclature_dict['taxref'] = taxref
+            nomenclature_dict["taxref"] = [tr.as_dict(columns=["regne", "group2_inpn"])
+                                           for tr in n.taxref]
 
             nomenclatures.append(nomenclature_dict)
 
-        nomenclature_type_dict['nomenclatures'] = nomenclatures
+        nomenclature_type_dict["nomenclatures"] = nomenclatures
 
         data.append(nomenclature_type_dict)
 
@@ -175,7 +172,7 @@ def get_nomenclature_with_taxonomy_list():
 
 
 def get_nomenclature_id_term(cd_type, cd_term, raise_exp=True):
-    '''
+    """
         Fonction retournant l'identifiant d'un term
         à partir de ses codes mnemoniques
 
@@ -185,15 +182,15 @@ def get_nomenclature_id_term(cd_type, cd_term, raise_exp=True):
             cd_term : code du terme recherché
             raise_exp : spécifie le comportement de la
                 fonction en cas d'exeception
-    '''
+    """
 
-    t = text(
-        "SELECT ref_nomenclatures.get_id_nomenclature(:cd_type, :cd_term) as id"
-    )
+    t = text("SELECT ref_nomenclatures.get_id_nomenclature(:cd_type, :cd_term) as id")
     try:
-        value = DB.session.query('id').from_statement(
-            t.params(cd_type=cd_type, cd_term=cd_term)
-        ).first()
+        value = (
+            DB.session.query("id")
+            .from_statement(t.params(cd_type=cd_type, cd_term=cd_term))
+            .first()
+        )
         return value
     except Exception as e:
         if raise_exp:
