@@ -7,7 +7,7 @@ from flask import current_app
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import select, func
-from .utils import serializable
+from utils_flask_sqla.serializers import serializable
 
 # get or create the SQLAlchemy DB instance
 DB = current_app.config.get('DB', import_module('.env', 'pypnnomenclature').DB)

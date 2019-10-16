@@ -2,10 +2,9 @@
 from __future__ import unicode_literals, print_function, absolute_import, division
 
 from flask import Blueprint, request, jsonify
+from utils_flask_sqla.response import json_resp
 
 from . import repository
-
-from .utils import json_resp
 
 
 routes = Blueprint("nomenclatures", __name__)
