@@ -60,3 +60,27 @@ INSERT INTO ref_nomenclatures.t_nomenclatures (id_type, cd_nomenclature, mnemoni
 ,(ref_nomenclatures.get_id_nomenclature_type('HAB_INTERET_COM'), '1', 'Oui', 'Oui : l''habitat est bien d''intérêt communautaire.', 'Oui : l''habitat est bien d''intérêt communautaire.', 'Oui : l''habitat est bien d''intérêt communautaire.', 'SINP', 'Validé', 0, '09/05/2018', '09/05/2018', true)
 ,(ref_nomenclatures.get_id_nomenclature_type('HAB_INTERET_COM'), '2', 'Non', 'Non : l''habitat n''est pas d''intérêt communautaire', 'Non : l''habitat n''est pas d''intérêt communautaire', 'Non : l''habitat n''est pas d''intérêt communautaire', 'SINP', 'Validé', 0, '09/05/2018', '09/05/2018', true)
 ,(ref_nomenclatures.get_id_nomenclature_type('HAB_INTERET_COM'), '3', 'OuiPrio', 'Oui, prioritaire : Oui, l''habitat est d''intérêt communautaire prioritaire. Exemple : Pelouses calcicoles riches en orchidées.', 'Oui, prioritaire : Oui, l''habitat est d''intérêt communautaire prioritaire. Exemple : Pelouses calcicoles riches en orchidées.', 'Oui, prioritaire : Oui, l''habitat est d''intérêt communautaire prioritaire. Exemple : Pelouses calcicoles riches en orchidées.', 'SINP', 'Validé', 0, '09/05/2018', '09/05/2018', true)
+--METHODE CALCUL SURFACE
+(ref_nomenclatures.get_id_nomenclature_type('METHOD_CALCUL_SURFACE'), 'es', 'es','Estimée : la surface est estimée par l''opérateur', 'Estimée : la surface est estimée par l''opérateur', 'Estimée : la surface est estimée par l''opérateur', 'SINP', 'Validé', 0, '2018-05-09', '2018-05-09', true)
+,(ref_nomenclatures.get_id_nomenclature_type('METHOD_CALCUL_SURFACE'), 'lin', 'lin','La surface est calculée directement par usage d''un logiciel SIG', 'La surface est calculée directement par usage d''un logiciel SIG', 'La surface est calculée directement par usage d''un logiciel SIG', 'SINP', 'Validé', 0,'2018-05-09', '2018-05-09', true)
+,(ref_nomenclatures.get_id_nomenclature_type('METHOD_CALCUL_SURFACE'), 'nsp', 'nsp', 'Ne sait pas : la méthode de calcul est inconnue', 'Ne sait pas : la méthode de calcul est inconnue',   'Ne sait pas : la méthode de calcul est inconnue', 'SINP', 'Validé', 0, '2018-05-09', '2018-05-09', true)
+,(ref_nomenclatures.get_id_nomenclature_type('METHOD_CALCUL_SURFACE'), 'sig', 'sig','Calculée à partir de la largeur du linéaire', 'Calculée à partir de la largeur du linéaire', 'Calculée à partir de la largeur du linéaire', 'SINP', 'Validé', 0, '2018-05-09', '2018-05-09', true)
+-- EXPOSITION
+(ref_nomenclatures.get_id_nomenclature_type('EXPOSITION'), 'E', 'E', 'Est', 'Est', 'Est : 78.75° - 101.25°', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
+,(ref_nomenclatures.get_id_nomenclature_type('EXPOSITION'), 'ENE', 'ENE', 'Est-Nord-Est', 'Est-Nord-Est', 'Est-Nord-Est : 56.25° - 78.75°', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
+,(ref_nomenclatures.get_id_nomenclature_type('EXPOSITION'), 'ESE', 'ESE', 'Est-Sud-Est', 'Est-Sud-Est', 'Est-Sud-Est : 101.25° - 123.75°', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
+,(ref_nomenclatures.get_id_nomenclature_type('EXPOSITION'), 'N', 'N', 'Nord', 'Nord', 'Nord : 348.75° - 11.25°', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
+,(ref_nomenclatures.get_id_nomenclature_type('EXPOSITION'), 'NE', 'NE', 'Nord-Est', 'Nord-Est', 'Nord-Est : 33.75° - 56.25°', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
+,(ref_nomenclatures.get_id_nomenclature_type('EXPOSITION'), 'NNE', 'NNE', 'Nord-Nord-Est', 'Nord-Nord-Est', 'Nord-Nord-Est : 11.25° - 33.75°', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
+,(ref_nomenclatures.get_id_nomenclature_type('EXPOSITION'), 'NNO', 'NNO', 'Nord-Nord-Ouest', 'Nord-Nord-Ouest', 'Nord-Nord-Ouest : 326.25° - 348.75°', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
+,(ref_nomenclatures.get_id_nomenclature_type('EXPOSITION'), 'NO', 'NO', 'Nord-Ouest', 'Nord-Ouest', 'Nord-Ouest : 303.75° - 326.25 °', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
+,(ref_nomenclatures.get_id_nomenclature_type('EXPOSITION'), 'O', 'O', 'Ouest', 'Ouest', 'Ouest : 258.75° - 281.25°', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
+,(ref_nomenclatures.get_id_nomenclature_type('EXPOSITION'), 'ONO', 'ONO', 'Ouest-Nord-Ouest', 'Ouest-Nord-Ouest', 'Ouest-Nord-Ouest : 281.25° - 303.75 °', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
+,(ref_nomenclatures.get_id_nomenclature_type('EXPOSITION'), 'OSO', 'OSO', 'Ouest-Sud-Ouest', 'Ouest-Sud-Ouest', 'Ouest-Sud-Ouest : 236.25° - 258.75°', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
+,(ref_nomenclatures.get_id_nomenclature_type('EXPOSITION'), 'S', 'S', 'Sud', 'Sud', 'Sud : 168.75° - 191.25°', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
+,(ref_nomenclatures.get_id_nomenclature_type('EXPOSITION'), 'SE', 'SE', 'Sud-Est', 'Sud-Est', 'Sud-Est : 123.75°- 146.25°', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
+,(ref_nomenclatures.get_id_nomenclature_type('EXPOSITION'), 'SO', 'SO', 'Sud-Ouest', 'Sud-Ouest', 'Sud-Ouest : 213.75° - 236.25°', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
+,(ref_nomenclatures.get_id_nomenclature_type('EXPOSITION'), 'SSE', 'SSE', 'Sud-Sud-Est', 'Sud-Sud-Est', 'Sud-Sud-Est : 146.25° - 168.75°', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
+,(ref_nomenclatures.get_id_nomenclature_type('EXPOSITION'), 'SSO', 'SSO', 'Sud-Sud-Ouest', 'Sud-Sud-Ouest', 'Sud-Sud-Ouest : 191.25° - 213.75°', 'SINP', 'Validé', 0, '21/06/2016', '21/06/2016', true)
+;
+
