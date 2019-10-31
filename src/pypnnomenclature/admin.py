@@ -27,7 +27,7 @@ class TNomenclatureFiltersType(BaseSQLAFilter):
         return [
             (nomenclature.id_type, nomenclature.label_default)
             for nomenclature
-            in DB.session.query(BibNomenclaturesTypesAdmin).query.order_by(BibNomenclaturesTypesAdmin.label_default)  # noqa
+            in DB.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.label_default)  # noqa
         ]
 
 
