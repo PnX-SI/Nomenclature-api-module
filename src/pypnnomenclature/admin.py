@@ -1,12 +1,15 @@
+from importlib import import_module
+
 from flask import current_app
 from flask_admin import expose
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.contrib.sqla.filters import BaseSQLAFilter
-from .env import DB
 from .models import (
     TNomenclaturesAdmin,
     BibNomenclaturesTypesAdmin
 )
+
+DB = current_app.config.get('DB', import_module('.env', 'pypnnomenclature').DB)
 
 
 class TNomenclatureFiltersType(BaseSQLAFilter):
@@ -24,7 +27,7 @@ class TNomenclatureFiltersType(BaseSQLAFilter):
         return [
             (nomenclature.id_type, nomenclature.label_default)
             for nomenclature
-            in BibNomenclaturesTypesAdmin.query.order_by(BibNomenclaturesTypesAdmin.label_default)  # noqa
+            in DB.session.query(BibNomenclaturesTypesAdmin).query.order_by(BibNomenclaturesTypesAdmin.label_default)  # noqa
         ]
 
 
@@ -43,7 +46,7 @@ class TNomenclatureFiltersMnemonique(BaseSQLAFilter):
         return [
             (nomenclature.id_type, nomenclature.mnemonique)
             for nomenclature
-            in BibNomenclaturesTypesAdmin.query.order_by(BibNomenclaturesTypesAdmin.mnemonique)  # noqa
+            in DB.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.mnemonique)  # noqa
         ]
 
 
@@ -116,7 +119,7 @@ class BibNomenclatureFiltersLabel(BaseSQLAFilter):
         return [
             (nomenclature.label_default, nomenclature.label_default)
             for nomenclature
-            in BibNomenclaturesTypesAdmin.query.order_by(BibNomenclaturesTypesAdmin.label_default)  # noqa
+            in DB.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.label_default)  # noqa
         ]
 
 
@@ -143,7 +146,7 @@ class BibNomenclatureFiltersMnemonique(BaseSQLAFilter):
         return [
             (nomenclature.mnemonique, nomenclature.mnemonique)
             for nomenclature
-            in BibNomenclaturesTypesAdmin.query.order_by(BibNomenclaturesTypesAdmin.mnemonique)  # noqa
+            in DB.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.mnemonique)  # noqa
         ]
 
     # readable operation name. This appears in the middle filter line drop-down
