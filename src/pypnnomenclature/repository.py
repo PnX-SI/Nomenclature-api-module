@@ -14,11 +14,7 @@ from .models import (
 from sqlalchemy import text
 
 
-USE_AS_SUBMODULE = current_app.config.get("USE_AS_SUBMODULE", True)
-if USE_AS_SUBMODULE:
-    DB = current_app.config["DB"]
-else:
-    DB = import_module(".env", "pypnnomenclature").DB
+DB = current_app.config.get('DB', import_module('.env', 'pypnnomenclature').DB)
 
 
 def get_nomenclature_list(
