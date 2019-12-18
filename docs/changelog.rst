@@ -2,8 +2,19 @@
 CHANGELOG
 =========
 
+1.3.1 (2019-12-18)
+------------------
 
-1.2.7 (2019-09-16)
+**🚀 Nouveautés**
+
+* Utilisation de la librairie Utils-Flask-SQLAlchemy 
+* Ajout de nomenclatures concernant les habitats
+
+**🐛 Corrections**
+
+* Séparation de modèles faisant référence à la taxonomie
+
+1.3.0 (2019-09-16)
 ------------------
 
 **Nouveautés**

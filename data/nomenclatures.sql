@@ -310,6 +310,8 @@ ALTER TABLE bib_nomenclatures_types
 ALTER TABLE ONLY defaults_nomenclatures_value
     ADD CONSTRAINT check_defaults_nomenclatures_value_is_nomenclature_in_type CHECK (check_nomenclature_type_by_mnemonique(id_nomenclature, mnemonique_type)) NOT VALID;
 
+ALTER TABLE t_nomenclatures
+  ADD CONSTRAINT unique_id_type_cd_nomenclature UNIQUE (id_type, cd_nomenclature);
 
 ---------------
 --FOREIGN KEY--
