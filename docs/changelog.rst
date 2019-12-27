@@ -2,13 +2,21 @@
 CHANGELOG
 =========
 
+1.3.2 (2019-12-27)
+------------------
+
+**🐛 Corrections**
+
+* Correction de données SQL mineures
+
 1.3.1 (2019-12-20)
 ------------------
 
 **🚀 Nouveautés**
 
 * Utilisation de la librairie Utils-Flask-SQLAlchemy 
-* Ajout de nomenclatures concernant les habitats
+* Ajout de nomenclatures SINP concernant les habitats
+* Ajout d'une contrainte d'unicité sur la combinaison des champs ``id_type`` et ``cd_nomenclature`` de la table ``t_nomenclatures`` (#28)
 
 **🐛 Corrections**
 
