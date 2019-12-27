@@ -2,12 +2,12 @@
 CHANGELOG
 =========
 
-1.3.2 (unreleased)
+1.3.2 (2019-12-27)
 ------------------
 
 **🐛 Corrections**
 
-* 
+* Correction de données SQL mineures
 
 1.3.1 (2019-12-20)
 ------------------
