@@ -117,10 +117,10 @@ INSERT INTO bib_nomenclatures_types (id_type, mnemonique, label_fr, definition_f
 SELECT setval('ref_nomenclatures.bib_nomenclatures_types_id_type_seq', (SELECT max(id_type) FROM ref_nomenclatures.bib_nomenclatures_types), true);
 
 
-UPDATE bib_nomenclatures_types SET label_default = label_:MYDEFAULTLANGUAGE;
-UPDATE bib_nomenclatures_types SET definition_default = definition_:MYDEFAULTLANGUAGE;
+UPDATE bib_nomenclatures_types SET label_default = label_MYDEFAULTLANGUAGE;
+UPDATE bib_nomenclatures_types SET definition_default = definition_MYDEFAULTLANGUAGE;
 ALTER TABLE bib_nomenclatures_types ALTER COLUMN label_default SET NOT NULL;
-ALTER TABLE bib_nomenclatures_types ALTER COLUMN label_:MYDEFAULTLANGUAGE SET NOT NULL;
+ALTER TABLE bib_nomenclatures_types ALTER COLUMN label_MYDEFAULTLANGUAGE SET NOT NULL;
 
 --la séquence commence à 1, le cas particulier de la nomenclature 0 est insérer sans la séquence.
 INSERT INTO t_nomenclatures (id_nomenclature,id_type, cd_nomenclature, mnemonique, label_fr, definition_fr,  source, statut, id_broader, hierarchy, meta_create_date, meta_update_date, active) VALUES
