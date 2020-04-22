@@ -112,6 +112,7 @@ INSERT INTO bib_nomenclatures_types (id_type, mnemonique, label_fr, definition_f
 ,(120, 'ABONDANCE_HAB', 'Abondance des habitats', 'Nomenclature des abondances d''habitats', 'SINP', 'Validé', '2018-05-14 00:00:00', '2018-05-14 00:00:00')
 ,(121, 'HAB_INTERET_COM', 'Habitat d''intérêt communautaire', 'Nomenclature des habitat d''intérêt communautaire', 'SINP', 'Validé', '2018-05-14 00:00:00', '2018-05-14 00:00:00')
 ,(122, 'METHOD_CALCUL_SURFACE', 'Méthode de calcul de surface', 'Nomenclature des méthodes de calcul de surface', 'SINP', 'Validé', '2018-05-14 00:00:00', '2018-05-14 00:00:00')
+,(123, 'JDD_DATA_TYPE', 'Type de jeu de donnéees', 'Nomenclature des types de jeux de données', 'SINP', 'Validé', '2020-03-21 00:00:00', '2020-03-21 00:00:00')
 ;
 
 SELECT setval('ref_nomenclatures.bib_nomenclatures_types_id_type_seq', (SELECT max(id_type) FROM ref_nomenclatures.bib_nomenclatures_types), true);
@@ -676,6 +677,10 @@ INSERT INTO t_nomenclatures (id_type, cd_nomenclature, mnemonique, label_fr, def
 ,(get_id_nomenclature_type('EXPOSITION'), 'SO', 'SO', 'Sud-Ouest', 'Sud-Ouest : 213.75° - 236.25°', 'SINP', 'Validé', 0, '121.014', '21/06/2016', '21/06/2016', true)
 ,(get_id_nomenclature_type('EXPOSITION'), 'SSE', 'SSE', 'Sud-Sud-Est', 'Sud-Sud-Est : 146.25° - 168.75°', 'SINP', 'Validé', 0, '121.015', '21/06/2016', '21/06/2016', true)
 ,(get_id_nomenclature_type('EXPOSITION'), 'SSO', 'SSO','Sud-Sud-Ouest', 'Sud-Sud-Ouest : 191.25° - 213.75°', 'SINP', 'Validé', 0, '121.016', '21/06/2016', '21/06/2016', true)
+-- type de jeu de donnees
+,(get_id_nomenclature_type('JDD_DATA_TYPE'), '0', 'NR', 'NR', 'Le type de JDD n''est pas renseigné', 'SINP', 'Validé', 0, '123.001', '2020-03-21 00:00:00', '2020-03-21 00:00:00', true)
+,(get_id_nomenclature_type('JDD_DATA_TYPE'), '1', 'Habitats', 'NR', 'Le type de JDD n''est pas renseigné', 'SINP', 'Validé', 0, '123.002', '2020-03-21 00:00:00', '2020-03-21 00:00:00', true)
+,(get_id_nomenclature_type('JDD_DATA_TYPE'), '2', 'Ta', 'NR', 'Le type de JDD n''est pas renseigné', 'SINP', 'Validé', 0, '123.003', '2020-03-21 00:00:00', '2020-03-21 00:00:00', true)
 
 ;
 
@@ -708,6 +713,7 @@ INSERT INTO defaults_nomenclatures_value (mnemonique_type, id_organism, id_nomen
 ,('STATUT_SOURCE',0,get_id_nomenclature('STATUT_SOURCE', 'Te'))
 ,('STATUT_VALID',0,get_id_nomenclature('STATUT_VALID', '0'))
 ,('TYPE_FINANCEMENT',0,get_id_nomenclature('TYPE_FINANCEMENT', '1'))
+,('JDD_DATA_TYPE',0,get_id_nomenclature('JDD_DATA_TYPE', '0'))
 ;
 
 
