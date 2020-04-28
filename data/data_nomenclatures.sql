@@ -678,9 +678,9 @@ INSERT INTO t_nomenclatures (id_type, cd_nomenclature, mnemonique, label_fr, def
 ,(get_id_nomenclature_type('EXPOSITION'), 'SSE', 'SSE', 'Sud-Sud-Est', 'Sud-Sud-Est : 146.25° - 168.75°', 'SINP', 'Validé', 0, '121.015', '21/06/2016', '21/06/2016', true)
 ,(get_id_nomenclature_type('EXPOSITION'), 'SSO', 'SSO','Sud-Sud-Ouest', 'Sud-Sud-Ouest : 191.25° - 213.75°', 'SINP', 'Validé', 0, '121.016', '21/06/2016', '21/06/2016', true)
 -- type de jeu de donnees
-,(get_id_nomenclature_type('JDD_DATA_TYPE'), 'NR', 'NR', 'NR', 'Le type de JDD n''est pas renseigné', 'SINP', 'Validé', 0, '122.001', '2020-03-21 00:00:00', '2020-03-21 00:00:00', true)
-,(get_id_nomenclature_type('JDD_DATA_TYPE'), 'Hab', 'Hab', 'Habitats', 'Habitats', 'SINP', 'Validé', 0, '122.002', '2020-03-21 00:00:00', '2020-03-21 00:00:00', true)
-,(get_id_nomenclature_type('JDD_DATA_TYPE'), 'Tax', 'Tax', 'Taxons', 'Taxons', 'SINP', 'Validé', 0, '122.003', '2020-03-21 00:00:00', '2020-03-21 00:00:00', true)
+,(get_id_nomenclature_type('JDD_DATA_TYPE'), 'NR', 'NR', 'NR', 'Le type de JDD n''est pas renseigné', 'SINP', 'Validé', 0, '122.001', '21/03/2020', '21/03/2020', true)
+,(get_id_nomenclature_type('JDD_DATA_TYPE'), 'Hab', 'Hab', 'Habitats', 'Habitats', 'SINP', 'Validé', 0, '122.002', '21/03/2020', '21/03/2020', true)
+,(get_id_nomenclature_type('JDD_DATA_TYPE'), 'Tax', 'Tax', 'Taxons', 'Taxons', 'SINP', 'Validé', 0, '122.003', '21/03/2020', '21/03/2020', true)
 
 ;
 
