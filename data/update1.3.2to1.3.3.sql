@@ -1,4 +1,4 @@
-INSERT INTO ref_nomenclatures.bib_nomenclatures_types (id_type, mnemonique, label_fr, label_default, definition_fr, source, statut, meta_create_date, meta_update_date) VALUES
+INSERT INTO ref_nomenclatures.bib_nomenclatures_types (mnemonique, label_fr, label_default, definition_fr, source, statut, meta_create_date, meta_update_date) VALUES
 ('JDD_DATA_TYPE', 'Type de jeu de donnéees', 'Type de jeu de donnéees', 'Nomenclature des types de jeux de données', 'SINP', 'Validé', '2020-03-21 00:00:00', '2020-03-21 00:00:00')
 
 INSERT INTO ref_nomenclatures.t_nomenclatures (id_type, cd_nomenclature, mnemonique, label_fr, label_default, definition_fr,  source, statut, id_broader, meta_create_date, meta_update_date, active) VALUES
