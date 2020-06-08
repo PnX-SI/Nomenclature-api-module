@@ -108,10 +108,10 @@ INSERT INTO bib_nomenclatures_types (id_type, mnemonique, label_fr, definition_f
 ,(116, 'TYPE_SITE', 'Type de sites', 'Nomenclature des types de sites suivi dans gn_monitoring.', 'GEONATURE', 'Non validé', '2018-03-13 00:00:00', '2018-03-13 00:00:00')
 ,(117, 'TYPE_MEDIA', 'Type de médias', 'Nomenclature des types de médias.', 'GEONATURE', 'Non validé', '2018-04-12 00:00:00', '2018-04-12 00:00:00')
 ,(118, 'DETERMINATION_TYP_HAB', 'Type de détermination de l''habitat', 'Nomenclature des types de détermination de l''habitat', 'SINP', 'Validé', '2018-05-14 00:00:00', '2018-05-14 00:00:00')
-,(119, 'TECHNIQUE_COLLECT_HAB', 'Technique de collecte de l''information habitats', 'Nomenclature des Technique de collecte 2017-09-29 00:00:00')
-,(120, 'ABONDANCE_HAB', 'Abondance des habitats', 'Nomenclature des abondances d''habitats', 'SINP', 'Validé', '2017-09-29 00:00:00', '2017-09-29 00:00:00')
-,(121, 'HAB_INTERET_COM', 'Habitat d''intérêt communautaire', 'Nomenclature des habitat d''intérêt communautaire', 'SINP', 'Validé', '2017-09-29 00:00:00', '2017-09-29 00:00:00')
-,(122, 'METHOD_CALCUL_SURFACE', 'Méthode de calcul de surface', 'Nomenclature des méthodes de calcul de surface', 'SINP', 'Validé', '2017-09-29 00:00:00', '2017-09-29 00:00:00')
+,(119, 'TECHNIQUE_COLLECT_HAB', 'Technique de collecte de l''information habitats', 'Nomenclature des techniques de collectes ayant présidé à l''obtention de l''information sur l''habitat', 'SINP', 'Validé', '2017-09-29 00:00:00', '2017-09-29 00:00:00')
+,(120, 'ABONDANCE_HAB', 'Abondance des habitats', 'Nomenclature des coefficients de Braun-Blanquet et Pavillard adaptés pour décrire l''abondance relative des habitats au sein d''une station', 'SINP', 'Validé', '2017-09-29 00:00:00', '2017-09-29 00:00:00')
+,(121, 'HAB_INTERET_COM', 'Habitat d''intérêt communautaire', 'Nomenclature des valeurs permettant d''indiquer si un habitat est d''intérêt communautaire', 'SINP', 'Validé', '2017-09-29 00:00:00', '2017-09-29 00:00:00')
+,(122, 'METHOD_CALCUL_SURFACE', 'Méthode de calcul de surface', 'Nomenclature des types de détermination d''une surface', 'SINP', 'Validé', '2017-09-29 00:00:00', '2017-09-29 00:00:00')
 ;
 
 SELECT setval('ref_nomenclatures.bib_nomenclatures_types_id_type_seq', (SELECT max(id_type) FROM ref_nomenclatures.bib_nomenclatures_types), true);
