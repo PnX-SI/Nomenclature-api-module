@@ -1,5 +1,7 @@
 UPDATE ref_nomenclatures.t_nomenclatures 
-SET cd_nomenclature = concat('OLD_', cd_nomenclature)
+SET cd_nomenclature = concat('OLD_', cd_nomenclature),
+active=fase,
+statut='Gelé'
 WHERE id_type = ref_nomenclatures.get_id_nomenclature_type('DATA_TYP');
 
 
