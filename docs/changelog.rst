@@ -2,12 +2,29 @@
 CHANGELOG
 =========
 
+1.3.3 (unreleased)
+------------------
+
+**🐛 Corrections**
+
+* Correction des dates des nomenclatures (#32)
+* Correction des définitions SINP des nomenclatures d'habitats (#33)
+* Mise à jour des nomenclatures de type ``DATA_TYP`` (#33)
+
+**Notes de version**
+
+* Si vous mettez à jour le module, exécuter le script SQL ``data/update1.3.2to1.3.3.sql``
+
 1.3.2 (2019-12-30)
 ------------------
 
 **🐛 Corrections**
 
 * Correction de données SQL mineures
+
+**Notes de version**
+
+* Si vous mettez à jour le module, exécuter le script SQL ``data/update1.3.1to1.3.2.sql``
 
 1.3.1 (2019-12-20)
 ------------------
