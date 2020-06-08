@@ -5,10 +5,10 @@ ALTER TABLE ref_nomenclatures.t_nomenclatures
 
 INSERT INTO ref_nomenclatures.bib_nomenclatures_types (mnemonique, label_default, label_fr, definition_fr, source, statut, meta_create_date, meta_update_date) VALUES
 ('DETERMINATION_TYP_HAB', 'Type de détermination de l''habitat','Type de détermination de l''habitat', 'Nomenclature des types de détermination de l''habitat', 'SINP', 'Validé', '2017-09-29 00:00:00', '2017-09-29 00:00:00')
-,('TECHNIQUE_COLLECT_HAB', 'Technique de collecte de l''information habitats', 'Technique de collecte de l''information habitats', 'Nomenclature des Technique de collecte de l''information habitats', 'SINP', 'Validé', '2017-09-29 00:00:00', '2017-09-29 00:00:00')
-,('ABONDANCE_HAB', 'Abondance des habitats', 'Abondance des habitats', 'Nomenclature des abondances d''habitats', 'SINP', 'Validé', '2017-09-29 00:00:00', '2017-09-29 00:00:00')
-,('HAB_INTERET_COM', 'Habitat d''intérêt communautaire','Habitat d''intérêt communautaire', 'Nomenclature des habitat d''intérêt communautaire', 'SINP', 'Validé', '2017-09-29 00:00:00', '2017-09-29 00:00:00'),
-('METHOD_CALCUL_SURFACE', 'Méthode de calcul de surface','Méthode de calcul de surface', 'Nomenclature des méthodes de calcul de surface', 'SINP', 'Validé', '2017-09-29 00:00:00', '2017-09-29 00:00:00')
+,('TECHNIQUE_COLLECT_HAB', 'Technique de collecte de l''information habitats', 'Technique de collecte de l''information habitats', 'Nomenclature des techniques de collectes ayant présidé à l''obtention de l''information sur l''habitat', 'SINP', 'Validé', '2017-09-29 00:00:00', '2017-09-29 00:00:00')
+,('ABONDANCE_HAB', 'Abondance des habitats', 'Abondance des habitats', 'Nomenclature des coefficients de Braun-Blanquet et Pavillard adaptés pour décrire l''abondance relative des habitats au sein d''une station', 'SINP', 'Validé', '2017-09-29 00:00:00', '2017-09-29 00:00:00')
+,('HAB_INTERET_COM', 'Habitat d''intérêt communautaire','Habitat d''intérêt communautaire', 'Nomenclature des valeurs permettant d''indiquer si un habitat est d''intérêt communautaire', 'SINP', 'Validé', '2017-09-29 00:00:00', '2017-09-29 00:00:00'),
+('METHOD_CALCUL_SURFACE', 'Méthode de calcul de surface','Méthode de calcul de surface', 'Nomenclature des types de détermination d''une surface', 'SINP', 'Validé', '2017-09-29 00:00:00', '2017-09-29 00:00:00')
 ;
 
 
