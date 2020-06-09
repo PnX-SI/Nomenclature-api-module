@@ -1,5 +1,5 @@
 -- Suppression des relations avec group2_inpn "fougère" supprimé
-DELETE FROM ref_nomenclatures.cor_taxref_nomenclature WHERE group2_inpn = 'Fougères';
+DELETE FROM ref_nomenclatures.cor_taxref_nomenclature WHERE group2_inpn IN ('Fougères', 'Algues brunes');
 
 -- Geler et desactiver les anciennes nomenclatures du type 'DATA_TYP'
 UPDATE ref_nomenclatures.t_nomenclatures 
