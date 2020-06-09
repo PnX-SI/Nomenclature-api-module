@@ -10,10 +10,12 @@ CHANGELOG
 * Correction des dates des nomenclatures (#32)
 * Correction des définitions SINP des nomenclatures d'habitats (#33)
 * Mise à jour des nomenclatures de type ``DATA_TYP`` (#33)
+* Taxref 13 : Les group2_inpn ``Fougères`` et ``Algues brunes`` ont été remplacés par ``Ptéridophytes`` et ``Ochrophytes``. Répercussion dans la table ``ref_nomenclatures.cor_taxref_nomenclature``
 
 **Notes de version**
 
 * Si vous mettez à jour le module, exécuter le script SQL ``data/update1.3.2to1.3.3.sql``
+* Et si on est resté en taxref 11 ou 12 ??? ``data/maj_taxref_v13.sql`` plus tard ???
 
 1.3.2 (2019-12-30)
 ------------------
