@@ -1,10 +1,3 @@
--- MAJ des relations avec group2_inpn "fougère" et "Algues brunes" supprimés dans Taxref 13
-UPDATE ref_nomenclatures.cor_taxref_nomenclature
-SET group2_inpn = 'Ptéridophytes' WHERE group2_inpn = 'Fougères';
-
-UPDATE ref_nomenclatures.cor_taxref_nomenclature
-SET group2_inpn = 'Ochrophytes' WHERE group2_inpn = 'Algues brunes';
-
 -- Geler et desactiver les anciennes nomenclatures du type 'DATA_TYP'
 UPDATE ref_nomenclatures.t_nomenclatures 
 SET cd_nomenclature = concat('OLD_', cd_nomenclature),
