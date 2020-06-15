@@ -15,7 +15,7 @@ CHANGELOG
 **Notes de version**
 
 * Si vous mettez à jour le module, exécuter le script SQL ``data/update1.3.2to1.3.3.sql``
-* Et si on est resté en taxref 11 ou 12 ??? ``data/maj_taxref_v13.sql`` plus tard ???
+* Si vous avez mis à jour Taxref en version 13, répercutez les changements de group2_inpn avec le script SQL ``data/update_taxref_v13.sql``
 
 1.3.2 (2019-12-30)
 ------------------
