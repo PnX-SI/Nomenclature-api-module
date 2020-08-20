@@ -27,3 +27,49 @@ INSERT INTO ref_nomenclatures.t_nomenclatures (id_type, cd_nomenclature, mnemoni
 ,(ref_nomenclatures.get_id_nomenclature_type('OCC_COMPORTEMENT'), '22', '22', 'Territorial', 'Territorial', 'Territorial', 'SINP', 'Validé', 0, '2018-05-09 00:00:00', '2018-05-09 00:00:00', true)
 ,(ref_nomenclatures.get_id_nomenclature_type('OCC_COMPORTEMENT'), '23', '23', 'Pond', 'Pond', 'Pond', 'SINP', 'Validé', 0, '2018-05-09 00:00:00', '2018-05-09 00:00:00', true)
 ;
+
+INSERT INTO ref_nomenclatures.cor_taxref_nomenclature VALUES
+(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '0'), 'all', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '1'), 'all', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '2'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '3'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '4'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '5'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '6'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '7'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '8'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '9'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '10'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '11'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '12'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '13'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '14'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '15'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '16'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '18'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '19'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '20'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '21'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '22'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '23'), 'Animalia', 'all', now(), NULL)
+;
+
+
+-- Suppression des nomenclature dans cor_taxref qui on été gelée
+DELETE FROM ref_nomenclatures.cor_taxref_nomenclature
+WHERE id_nomenclature IN (
+  SELECT id_nomenclature
+  FROM ref_nomenclatures.t_nomenclatures
+  WHERE id_type = ref_nomenclatures.get_id_nomenclature_type('STATUT_BIO')
+AND cd_nomenclature IN ('6', '7', '8', '10', '11', '12')
+);
+
+-- gel de certaines nomenclatures 
+UPDATE ref_nomenclatures.t_nomenclatures 
+SET 
+  cd_nomenclature = concat('OLD_', cd_nomenclature),
+  active=false,
+  statut='Gelé'
+WHERE id_type = ref_nomenclatures.get_id_nomenclature_type('STATUT_BIO')
+AND cd_nomenclature IN ('6', '7', '8', '10', '11', '12')
+;
