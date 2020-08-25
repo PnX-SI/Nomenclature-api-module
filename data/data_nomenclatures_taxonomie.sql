@@ -868,4 +868,31 @@ INSERT INTO cor_taxref_nomenclature VALUES
 ,(get_id_nomenclature('NIVEAU_TERRITORIAL', '4'), 'Fungi', 'all', now(), NULL)
 ,(get_id_nomenclature('NIVEAU_TERRITORIAL', '5'), 'Fungi', 'all', now(), NULL)
 ,(get_id_nomenclature('NIVEAU_TERRITORIAL', '6'), 'Fungi', 'all', now(), NULL)
+
+----------------------
+----COMPORTEMENT------
+----------------------
+,(get_id_nomenclature('OCC_COMPORTEMENT', '0'), 'all', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '1'), 'all', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '2'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '3'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '4'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '5'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '6'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '7'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '8'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '9'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '10'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '11'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '12'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '13'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '14'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '15'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '16'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '18'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '19'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '20'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '21'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '22'), 'Animalia', 'all', now(), NULL)
+,(get_id_nomenclature('OCC_COMPORTEMENT', '23'), 'Animalia', 'all', now(), NULL)
 ;

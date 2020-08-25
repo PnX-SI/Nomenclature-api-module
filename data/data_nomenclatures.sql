@@ -675,7 +675,7 @@ INSERT INTO t_nomenclatures (id_type, cd_nomenclature, mnemonique, label_fr, def
 ,(get_id_nomenclature_type('EXPOSITION'), 'SSE', 'SSE', 'Sud-Sud-Est', 'Sud-Sud-Est : 146.25° - 168.75°', 'SINP', 'Validé', 0, '121.015', '2016-06-21 00:00:00', '2016-06-21 00:00:00', true)
 ,(get_id_nomenclature_type('EXPOSITION'), 'SSO', 'SSO','Sud-Sud-Ouest', 'Sud-Sud-Ouest : 191.25° - 213.75°', 'SINP', 'Validé', 0, '121.016', '2016-06-21 00:00:00', '2016-06-21 00:00:00', true)
 -- comportement
-(get_id_nomenclature_type('OCC_COMPORTEMENT'), '0', 'NSP', 'Inconnu', 'Inconnu : Le statut biologique de l''individu n''est pas connu.', 'SINP', 'Validé', 0, '2018-05-09 00:00:00', '2018-05-09 00:00:00', true)
+,(get_id_nomenclature_type('OCC_COMPORTEMENT'), '0', 'NSP', 'Inconnu', 'Inconnu : Le statut biologique de l''individu n''est pas connu.', 'SINP', 'Validé', 0, '2018-05-09 00:00:00', '2018-05-09 00:00:00', true)
 ,(get_id_nomenclature_type('OCC_COMPORTEMENT'), '1', '1', 'Non renseigné', 'Non renseigné : Le statut biologique de l''individu n''a pas été renseigné.', 'SINP', 'Validé', 0, '2018-05-09 00:00:00', '2018-05-09 00:00:00', true)
 ,(get_id_nomenclature_type('OCC_COMPORTEMENT'), '2', '2', 'Echouage', 'Echouage : l''individu tente de s''échouer ou vient de s''échouer sur le rivage', 'SINP', 'Validé', 0, '2018-05-09 00:00:00', '2018-05-09 00:00:00', true)
 ,(get_id_nomenclature_type('OCC_COMPORTEMENT'), '3', '3', 'Dortoir', 'Dortoir : individus se regroupant dans une zone définie pour y passer la nuit ou la journée.', 'SINP', 'Validé', 0, '2018-05-09 00:00:00', '2018-05-09 00:00:00', true)
