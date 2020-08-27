@@ -286,11 +286,13 @@ INSERT INTO cor_taxref_nomenclature VALUES
 ,(get_id_nomenclature('TECHNIQUE_OBS', '76'), 'Animalia', 'Poissons', now(), NULL)
 ,(get_id_nomenclature('TECHNIQUE_OBS', '111'), 'Animalia', 'Poissons', now(), NULL)
 ,(get_id_nomenclature('TECHNIQUE_OBS', '112'), 'Animalia', 'Poissons', now(), NULL)
+;
 
 -------------
 --STADE_VIE--
 -------------
-,(get_id_nomenclature('STADE_VIE', '0'), 'all', 'all', now(), NULL)
+INSERT INTO cor_taxref_nomenclature VALUES
+(get_id_nomenclature('STADE_VIE', '0'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('STADE_VIE', '1'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('STADE_VIE', '18'), 'Plantae', 'all', now(), NULL)
 ,(get_id_nomenclature('STADE_VIE', '19'), 'Plantae', 'all', now(), NULL)
@@ -360,11 +362,13 @@ INSERT INTO cor_taxref_nomenclature VALUES
 ,(get_id_nomenclature('STADE_VIE', '5'), 'Animalia', 'Mammifères', now(), NULL)
 ,(get_id_nomenclature('STADE_VIE', '2'), 'Animalia', 'Mammifères', now(), NULL)
 ,(get_id_nomenclature('STADE_VIE', '10'), 'Animalia', 'Mammifères', now(), NULL)
+;
 
 --------
 --SEXE--
 --------
-,(get_id_nomenclature('SEXE', '0'), 'all', 'all', now(), NULL)
+INSERT INTO cor_taxref_nomenclature VALUES
+(get_id_nomenclature('SEXE', '0'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('SEXE', '1'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('SEXE', '6'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('SEXE', '5'), 'Plantae', 'all', now(), NULL)
@@ -404,11 +408,13 @@ INSERT INTO cor_taxref_nomenclature VALUES
 ,(get_id_nomenclature('SEXE', '2'), 'Animalia', 'Plathelminthes', now(), NULL)
 ,(get_id_nomenclature('SEXE', '3'), 'Animalia', 'Plathelminthes', now(), NULL)
 ,(get_id_nomenclature('SEXE', '4'), 'Animalia', 'Plathelminthes', now(), NULL)
+;
 
 -------------------------
 --METHODE D'OBSERVATION--
 -------------------------
-,(get_id_nomenclature('METH_OBS', '0'), 'all', 'all', now(), NULL)
+INSERT INTO cor_taxref_nomenclature VALUES
+(get_id_nomenclature('METH_OBS', '0'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('METH_OBS', '19'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('METH_OBS', '20'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('METH_OBS', '21'), 'all', 'all', now(), NULL)
@@ -475,11 +481,13 @@ INSERT INTO cor_taxref_nomenclature VALUES
 ,(get_id_nomenclature('METH_OBS', '12'), 'Animalia', 'Mammifères', now(), NULL)
 ,(get_id_nomenclature('METH_OBS', '23'), 'Animalia', 'Mammifères', now(), NULL)
 ,(get_id_nomenclature('METH_OBS', '25'), 'Animalia', 'Mammifères', now(), NULL)
+;
 
 ---------------------
 --STATUT BIOLOGIQUE--
 ---------------------
-,(get_id_nomenclature('STATUT_BIO', '0'), 'all', 'all', now(), NULL)
+INSERT INTO cor_taxref_nomenclature VALUES
+(get_id_nomenclature('STATUT_BIO', '0'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('STATUT_BIO', '1'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('STATUT_BIO', '2'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('STATUT_BIO', '12'), 'all', 'all', now(), NULL)
@@ -518,19 +526,23 @@ INSERT INTO cor_taxref_nomenclature VALUES
 ,(get_id_nomenclature('STATUT_BIO', '8'), 'Animalia', 'Mammifères', now(), NULL)
 ,(get_id_nomenclature('STATUT_BIO', '10'), 'Animalia', 'Mammifères', now(), NULL)
 ,(get_id_nomenclature('STATUT_BIO', '11'), 'Animalia', 'Mammifères', now(), NULL)
+;
 
 ------------------------
 --TYPE DE DENOMBREMENT--
 ------------------------
-,(get_id_nomenclature('TYP_DENBR', 'Ca'), 'all', 'all', now(), NULL)
+INSERT INTO cor_taxref_nomenclature VALUES
+(get_id_nomenclature('TYP_DENBR', 'Ca'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('TYP_DENBR', 'Co'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('TYP_DENBR', 'Es'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('TYP_DENBR', 'NSP'), 'all', 'all', now(), NULL)
+;
 
 -------------------------
 --OBJET Du DENOMBREMENT--
 -------------------------
-,(get_id_nomenclature('OBJ_DENBR', 'NSP'), 'all', 'all', now(), NULL)
+INSERT INTO cor_taxref_nomenclature VALUES
+(get_id_nomenclature('OBJ_DENBR', 'NSP'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('OBJ_DENBR', 'IND'), 'Plantae', 'all', now(), NULL)
 ,(get_id_nomenclature('OBJ_DENBR', 'HAM'), 'Plantae', 'all', now(), NULL)
 ,(get_id_nomenclature('OBJ_DENBR', 'TIGE'), 'Plantae', 'all', now(), NULL)
@@ -564,11 +576,13 @@ INSERT INTO cor_taxref_nomenclature VALUES
 ,(get_id_nomenclature('OBJ_DENBR', 'PON'), 'Animalia', 'Amphibiens', now(), NULL)
 ,(get_id_nomenclature('OBJ_DENBR', 'CPL'), 'Animalia', 'Mammifères', now(), NULL)
 ,(get_id_nomenclature('OBJ_DENBR', 'COL'), 'Animalia', 'Mammifères', now(), NULL)
+;
 
 --------------
 --NATURALITE--
 --------------
-,(get_id_nomenclature('NATURALITE', '0'), 'all', 'all', now(), NULL)
+INSERT INTO cor_taxref_nomenclature VALUES
+(get_id_nomenclature('NATURALITE', '0'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('NATURALITE', '1'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('NATURALITE', '2'), 'Plantae', 'all', now(), NULL)
 ,(get_id_nomenclature('NATURALITE', '3'), 'Plantae', 'all', now(), NULL)
@@ -579,54 +593,65 @@ INSERT INTO cor_taxref_nomenclature VALUES
 ,(get_id_nomenclature('NATURALITE', '2'), 'Animalia', 'all', now(), NULL)
 ,(get_id_nomenclature('NATURALITE', '4'), 'Animalia', 'all', now(), NULL)
 ,(get_id_nomenclature('NATURALITE', '5'), 'Animalia', 'all', now(), NULL)
+;
 
 -------------------
 --ETAT BIOLOGIQUE--
 -------------------
-,(get_id_nomenclature('ETA_BIO', '0'), 'all', 'all', now(), NULL)
+INSERT INTO cor_taxref_nomenclature VALUES
+(get_id_nomenclature('ETA_BIO', '0'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('ETA_BIO', '1'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('ETA_BIO', '2'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('ETA_BIO', '3'), 'all', 'all', now(), NULL)
+;
 
 ----------------------
 --PREUVE D'EXISTANCE--
 ----------------------
-,(get_id_nomenclature('PREUVE_EXIST', '0'), 'all', 'all', now(), NULL)
+INSERT INTO cor_taxref_nomenclature VALUES
+(get_id_nomenclature('PREUVE_EXIST', '0'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('PREUVE_EXIST', '1'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('PREUVE_EXIST', '2'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('PREUVE_EXIST', '3'), 'all', 'all', now(), NULL)
-
+;
 ---------------------------
 --STATUT DE L'OBSERVATION--
 ---------------------------
-,(get_id_nomenclature('STATUT_OBS', 'No'), 'all', 'all', now(), NULL)
+INSERT INTO cor_taxref_nomenclature VALUES
+(get_id_nomenclature('STATUT_OBS', 'No'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('STATUT_OBS', 'Pr'), 'all', 'all', now(), NULL)
+;
 
 ------------------------
 --STATUT DE VALIDATION--
 ------------------------
-,(get_id_nomenclature('STATUT_VALID', '1'), 'all', 'all', now(), NULL)
+INSERT INTO cor_taxref_nomenclature VALUES
+(get_id_nomenclature('STATUT_VALID', '1'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('STATUT_VALID', '2'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('STATUT_VALID', '3'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('STATUT_VALID', '4'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('STATUT_VALID', '5'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('STATUT_VALID', '6'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('STATUT_VALID', '0'), 'all', 'all', now(), NULL)
+;
 
 -----------------------
 --NIVEAU DE PRECISION--
 -----------------------
-,(get_id_nomenclature('NIV_PRECIS', '0'), 'all', 'all', now(), NULL)
+INSERT INTO cor_taxref_nomenclature VALUES
+(get_id_nomenclature('NIV_PRECIS', '0'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('NIV_PRECIS', '1'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('NIV_PRECIS', '2'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('NIV_PRECIS', '3'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('NIV_PRECIS', '4'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('NIV_PRECIS', '5'), 'all', 'all', now(), NULL)
+;
 
 ----------------------------
 --METHODE DE DETERMINATION--
 ----------------------------
-,(get_id_nomenclature('METH_DETERMIN', '1'), 'all', 'all', now(), NULL)
+INSERT INTO cor_taxref_nomenclature VALUES
+(get_id_nomenclature('METH_DETERMIN', '1'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('METH_DETERMIN', '2'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('METH_DETERMIN', '3'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('METH_DETERMIN', '4'), 'all', 'all', now(), NULL)
@@ -860,11 +885,13 @@ INSERT INTO cor_taxref_nomenclature VALUES
 ,(get_id_nomenclature('METH_DETERMIN', '15'), 'Protozoa', 'Autres', now(), NULL)
 ,(get_id_nomenclature('METH_DETERMIN', '20'), 'Protozoa', 'Autres', now(), NULL)
 ,(get_id_nomenclature('METH_DETERMIN', '22'), 'Protozoa', 'Autres', now(), NULL)
+;
 
 ----------------------
 --NIVEAU TERRITORIAL--
 ----------------------
-,(get_id_nomenclature('NIVEAU_TERRITORIAL', '3'), 'Plantae', 'all', now(), NULL)
+INSERT INTO cor_taxref_nomenclature VALUES
+(get_id_nomenclature('NIVEAU_TERRITORIAL', '3'), 'Plantae', 'all', now(), NULL)
 ,(get_id_nomenclature('NIVEAU_TERRITORIAL', '4'), 'Plantae', 'all', now(), NULL)
 ,(get_id_nomenclature('NIVEAU_TERRITORIAL', '5'), 'Plantae', 'all', now(), NULL)
 ,(get_id_nomenclature('NIVEAU_TERRITORIAL', '6'), 'Plantae', 'all', now(), NULL)
@@ -872,11 +899,13 @@ INSERT INTO cor_taxref_nomenclature VALUES
 ,(get_id_nomenclature('NIVEAU_TERRITORIAL', '4'), 'Fungi', 'all', now(), NULL)
 ,(get_id_nomenclature('NIVEAU_TERRITORIAL', '5'), 'Fungi', 'all', now(), NULL)
 ,(get_id_nomenclature('NIVEAU_TERRITORIAL', '6'), 'Fungi', 'all', now(), NULL)
+;
 
 ----------------------
 ----COMPORTEMENT------
 ----------------------
-,(get_id_nomenclature('OCC_COMPORTEMENT', '0'), 'all', 'all', now(), NULL)
+INSERT INTO cor_taxref_nomenclature VALUES
+(get_id_nomenclature('OCC_COMPORTEMENT', '0'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('OCC_COMPORTEMENT', '1'), 'all', 'all', now(), NULL)
 ,(get_id_nomenclature('OCC_COMPORTEMENT', '2'), 'Animalia', 'all', now(), NULL)
 ,(get_id_nomenclature('OCC_COMPORTEMENT', '3'), 'Animalia', 'all', now(), NULL)
