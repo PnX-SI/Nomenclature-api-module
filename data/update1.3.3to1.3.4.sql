@@ -26,6 +26,17 @@ INSERT INTO ref_nomenclatures.t_nomenclatures (id_type, cd_nomenclature, mnemoni
 ,(ref_nomenclatures.get_id_nomenclature_type('OCC_COMPORTEMENT'), '21', '21', 'Tandem', 'Tandem', 'Tandem', 'SINP', 'Validé', 0, '2018-05-09 00:00:00', '2018-05-09 00:00:00', true)
 ,(ref_nomenclatures.get_id_nomenclature_type('OCC_COMPORTEMENT'), '22', '22', 'Territorial', 'Territorial', 'Territorial', 'SINP', 'Validé', 0, '2018-05-09 00:00:00', '2018-05-09 00:00:00', true)
 ,(ref_nomenclatures.get_id_nomenclature_type('OCC_COMPORTEMENT'), '23', '23', 'Pond', 'Pond', 'Pond', 'SINP', 'Validé', 0, '2018-05-09 00:00:00', '2018-05-09 00:00:00', true)
+-- Ajout NSP dans floutage
+,(ref_nomenclatures.get_id_nomenclature_type('DEE_FLOU'), 'NSP', 'NSP', 'NSP', 'NSP', 'NSP : Indique qu''on ignore si un floutage a eu lieu.', 'SINP', 'Validé', 0, '2018-05-15 00:00:00', '2018-05-15 00:00:00', true)
+-- Ajout méthod obs (renommé technique d'obs)
+,(ref_nomenclatures.get_id_nomenclature_type('METH_OBS'), '26', 'Olfactif', 'Olfactif', 'Olfactif', 'Contact olfactif : l''occurrence a été sentie sur le lieu d''observation', 'SINP', 'Validé', 0, '2018-03-15 00:00:00', '2018-03-15 00:00:00', true)
+,(ref_nomenclatures.get_id_nomenclature_type('METH_OBS'), '27', 'Empreintes et fèces', 'Empreintes et fèces', 'Empreintes et fèces', 'Empreintes et fèces', 'SINP', 'Validé', 0, '2018-03-15 00:00:00', '2018-03-15 00:00:00', true)
+-- ajout stade de vie
+,(ref_nomenclatures.get_id_nomenclature_type('STADE_VIE'), '27', 'Fruit', 'Fruit', 'Fruit', 'Fruit : L''individu est sous forme de fruit.', 'SINP', 'Validé', 0, '2018-03-15 00:00:00', '2018-03-15 00:00:00', true)
+--ajout statut bio
+,(ref_nomenclatures.get_id_nomenclature_type('STATUT_BIO'), '13', 'Végétatif', 'Végétatif', 'Végétatif', 'L''individu est au stade végétatif.', 'SINP', 'Validé', 0, '2018-03-15 00:00:00', '2018-03-15 00:00:00', true)
+
+
 ;
 
 INSERT INTO ref_nomenclatures.cor_taxref_nomenclature VALUES
@@ -52,6 +63,14 @@ INSERT INTO ref_nomenclatures.cor_taxref_nomenclature VALUES
 ,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '21'), 'Animalia', 'all', now(), NULL)
 ,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '22'), 'Animalia', 'all', now(), NULL)
 ,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '23'), 'Animalia', 'all', now(), NULL)
+
+,(ref_nomenclatures.get_id_nomenclature('METH_OBS', '26'), 'all', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('METH_OBS', '27'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('STADE_VIE', '27'), 'Plantae', 'all', now(), NULL)
+
+,(ref_nomenclatures.get_id_nomenclature('STATUT_BIO', '13'), 'Plantae', 'all', now(), NULL)
+
+
 ;
 
 
@@ -70,6 +89,22 @@ SET
   cd_nomenclature = concat('OLD_', cd_nomenclature),
   active=false,
   statut='Gelé'
-WHERE id_type = ref_nomenclatures.get_id_nomenclature_type('STATUT_BIO')
-AND cd_nomenclature IN ('6', '7', '8', '10', '11', '12')
+WHERE (id_type = ref_nomenclatures.get_id_nomenclature_type('STATUT_BIO') AND cd_nomenclature IN ('6', '7', '8', '10', '11', '12'))
+OR (id_type = ref_nomenclatures.get_id_nomenclature_type('DS_PUBLIQUE') AND cd_nomenclature IN ('Ac', 'Re'))
+;
+
+-- Changement définitions DEE FLOU
+UPDATE ref_nomenclatures.t_nomenclatures
+SET definition_fr = 'Non : indique qu''aucun floutage n''a eu lieu. Donnée non floutée, fournie précise par le producteur.'
+WHERE id_nomenclature = ref_nomenclatures.get_id_nomenclature('DEE_FLOU', 'NON')
+;
+
+UPDATE ref_nomenclatures.t_nomenclatures
+SET definition_fr = 'Oui : indique qu''un floutage a eu lieu. Floutage effectué par le producteur avant envoi vers le SINP (une plateforme du SINP).'
+WHERE id_nomenclature = ref_nomenclatures.get_id_nomenclature('DEE_FLOU', 'OUI')
+;
+
+UPDATE ref_nomenclatures.t_nomenclatures
+SET definition_fr = 'Observation indirecte : Galerie forée dans le bois, les racines ou les tiges, par des larves (Lépidoptères, Coléoptères, Diptères) ou creusée dans la terre (micro-mammifères, mammifères... ).'
+WHERE id_nomenclature = ref_nomenclatures.get_id_nomenclature('METH_OBS', '23')
 ;
