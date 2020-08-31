@@ -29,12 +29,12 @@ INSERT INTO ref_nomenclatures.t_nomenclatures (id_type, cd_nomenclature, mnemoni
 -- Ajout NSP dans floutage
 ,(ref_nomenclatures.get_id_nomenclature_type('DEE_FLOU'), 'NSP', 'NSP', 'NSP', 'NSP', 'NSP : Indique qu''on ignore si un floutage a eu lieu.', 'SINP', 'Validé', 0, '2018-05-15 00:00:00', '2018-05-15 00:00:00', true)
 -- Ajout méthod obs (renommé technique d'obs)
-,(ref_nomenclatures.get_id_nomenclature_type('METH_OBS'), '26', 'Olfactif', 'Olfactif', 'Olfactif', 'Contact olfactif : l''occurrence a été sentie sur le lieu d''observation', 'SINP', 'Validé', 0, '2018-03-15 00:00:00', '2018-03-15 00:00:00', true)
-,(ref_nomenclatures.get_id_nomenclature_type('METH_OBS'), '27', 'Empreintes et fèces', 'Empreintes et fèces', 'Empreintes et fèces', 'Empreintes et fèces', 'SINP', 'Validé', 0, '2018-03-15 00:00:00', '2018-03-15 00:00:00', true)
+,(ref_nomenclatures.get_id_nomenclature_type('METH_OBS'), '26', 'Olfactif', 'Olfactif', 'Olfactif', 'Contact olfactif : l''occurrence a été sentie sur le lieu d''observation', 'SINP', 'Validé', 0, '2020-08-31 00:00:00', '2020-08-31 00:00:00', true)
+,(ref_nomenclatures.get_id_nomenclature_type('METH_OBS'), '27', 'Empreintes et fèces', 'Empreintes et fèces', 'Empreintes et fèces', 'Empreintes et fèces', 'SINP', 'Validé', 0, '2020-08-31 00:00:00', '2020-08-31 00:00:00', true)
 -- ajout stade de vie
-,(ref_nomenclatures.get_id_nomenclature_type('STADE_VIE'), '27', 'Fruit', 'Fruit', 'Fruit', 'Fruit : L''individu est sous forme de fruit.', 'SINP', 'Validé', 0, '2018-03-15 00:00:00', '2018-03-15 00:00:00', true)
+,(ref_nomenclatures.get_id_nomenclature_type('STADE_VIE'), '27', 'Fruit', 'Fruit', 'Fruit', 'Fruit : L''individu est sous forme de fruit.', 'SINP', 'Validé', 0, '2020-08-31 00:00:00', '2020-08-31 00:00:00', true)
 --ajout statut bio
-,(ref_nomenclatures.get_id_nomenclature_type('STATUT_BIO'), '13', 'Végétatif', 'Végétatif', 'Végétatif', 'L''individu est au stade végétatif.', 'SINP', 'Validé', 0, '2018-03-15 00:00:00', '2018-03-15 00:00:00', true)
+,(ref_nomenclatures.get_id_nomenclature_type('STATUT_BIO'), '13', 'Végétatif', 'Végétatif', 'Végétatif', 'L''individu est au stade végétatif.', 'SINP', 'Validé', 0, '2020-08-31 00:00:00', '2020-08-31 00:00:00', true)
 
 
 ;
