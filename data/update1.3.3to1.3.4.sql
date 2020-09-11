@@ -114,7 +114,8 @@ WHERE id_nomenclature = ref_nomenclatures.get_id_nomenclature('METH_OBS', '23')
 -- Geler les valeurs obsolètes des objectifs du Cadre d'acquisition
 UPDATE ref_nomenclatures.t_nomenclatures
 SET active=false,
-	statut='Gelée'
+	statut='Gelée', 
+	cd_nomenclature='OLD_'||cd_nomenclature										
 WHERE id_nomenclature in (
 	SELECT n.id_nomenclature
 	FROM ref_nomenclatures.t_nomenclatures n
