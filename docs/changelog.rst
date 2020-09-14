@@ -5,9 +5,20 @@ CHANGELOG
 1.3.4 (unreleased)
 ------------------
 
-**🐛 Corrections**
+TO CHECK : https://github.com/PnX-SI/Nomenclature-api-module/pull/36
 
-* 
+**🚀 Nouveautés**
+
+* Compatibilité avec la version 2.0 du standard Occurrences de taxons du SINP
+* Ajout de la nomenclature "Comportement" et ses correspondances avec la taxonomie
+* Mise à jour de la nomenclature "Statut biologique"
+* Ajouts mineurs dans les nomenclatures "Floutage DEE", "Techniques d'observation" (anciennement "Méthode d'observation"), "Stade de vie"
+* Compatibilité avec la version 1.3.10 du standard Métadonnées du SINP
+* Mise à jour de la nomenclature "Objectifs du cadre d'acquisition"
+
+**⚠️ Notes de version**
+
+* Si vous mettez à jour le module, exécuter le script SQL ``data/update1.3.3to1.3.4.sql``
 
 1.3.3 (2020-06-17)
 ------------------
