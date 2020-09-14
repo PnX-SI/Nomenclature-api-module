@@ -35,8 +35,6 @@ INSERT INTO ref_nomenclatures.t_nomenclatures (id_type, cd_nomenclature, mnemoni
 ,(ref_nomenclatures.get_id_nomenclature_type('STADE_VIE'), '27', 'Fruit', 'Fruit', 'Fruit', 'Fruit : L''individu est sous forme de fruit.', 'SINP', 'Validé', 0, '2020-08-31 00:00:00', '2020-08-31 00:00:00', true)
 --ajout statut bio
 ,(ref_nomenclatures.get_id_nomenclature_type('STATUT_BIO'), '13', 'Végétatif', 'Végétatif', 'Végétatif', 'L''individu est au stade végétatif.', 'SINP', 'Validé', 0, '2020-08-31 00:00:00', '2020-08-31 00:00:00', true)
-
-
 ;
 
 INSERT INTO ref_nomenclatures.cor_taxref_nomenclature VALUES
@@ -63,18 +61,13 @@ INSERT INTO ref_nomenclatures.cor_taxref_nomenclature VALUES
 ,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '21'), 'Animalia', 'all', now(), NULL)
 ,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '22'), 'Animalia', 'all', now(), NULL)
 ,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '23'), 'Animalia', 'all', now(), NULL)
-
 ,(ref_nomenclatures.get_id_nomenclature('METH_OBS', '26'), 'all', 'all', now(), NULL)
 ,(ref_nomenclatures.get_id_nomenclature('METH_OBS', '27'), 'Animalia', 'all', now(), NULL)
 ,(ref_nomenclatures.get_id_nomenclature('STADE_VIE', '27'), 'Plantae', 'all', now(), NULL)
-
 ,(ref_nomenclatures.get_id_nomenclature('STATUT_BIO', '13'), 'Plantae', 'all', now(), NULL)
-
-
 ;
 
-
--- Suppression des nomenclature dans cor_taxref qui on été gelée
+-- Suppression des nomenclatures dans cor_taxref_nomenclature qui ont été gelées
 DELETE FROM ref_nomenclatures.cor_taxref_nomenclature
 WHERE id_nomenclature IN (
   SELECT id_nomenclature
@@ -83,7 +76,7 @@ WHERE id_nomenclature IN (
 AND cd_nomenclature IN ('6', '7', '8', '10', '11', '12')
 );
 
--- gel de certaines nomenclatures 
+-- Gel de certaines nomenclatures 
 UPDATE ref_nomenclatures.t_nomenclatures 
 SET 
   cd_nomenclature = concat('OLD_', cd_nomenclature),
