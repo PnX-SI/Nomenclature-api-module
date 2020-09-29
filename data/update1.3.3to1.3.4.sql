@@ -55,6 +55,7 @@ INSERT INTO ref_nomenclatures.cor_taxref_nomenclature VALUES
 ,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '14'), 'Animalia', 'all', now(), NULL)
 ,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '15'), 'Animalia', 'all', now(), NULL)
 ,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '16'), 'Animalia', 'all', now(), NULL)
+,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '17'), 'Animalia', 'all', now(), NULL)
 ,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '18'), 'Animalia', 'all', now(), NULL)
 ,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '19'), 'Animalia', 'all', now(), NULL)
 ,(ref_nomenclatures.get_id_nomenclature('OCC_COMPORTEMENT', '20'), 'Animalia', 'all', now(), NULL)
