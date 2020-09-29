@@ -2,10 +2,8 @@
 CHANGELOG
 =========
 
-1.3.4 (unreleased)
+1.3.4 (2020-09-29)
 ------------------
-
-TO CHECK : https://github.com/PnX-SI/Nomenclature-api-module/pull/36
 
 **🚀 Nouveautés**
 
