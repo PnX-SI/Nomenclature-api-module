@@ -2,6 +2,22 @@
 CHANGELOG
 =========
 
+1.3.4 (2020-09-29)
+------------------
+
+**🚀 Nouveautés**
+
+* Compatibilité avec la version 2.0 du standard Occurrences de taxons du SINP
+* Ajout de la nomenclature "Comportement" et ses correspondances avec la taxonomie
+* Mise à jour de la nomenclature "Statut biologique"
+* Ajouts mineurs dans les nomenclatures "Floutage DEE", "Techniques d'observation" (anciennement "Méthode d'observation"), "Stade de vie"
+* Compatibilité avec la version 1.3.10 du standard Métadonnées du SINP
+* Mise à jour de la nomenclature "Objectifs du cadre d'acquisition"
+
+**⚠️ Notes de version**
+
+* Si vous mettez à jour le module, exécuter le script SQL ``data/update1.3.3to1.3.4.sql``
+
 1.3.3 (2020-06-17)
 ------------------
 
@@ -12,7 +28,7 @@ CHANGELOG
 * Mise à jour des nomenclatures de type ``DATA_TYP`` (#33)
 * Taxref 13 : Les group2_inpn ``Fougères`` et ``Algues brunes`` ont été remplacés par ``Ptéridophytes`` et ``Ochrophytes``. Répercussion dans la table ``ref_nomenclatures.cor_taxref_nomenclature``
 
-**Notes de version**
+**⚠️ Notes de version**
 
 * Si vous mettez à jour le module, exécuter le script SQL ``data/update1.3.2to1.3.3.sql``
 * Si vous avez mis à jour Taxref en version 13, répercutez les changements de group2_inpn avec le script SQL ``data/update_taxref_v13.sql``
