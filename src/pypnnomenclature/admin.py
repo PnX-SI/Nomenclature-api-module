@@ -1,7 +1,6 @@
 from importlib import import_module
 
 from flask import current_app
-from flask_admin import expose
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.contrib.sqla.filters import BaseSQLAFilter
 from .models import (
@@ -24,11 +23,13 @@ class TNomenclatureFiltersType(BaseSQLAFilter):
         return u'equals'
 
     def get_options(self, view):
-        return [
-            (nomenclature.id_type, nomenclature.label_default)
-            for nomenclature
-            in DB.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.label_default)  # noqa
-        ]
+        def _get_options():
+            return [
+                (nomenclature.id_type, nomenclature.label_default)
+                for nomenclature
+                in DB.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.label_default)  # noqa
+            ]
+        return _get_options
 
 
 class TNomenclatureFiltersMnemonique(BaseSQLAFilter):
@@ -43,11 +44,13 @@ class TNomenclatureFiltersMnemonique(BaseSQLAFilter):
         return u'equals'
 
     def get_options(self, view):
-        return [
-            (nomenclature.id_type, nomenclature.mnemonique)
-            for nomenclature
-            in DB.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.mnemonique)  # noqa
-        ]
+        def _get_options():
+            return [
+                (nomenclature.id_type, nomenclature.mnemonique)
+                for nomenclature
+                in DB.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.mnemonique)  # noqa
+            ]
+        return _get_options
 
 
 class TNomenclatureFiltersId(BaseSQLAFilter):
@@ -98,12 +101,6 @@ class TNomenclaturesAdminConfig(ModelView):
         TNomenclatureFiltersMnemonique(column=None, name='Mnemonique'),
     ]
 
-    # Need this so the filter options are always up-to-date
-    @expose('/')
-    def index_view(self):
-        self._refresh_filters_cache()
-        return super(TNomenclaturesAdminConfig, self).index_view()
-
 
 class BibNomenclatureFiltersLabel(BaseSQLAFilter):
     # Override to create an appropriate query and apply a filter to said query
@@ -116,11 +113,13 @@ class BibNomenclatureFiltersLabel(BaseSQLAFilter):
         return u'equals'
 
     def get_options(self, view):
-        return [
-            (nomenclature.label_default, nomenclature.label_default)
-            for nomenclature
-            in DB.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.label_default)  # noqa
-        ]
+        def _get_options():
+            return [
+                (nomenclature.label_default, nomenclature.label_default)
+                for nomenclature
+                in DB.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.label_default)  # noqa
+            ]
+        return _get_options
 
 
 class BibNomenclatureFiltersID(BaseSQLAFilter):
@@ -143,11 +142,13 @@ class BibNomenclatureFiltersMnemonique(BaseSQLAFilter):
         return query.filter(BibNomenclaturesTypesAdmin.mnemonique == value)
 
     def get_options(self, view):
-        return [
-            (nomenclature.mnemonique, nomenclature.mnemonique)
-            for nomenclature
-            in DB.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.mnemonique)  # noqa
-        ]
+        def _get_options():
+            return [
+                (nomenclature.mnemonique, nomenclature.mnemonique)
+                for nomenclature
+                in DB.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.mnemonique)  # noqa
+            ]
+        return _get_options
 
     # readable operation name. This appears in the middle filter line drop-down
     def operation(self):
@@ -181,9 +182,3 @@ class BibNomenclaturesTypesAdminConfig(ModelView):
         BibNomenclatureFiltersID(column=None, name='Id type'),
         BibNomenclatureFiltersMnemonique(column=None, name='Mnémonique')
     ]
-
-    # Need this so the filter options are always up-to-date
-    @expose('/')
-    def index_view(self):
-        self._refresh_filters_cache()
-        return super(BibNomenclaturesTypesAdminConfig, self).index_view()
