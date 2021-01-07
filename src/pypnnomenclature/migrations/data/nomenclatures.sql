@@ -7,7 +7,7 @@ SET client_min_messages = warning;
 
 CREATE SCHEMA ref_nomenclatures;
 
-SET search_path = ref_nomenclatures, pg_catalog;
+SET search_path = ref_nomenclatures, pg_catalog, public;
 
 -------------
 --FUNCTIONS--

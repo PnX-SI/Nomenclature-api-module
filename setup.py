@@ -22,6 +22,7 @@ setuptools.setup(
     url='https://github.com/PnX-SI/Nomenclature-api-module',
     packages=setuptools.find_packages('src'),
     package_dir={'': 'src'},
+    package_data={'pypnnomenclature.migrations': ['data/*.sql']},
     install_requires=requirements,
     classifiers=['Development Status :: 1 - Planning',
                  'Intended Audience :: Developers',

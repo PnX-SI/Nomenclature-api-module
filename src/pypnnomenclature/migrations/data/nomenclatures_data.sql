@@ -6,7 +6,7 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 --SET row_security = off;
 
-SET search_path = ref_nomenclatures, pg_catalog;
+SET search_path = ref_nomenclatures, pg_catalog, public;
 
 DELETE FROM t_nomenclatures;
 DELETE FROM bib_nomenclatures_types;
@@ -118,10 +118,10 @@ INSERT INTO bib_nomenclatures_types (id_type, mnemonique, label_fr, definition_f
 SELECT setval('ref_nomenclatures.bib_nomenclatures_types_id_type_seq', (SELECT max(id_type) FROM ref_nomenclatures.bib_nomenclatures_types), true);
 
 
-UPDATE bib_nomenclatures_types SET label_default = label_MYDEFAULTLANGUAGE;
-UPDATE bib_nomenclatures_types SET definition_default = definition_MYDEFAULTLANGUAGE;
+UPDATE bib_nomenclatures_types SET label_default = label_DEFAULTLANGUAGE;
+UPDATE bib_nomenclatures_types SET definition_default = definition_DEFAULTLANGUAGE;
 ALTER TABLE bib_nomenclatures_types ALTER COLUMN label_default SET NOT NULL;
-ALTER TABLE bib_nomenclatures_types ALTER COLUMN label_MYDEFAULTLANGUAGE SET NOT NULL;
+ALTER TABLE bib_nomenclatures_types ALTER COLUMN label_DEFAULTLANGUAGE SET NOT NULL;
 
 --la séquence commence à 1, le cas particulier de la nomenclature 0 est insérer sans la séquence.
 INSERT INTO t_nomenclatures (id_nomenclature,id_type, cd_nomenclature, mnemonique, label_fr, definition_fr,  source, statut, id_broader, hierarchy, meta_create_date, meta_update_date, active) VALUES
@@ -707,10 +707,10 @@ INSERT INTO t_nomenclatures (id_type, cd_nomenclature, mnemonique, label_fr, def
 
 --SELECT pg_catalog.setval('t_nomenclatures_id_nomenclature_seq', 501, true);
 
-UPDATE t_nomenclatures SET label_default = label_fr;
-UPDATE t_nomenclatures SET definition_default = definition_fr;
+UPDATE t_nomenclatures SET label_default = label_DEFAULTLANGUAGE;
+UPDATE t_nomenclatures SET definition_default = label_DEFAULTLANGUAGE;
 ALTER TABLE t_nomenclatures ALTER COLUMN label_default SET NOT NULL;
-ALTER TABLE t_nomenclatures ALTER COLUMN label_fr SET NOT NULL;
+ALTER TABLE t_nomenclatures ALTER COLUMN label_DEFAULTLANGUAGE SET NOT NULL;
 
 -- inserting organism représenting all organisms with 0 as id_organisme
 DO
