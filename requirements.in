@@ -1,0 +1,5 @@
+flask
+Flask-Admin
+flask-sqlalchemy
+psycopg2
+utils-flask-sqlalchemy
