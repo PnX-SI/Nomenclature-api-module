@@ -13,8 +13,7 @@ from .models import (
 )
 from sqlalchemy import text
 
-
-DB = current_app.config.get('DB', import_module('.env', 'pypnnomenclature').DB)
+from .env import DB
 
 
 def get_nomenclature_list(

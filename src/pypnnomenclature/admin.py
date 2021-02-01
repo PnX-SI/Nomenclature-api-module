@@ -8,8 +8,7 @@ from .models import (
     TNomenclaturesAdmin,
     BibNomenclaturesTypesAdmin
 )
-
-DB = current_app.config.get('DB', import_module('.env', 'pypnnomenclature').DB)
+from .env import DB
 
 
 class TNomenclatureFiltersType(BaseSQLAFilter):

@@ -9,8 +9,9 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import select, func
 from utils_flask_sqla.serializers import serializable
 
-# get or create the SQLAlchemy DB instance
-DB = current_app.config.get('DB', import_module('.env', 'pypnnomenclature').DB)
+from .env import DB
+
+
 @serializable
 class CorTaxrefNomenclature(DB.Model):
     """
