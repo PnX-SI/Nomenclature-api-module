@@ -2,6 +2,22 @@
 CHANGELOG
 =========
 
+1.3.5 (2020-02-24)
+------------------
+
+**🚀 Nouveautés**
+
+* Passage de l'instance de SQLAlchemy du module parent via une variable d'environnement
+
+**🐛 Corrections**
+
+* Les dépendances du fichier ``requirements.txt`` ne sont plus fixées à une version
+* Ajout de vocabulaire manquant
+
+**⚠️ Notes de version**
+
+* Si vous mettez à jour le module, exécuter le script SQL ``data/update1.3.4to1.3.5.sql``
+
 1.3.4 (2020-09-29)
 ------------------
 
