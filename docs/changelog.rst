@@ -2,7 +2,22 @@
 CHANGELOG
 =========
 
-1.3.5 (2020-02-24)
+1.3.6 (unreleased)
+------------------
+
+**🚀 Nouveautés**
+
+* Clarification des nomenclatures de sensibilité, avec des vocabulaires plus précis et cohérents, en attendant les évolutions au niveau du SINP (#39)
+
+**🐛 Corrections**
+
+* Correction du script de mise à jour de la BDD ``data/update1.3.4to1.3.5.sql`` si la nomenclature ajoutée dans la version 1.3.5 étant déjà présent dans la BDD (#42)
+
+**⚠️ Notes de version**
+
+* Si vous mettez à jour le module, exécuter le script SQL ``data/update1.3.5to1.3.6.sql``
+
+1.3.5 (2021-02-04)
 ------------------
 
 **🚀 Nouveautés**
