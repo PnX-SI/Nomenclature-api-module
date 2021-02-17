@@ -11,6 +11,8 @@ from .models import (
 from .env import DB
 
 
+# https://github.com/flask-admin/flask-admin/issues/1807
+# https://stackoverflow.com/questions/54638047/correct-way-to-register-flask-admin-views-with-application-factory
 class ReloadingIterator:
     def __init__(self, iterator_factory):
         self.iterator_factory = iterator_factory
