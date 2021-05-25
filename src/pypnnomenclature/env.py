@@ -18,7 +18,6 @@ else:
 marsmallow_path = environ.get('MARSHMALLOW_OBJ')
 if marsmallow_path:
     ma_module_name, ma_object_name = marsmallow_path.rsplit('.', 1)
-    print(ma_object_name)
     ma_module = import_module(ma_module_name)
     MA = getattr(ma_module, ma_object_name)
 else:
