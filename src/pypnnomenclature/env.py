@@ -24,4 +24,4 @@ else:
     MA = Marshmallow()
 
 
-__all__ = ['db']
+__all__ = ['DB', 'MA']
