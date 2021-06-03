@@ -2,12 +2,17 @@
 CHANGELOG
 =========
 
-1.3.7 (unreleased)
+1.3.7 (2021-06-03)
 ------------------
+
+**🚀 Nouveautés**
+
+* Ajout de schémas Marshmallow
 
 **🐛 Corrections**
 
 * Correction du script de mise à jour de la BDD ``data/update1.3.4to1.3.5.sql``
+* Interface d’administration instantiable sans app context
 
 1.3.6 (2021-02-08)
 ------------------
