@@ -38,6 +38,7 @@ class TNomenclatures(DB.Model):
         DB.Integer,
         ForeignKey('ref_nomenclatures.bib_nomenclatures_types.id_type')
     )
+    nomenclature_type = relationship('BibNomenclaturesTypes', backref="nomenclatures")
     cd_nomenclature = DB.Column(DB.Unicode)
     mnemonique = DB.Column(DB.Unicode)
     label_default = DB.Column(DB.Unicode)
@@ -122,7 +123,7 @@ class BibNomenclaturesTypeTaxo(BibNomenclaturesTypes):
     '''
     Hérite de BibNomenclaturesTypes, rajoute simplement une relation vers 'nomenclature' avec la jointure vers la taxonomie
     '''
-    nomenclatures = relationship(
+    taxonomic_nomenclatures = relationship(
         'TNomenclatureTaxonomy',
         primaryjoin='and_(TNomenclatureTaxonomy.id_type == BibNomenclaturesTypes.id_type, TNomenclatureTaxonomy.active == True)',
         lazy='joined',
