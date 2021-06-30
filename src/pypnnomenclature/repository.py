@@ -126,7 +126,7 @@ def get_nomenclature_with_taxonomy_list():
 
     for t in nomenclature_types:
         nomenclature_type_dict = t.as_dict(
-            columns=[
+            fields=[
                 "id_type",
                 "mnemonique",
                 "label_default",
@@ -141,7 +141,7 @@ def get_nomenclature_with_taxonomy_list():
         nomenclatures = list()
 
         for n in t.nomenclatures:
-            nomenclature_dict = n.as_dict(columns=[
+            nomenclature_dict = n.as_dict(fields=[
                 "id_nomenclature",
                 "cd_nomenclature",
                 "mnemonique",
@@ -153,8 +153,7 @@ def get_nomenclature_with_taxonomy_list():
                 "label_fr",
                 "label_it",
             ])
-
-            nomenclature_dict["taxref"] = [tr.as_dict(columns=["regne", "group2_inpn"])
+            nomenclature_dict["taxref"] = [tr.as_dict(fields=["regne", "group2_inpn"])
                                            for tr in n.taxref]
 
             nomenclatures.append(nomenclature_dict)
