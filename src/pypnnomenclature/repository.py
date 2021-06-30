@@ -140,7 +140,7 @@ def get_nomenclature_with_taxonomy_list():
 
         nomenclatures = list()
 
-        for n in t.nomenclatures:
+        for n in t.taxonomic_nomenclatures:
             nomenclature_dict = n.as_dict(fields=[
                 "id_nomenclature",
                 "cd_nomenclature",
