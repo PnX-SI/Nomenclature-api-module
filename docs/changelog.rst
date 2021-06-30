@@ -2,13 +2,19 @@
 CHANGELOG
 =========
 
+1.3.9 (unreleased)
+------------------
+
+**🐛 Corrections**
+
+* 
 
 1.3.8 (2021-06-30)
 ------------------
 
 **🐛 Corrections**
 
-* Correction sur la route `/nomenclatures/taxonomy`
+* Correction sur la route ``/nomenclatures/taxonomy``
 
 1.3.7 (2021-06-03)
 ------------------
