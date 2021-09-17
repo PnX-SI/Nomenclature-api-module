@@ -6,11 +6,9 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 --SET row_security = off;
 
-SET search_path = ref_nomenclatures, pg_catalog;
+SET search_path = ref_nomenclatures, pg_catalog, public;
 
-DELETE FROM t_nomenclatures;
-DELETE FROM bib_nomenclatures_types;
-
+-- TODO: virer l’id type en dur …
 INSERT INTO bib_nomenclatures_types (id_type, mnemonique, label_fr, definition_fr, source, statut, meta_create_date, meta_update_date) VALUES
 (2, 'DS_PUBLIQUE', 'Code d''origine de la donnée', 'Nomenclature des codes d''origine de la donnée : publique, privée, mixte...', 'SINP', 'Validé',  '2013-12-05 00:00:00', '2013-12-05 00:00:00')
 ,(3, 'NAT_OBJ_GEO', 'Nature d''objet géographique', 'Nomenclature des natures d''objets géographiques', 'SINP', 'Validé',  '2014-01-22 00:00:00', '2015-10-15 00:00:00')
@@ -118,10 +116,10 @@ INSERT INTO bib_nomenclatures_types (id_type, mnemonique, label_fr, definition_f
 SELECT setval('ref_nomenclatures.bib_nomenclatures_types_id_type_seq', (SELECT max(id_type) FROM ref_nomenclatures.bib_nomenclatures_types), true);
 
 
-UPDATE bib_nomenclatures_types SET label_default = label_MYDEFAULTLANGUAGE;
-UPDATE bib_nomenclatures_types SET definition_default = definition_MYDEFAULTLANGUAGE;
+UPDATE bib_nomenclatures_types SET label_default = label_fr;
+UPDATE bib_nomenclatures_types SET definition_default = definition_fr;
 ALTER TABLE bib_nomenclatures_types ALTER COLUMN label_default SET NOT NULL;
-ALTER TABLE bib_nomenclatures_types ALTER COLUMN label_MYDEFAULTLANGUAGE SET NOT NULL;
+ALTER TABLE bib_nomenclatures_types ALTER COLUMN label_fr SET NOT NULL;
 
 --la séquence commence à 1, le cas particulier de la nomenclature 0 est insérer sans la séquence.
 INSERT INTO t_nomenclatures (id_nomenclature,id_type, cd_nomenclature, mnemonique, label_fr, definition_fr,  source, statut, id_broader, hierarchy, meta_create_date, meta_update_date, active) VALUES
@@ -716,23 +714,23 @@ ALTER TABLE t_nomenclatures ALTER COLUMN label_fr SET NOT NULL;
 DO
 $$
 BEGIN
-INSERT INTO utilisateurs.bib_organismes (nom_organisme, adresse_organisme, cp_organisme, ville_organisme, tel_organisme, fax_organisme, email_organisme, id_organisme) VALUES ('ALL', 'Représente tous les organismes', NULL, NULL, NULL, NULL, NULL, 0);
+INSERT INTO utilisateurs.bib_organismes (nom_organisme, adresse_organisme, cp_organisme, ville_organisme, tel_organisme, fax_organisme, email_organisme) VALUES ('ALL', 'Représente tous les organismes', NULL, NULL, NULL, NULL, NULL);
 EXCEPTION WHEN unique_violation  THEN
         RAISE NOTICE 'Tentative d''insertion de valeur existante. L''instruction a été ignorée.';
 END
 $$;
 
 INSERT INTO defaults_nomenclatures_value (mnemonique_type, id_organism, id_nomenclature) VALUES
-('DATA_TYP',0,get_id_nomenclature('DATA_TYP', '1'))
-,('DS_PUBLIQUE',0,get_id_nomenclature('DS_PUBLIQUE', 'Pu'))
-,('JDD_OBJECTIFS',0,get_id_nomenclature('JDD_OBJECTIFS', '1.1'))
-,('METH_DETERMIN',0,get_id_nomenclature('METH_DETERMIN', '1'))
-,('METHO_RECUEIL',0,get_id_nomenclature('METHO_RECUEIL', '1'))
-,('NIVEAU_TERRITORIAL',0,get_id_nomenclature('NIVEAU_TERRITORIAL', '3'))
-,('RESOURCE_TYP',0,get_id_nomenclature('RESOURCE_TYP', '1'))
-,('STATUT_SOURCE',0,get_id_nomenclature('STATUT_SOURCE', 'Te'))
-,('STATUT_VALID',0,get_id_nomenclature('STATUT_VALID', '0'))
-,('TYPE_FINANCEMENT',0,get_id_nomenclature('TYPE_FINANCEMENT', '1'))
+('DATA_TYP',(SELECT id_organisme FROM utilisateurs.bib_organismes WHERE nom_organisme = 'ALL'),get_id_nomenclature('DATA_TYP', '1'))
+,('DS_PUBLIQUE',(SELECT id_organisme FROM utilisateurs.bib_organismes WHERE nom_organisme = 'ALL'),get_id_nomenclature('DS_PUBLIQUE', 'Pu'))
+,('JDD_OBJECTIFS',(SELECT id_organisme FROM utilisateurs.bib_organismes WHERE nom_organisme = 'ALL'),get_id_nomenclature('JDD_OBJECTIFS', '1.1'))
+,('METH_DETERMIN',(SELECT id_organisme FROM utilisateurs.bib_organismes WHERE nom_organisme = 'ALL'),get_id_nomenclature('METH_DETERMIN', '1'))
+,('METHO_RECUEIL',(SELECT id_organisme FROM utilisateurs.bib_organismes WHERE nom_organisme = 'ALL'),get_id_nomenclature('METHO_RECUEIL', '1'))
+,('NIVEAU_TERRITORIAL',(SELECT id_organisme FROM utilisateurs.bib_organismes WHERE nom_organisme = 'ALL'),get_id_nomenclature('NIVEAU_TERRITORIAL', '3'))
+,('RESOURCE_TYP',(SELECT id_organisme FROM utilisateurs.bib_organismes WHERE nom_organisme = 'ALL'),get_id_nomenclature('RESOURCE_TYP', '1'))
+,('STATUT_SOURCE',(SELECT id_organisme FROM utilisateurs.bib_organismes WHERE nom_organisme = 'ALL'),get_id_nomenclature('STATUT_SOURCE', 'Te'))
+,('STATUT_VALID',(SELECT id_organisme FROM utilisateurs.bib_organismes WHERE nom_organisme = 'ALL'),get_id_nomenclature('STATUT_VALID', '0'))
+,('TYPE_FINANCEMENT',(SELECT id_organisme FROM utilisateurs.bib_organismes WHERE nom_organisme = 'ALL'),get_id_nomenclature('TYPE_FINANCEMENT', '1'))
 ;
 
 

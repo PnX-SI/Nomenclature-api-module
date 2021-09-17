@@ -6,10 +6,8 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 --SET row_security = off;
 
-SET search_path = ref_nomenclatures, pg_catalog;
+SET search_path = ref_nomenclatures, pg_catalog, public;
 
-
-TRUNCATE TABLE cor_taxref_nomenclature;
 
 INSERT INTO cor_taxref_nomenclature VALUES
 (get_id_nomenclature('TECHNIQUE_OBS', '1'), 'Animalia', 'Oiseaux', now(), NULL)

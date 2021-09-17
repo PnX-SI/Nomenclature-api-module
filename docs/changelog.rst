@@ -5,9 +5,14 @@ CHANGELOG
 1.3.9 (unreleased)
 ------------------
 
-**🐛 Corrections**
+**🚀 Nouveautés**
 
-* 
+* Gestion du schéma ``ref_nomenclature`` avec Alembic. Branches disponibles :
+
+  * ``nomenclatures`` : crée le schema ``ref_nomenclatures``
+  * ``nomenclatures_taxonomie`` : crée la table ``ref_nomenclatures.cor_taxref_nomenclature``, et les fonctions et vues associées
+  * ``nomenclatures_inpn_data`` : insère les données de nomenclature de l’INPN
+  * ``nomenclatures_taxonomie_inpn_data`` : insère les données de nomenclature de l’INPN lié à la taxonomie
 
 1.3.8 (2021-06-30)
 ------------------
