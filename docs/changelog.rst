@@ -7,7 +7,15 @@ CHANGELOG
 
 **🐛 Corrections**
 
-* 
+**🚀 Nouveautés**
+
+* Ajout des migrations alembic
+
+  * ``ref_nomenclatures`` : crée le schema ref_nomenclatures
+  * ``nomenclatures_taxonomie`` : crée la table 'ref_nomenclatures.cor_taxref_nomenclature', et les fonctions et vues associées
+  * ``nomenclatures_data_inpn`` : insère les données de nomenclature du SINP
+  * ``nomenclatures_taxonomie`` : insère des lignes dans ref_nomenclatures.cor_taxref_nomenclature
+  * ``nomenclatures_sensitivity`` : lien nomenclature taxonomie (à garder ???)
 
 1.3.8 (2021-06-30)
 ------------------
