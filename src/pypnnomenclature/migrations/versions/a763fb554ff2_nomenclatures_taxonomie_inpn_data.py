@@ -16,7 +16,8 @@ down_revision = None
 branch_labels = ('nomenclatures_taxonomie_inpn_data',)
 depends_on = (
     'f5436084bf17',  # nomenclatures_taxonomie
-    '96a713739fdd',  # nomenclatures_data_inpn
+    '96a713739fdd',  # nomenclatures_inpn_data
+    'f61f95136ec3',  # taxonomie_inpn_data
 )
 
 
