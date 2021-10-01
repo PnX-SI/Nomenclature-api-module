@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.4.1 (2021-10-01)
+------------------
+
+**🐛 Corrections**
+
+* Ajout d’un fichier ``__init__.py`` dont l’absence excluait les révisions Alembic lors du paquetage du module
+
 1.4.0 (2021-10-01)
 ------------------
 
