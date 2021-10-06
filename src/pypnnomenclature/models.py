@@ -29,7 +29,18 @@ class CorTaxrefNomenclature(DB.Model):
     group2_inpn = DB.Column(DB.Unicode, primary_key=True)
 
 
-@serializable
+@serializable(exclude=[
+    "label_en",
+    "definition_en",
+    "label_es",
+    "definition_es",
+    "label_de",
+    "definition_de",
+    "label_it",
+    "definition_it",
+    "meta_create_date",
+    "meta_update_date",
+])
 class TNomenclatures(DB.Model):
     __tablename__ = 't_nomenclatures'
     __table_args__ = {'schema': 'ref_nomenclatures'}

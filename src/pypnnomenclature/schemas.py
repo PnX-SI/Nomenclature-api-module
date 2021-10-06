@@ -17,3 +17,4 @@ class NomenclatureSchema(MA.SQLAlchemyAutoSchema):
             "meta_create_date",
             "meta_update_date"
         )
+        include_fk = True
