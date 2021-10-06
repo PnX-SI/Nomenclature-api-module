@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.4.2 (2021-10-06)
+------------------
+
+**🐛 Corrections**
+
+* Correction de la fonction ``get_default_nomenclature_value`` lorsqu’appelé sans organisme
+
 1.4.1 (2021-10-01)
 ------------------
 
