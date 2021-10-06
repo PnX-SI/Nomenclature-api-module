@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.4.3 (2021-10-06)
+------------------
+
+**🐛 Corrections**
+
+* Correction de la fonction ``get_default_nomenclature_value`` : si l’organisme n’est pas trouvé, retourne la nomenclature de l’organisme « ``ALL`` »
+
 1.4.2 (2021-10-06)
 ------------------
 
