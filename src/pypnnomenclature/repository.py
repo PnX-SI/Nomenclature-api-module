@@ -75,11 +75,7 @@ def get_nomenclature_list(
 
         q = q.order_by(order_col)
     # @TODO Autres filtres
-    try:
-        data = q.all()
-    except Exception as e:
-        DB.session.rollback()
-        raise
+    data = q.all()
 
     response = nomenclature.as_dict()
     if data:
