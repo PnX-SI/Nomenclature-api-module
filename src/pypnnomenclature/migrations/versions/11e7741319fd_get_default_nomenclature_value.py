@@ -1,4 +1,4 @@
-"""fix default nomenclature without organism
+"""fix ref_nomenclatures.get_default_nomenclature_value
 
 Revision ID: 11e7741319fd
 Revises: 6015397d686a
