@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.4.4 (2021-10-06)
+------------------
+
+**🐛 Corrections**
+
+* Correction des champs par défaut pour la sérialisation du modèle ``TNomenclatures``
+
 1.4.3 (2021-10-06)
 ------------------
 
