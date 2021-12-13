@@ -19,7 +19,9 @@ depends_on = None
 
 def upgrade():
     op.execute("""
-        CREATE OR REPLACE FUNCTION ref_nomenclatures.get_nomenclature_label(myidnomenclature integer, mylanguage character varying)
+        CREATE OR REPLACE FUNCTION ref_nomenclatures.get_nomenclature_label(
+            myidnomenclature integer DEFAULT NULL::integer,
+            mylanguage character varying DEFAULT 'fr'::character varying)
         RETURNS character varying
         LANGUAGE plpgsql
         IMMUTABLE
@@ -50,7 +52,9 @@ def upgrade():
 
 def downgrade():
     op.execute("""
-        CREATE OR REPLACE FUNCTION ref_nomenclatures.get_nomenclature_label(myidnomenclature integer, mylanguage character varying)
+        CREATE OR REPLACE FUNCTION ref_nomenclatures.get_nomenclature_label(
+            myidnomenclature integer DEFAULT NULL::integer,
+            mylanguage character varying DEFAULT 'fr'::character varying)
         RETURNS character varying
         LANGUAGE plpgsql
         IMMUTABLE
