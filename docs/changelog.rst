@@ -2,6 +2,13 @@
 CHANGELOG
 =========
 
+1.4.5 (2021-01-03)
+------------------
+
+**🐛 Corrections**
+
+* ``ref_nomenclatures.get_nomenclature_label`` : retourne ``NULL`` si l’identifiant de nomenclature est nul.
+
 1.4.4 (2021-10-06)
 ------------------
 
