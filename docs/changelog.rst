@@ -2,6 +2,25 @@
 CHANGELOG
 =========
 
+1.5.0 (2022-01-04)
+------------------
+
+**🚀 Nouveautés**
+
+* Possibilité de lancer l’API Nomenclature de manière autonome
+* Possibilité de créer son schéma de base de données de manière autonome
+* Mise en place des tests unitaires
+* Mise en place de l’intégration continue
+* Intégration des dépendances en tant que sous-module Git
+
+  * Utils-Flask-SQLAlchemy
+  * TaxHub (pour la taxonomie)
+  * UsersHub-authentification-module (car requis par TaxHub)
+
+**🐛 Corrections**
+
+* Suppression d’anciens fichiers devenus inutiles suite au paquetage
+
 1.4.5 (2021-01-03)
 ------------------
 
