@@ -11,17 +11,17 @@ db_path = environ.get('FLASK_SQLALCHEMY_DB')
 if db_path:
     db_module_name, db_object_name = db_path.rsplit('.', 1)
     db_module = import_module(db_module_name)
-    DB = getattr(db_module, db_object_name)
+    db = getattr(db_module, db_object_name)
 else:
-    DB = SQLAlchemy()
+    db = SQLAlchemy()
 
 marsmallow_path = environ.get('FLASK_MARSHMALLOW')
 if marsmallow_path:
     ma_module_name, ma_object_name = marsmallow_path.rsplit('.', 1)
     ma_module = import_module(ma_module_name)
-    MA = getattr(ma_module, ma_object_name)
+    ma = getattr(ma_module, ma_object_name)
 else:
-    MA = Marshmallow()
+    ma = Marshmallow()
 
 
-__all__ = ['DB', 'MA']
+__all__ = ['db', 'ma']

@@ -8,7 +8,7 @@ from .models import (
     TNomenclaturesAdmin,
     BibNomenclaturesTypesAdmin
 )
-from .env import DB
+from .env import db
 
 
 # https://github.com/flask-admin/flask-admin/issues/1807
@@ -38,7 +38,7 @@ class TNomenclatureFiltersType(BaseSQLAFilter):
                 g.TNomenclatureFiltersType = [
                     (nomenclature.id_type, nomenclature.label_default)
                     for nomenclature
-                    in DB.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.label_default)  # noqa
+                    in db.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.label_default)  # noqa
                 ]
             yield from g.TNomenclatureFiltersType
 
@@ -63,7 +63,7 @@ class TNomenclatureFiltersMnemonique(BaseSQLAFilter):
                 g.TNomenclatureFiltersMnemonique = [
                     (nomenclature.id_type, nomenclature.mnemonique)
                     for nomenclature
-                    in DB.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.mnemonique)  # noqa
+                    in db.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.mnemonique)  # noqa
                 ]
             yield from g.TNomenclatureFiltersMnemonique
 
@@ -136,7 +136,7 @@ class BibNomenclatureFiltersLabel(BaseSQLAFilter):
                 g.BibNomenclatureFiltersLabel = [
                     (nomenclature.label_default, nomenclature.label_default)
                     for nomenclature
-                    in DB.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.label_default)  # noqa
+                    in db.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.label_default)  # noqa
                 ]
             yield from g.BibNomenclatureFiltersLabel
 
@@ -169,7 +169,7 @@ class BibNomenclatureFiltersMnemonique(BaseSQLAFilter):
                 g.BibNomenclatureFiltersMnemonique = [
                     (nomenclature.mnemonique, nomenclature.mnemonique)
                     for nomenclature
-                    in DB.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.mnemonique)  # noqa
+                    in db.session.query(BibNomenclaturesTypesAdmin).order_by(BibNomenclaturesTypesAdmin.mnemonique)  # noqa
                 ]
             yield from g.BibNomenclatureFiltersMnemonique
 

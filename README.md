@@ -1,5 +1,8 @@
 # Nomenclature-api-module
 
+[![pytest](https://github.com/PnX-SI/Nomenclature-api-module/actions/workflows/pytest.yml/badge.svg)](https://github.com/PnX-SI/Nomenclature-api-module/actions/workflows/pytest.yml)
+[![codecov](https://codecov.io/gh/PnX-SI/Nomenclature-api-module/branch/master/graph/badge.svg?token=KGZRGXFWCK)](https://codecov.io/gh/PnX-SI/Nomenclature-api-module)
+
 Flask (Python) module for Nomenclature API.
 
 It is used in [GeoNature](https://github.com/PnX-SI/GeoNature) but can also be used as a standalone API service to manage and returns various nomenclatures with their hierarchy. 

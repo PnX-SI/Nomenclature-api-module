@@ -1,0 +1,4 @@
+FLASK_APP=pypnnomenclature:create_app
+FLASK_ENV=development
+FLASK_DEBUG=1
+NOMENCLATURE_SETTINGS=settings.py

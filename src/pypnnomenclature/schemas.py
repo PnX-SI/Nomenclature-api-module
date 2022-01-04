@@ -1,7 +1,8 @@
-from pypnnomenclature.env import MA 
+from pypnnomenclature.env import ma
 from pypnnomenclature.models import TNomenclatures
 
-class NomenclatureSchema(MA.SQLAlchemyAutoSchema):
+
+class NomenclatureSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
         model = TNomenclatures
         load_instance = True
