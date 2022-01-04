@@ -13,7 +13,7 @@ from .models import (
 )
 from sqlalchemy import text
 
-from .env import DB
+from .env import db
 
 
 def get_nomenclature_list(
@@ -28,7 +28,7 @@ def get_nomenclature_list(
         Récupération de la liste des termes d'un type de nomenclature
     """
 
-    q = DB.session.query(BibNomenclaturesTypes)
+    q = db.session.query(BibNomenclaturesTypes)
     if filter_params is None:
         filter_params = []
 
@@ -44,7 +44,7 @@ def get_nomenclature_list(
 
     # Terme de nomenclatures
     q = (
-        DB.session.query(TNomenclatures)
+        db.session.query(TNomenclatures)
         .filter_by(id_type=nomenclature.id_type)
         .filter_by(active=True)
     )
@@ -115,7 +115,7 @@ def get_nomenclature_with_taxonomy_list():
         Fetch nomenclature definition list with taxonomy
     """
 
-    q = DB.session.query(BibNomenclaturesTypeTaxo).order_by("mnemonique")
+    q = db.session.query(BibNomenclaturesTypeTaxo).order_by("mnemonique")
 
     nomenclature_types = q.all()
     data = list()
@@ -177,7 +177,7 @@ def get_nomenclature_id_term(cd_type, cd_term, raise_exp=True):
     t = text("SELECT ref_nomenclatures.get_id_nomenclature(:cd_type, :cd_term) as id")
     try:
         value = (
-            DB.session.query("id")
+            db.session.query("id")
             .from_statement(t.params(cd_type=cd_type, cd_term=cd_term))
             .first()
         )

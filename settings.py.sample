@@ -13,7 +13,7 @@ COOKIE_EXPIRATION = 3600
 COOKIE_AUTORENEW = True
 
 # Ajouter les filtres taxonomiques à l'API 
-# Nécessite d'avoir exécuté le script 'data/nomenclature_taxonomie.sql' qui installe les tables nécessaires
+# Nécessite d'avoir monté la branche alembic nomenclature_taxonomie
 ENABLE_NOMENCLATURE_TAXONOMIC_FILTERS = True
 
 # URL de l'interface d'administration

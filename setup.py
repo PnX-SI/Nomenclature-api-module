@@ -10,6 +10,7 @@ with (root_dir / 'README.md').open() as f:
 with (root_dir / 'requirements.in').open() as f:
     requirements = f.read().splitlines()
 
+
 setuptools.setup(
     name='pypnnomenclature',
     version=version,
@@ -23,6 +24,9 @@ setuptools.setup(
     package_dir={'': 'src'},
     package_data={'pypnnomenclature.migrations': ['data/*.sql']},
     install_requires=requirements,
+    extras_require={
+        'tests': [ 'pytest', 'pytest-flask', ],
+    },
     entry_points={
         'alembic': [
             'migrations = pypnnomenclature.migrations:versions',

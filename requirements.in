@@ -1,7 +1,10 @@
+python-dotenv
 flask
 Flask-Admin
 flask-sqlalchemy
+flask-migrate
 psycopg2
-utils-flask-sqlalchemy
+utils-flask-sqlalchemy>=0.2.6
 flask-marshmallow
+marshmallow-sqlalchemy
 
