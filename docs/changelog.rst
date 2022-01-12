@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.5.1 (2022-01-12)
+------------------
+
+**🚀 Nouveautés**
+
+* ``NomenclaturesConverter`` : Utilitaire pour ajouter automatiquement à un auto-schéma Marshmallow des champs Nested pour toutes les relations du modèle vers une nomenclature.
+* ``NomenclaturesMixin`` : Ajoute automatiquement aux modèles une propriété ``__nomenclatures__`` contenant la liste des relations vers une nomenclature.
+
 1.5.0 (2022-01-04)
 ------------------
 
