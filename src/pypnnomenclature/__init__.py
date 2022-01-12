@@ -23,7 +23,7 @@ def configure_alembic(alembic_config):
 
 
 def create_app():
-    app = Flask('Habref')
+    app = Flask(__name__)
     app.config.from_envvar('NOMENCLATURE_SETTINGS')
     ma.init_app(app)
     db.init_app(app)

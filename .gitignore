@@ -106,4 +106,4 @@ ENV/
 *.swp
 *.swo
 
-/*settings.py
+/src/pypnnomenclature/*settings.py
