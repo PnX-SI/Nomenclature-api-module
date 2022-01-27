@@ -110,7 +110,7 @@ INSERT INTO bib_nomenclatures_types (id_type, mnemonique, label_fr, definition_f
 ,(120, 'ABONDANCE_HAB', 'Abondance des habitats', 'Nomenclature des coefficients de Braun-Blanquet et Pavillard adaptés pour décrire l''abondance relative des habitats au sein d''une station', 'SINP', 'Validé', '2017-09-29 00:00:00', '2017-09-29 00:00:00')
 ,(121, 'HAB_INTERET_COM', 'Habitat d''intérêt communautaire', 'Nomenclature des valeurs permettant d''indiquer si un habitat est d''intérêt communautaire', 'SINP', 'Validé', '2017-09-29 00:00:00', '2017-09-29 00:00:00')
 ,(122, 'METHOD_CALCUL_SURFACE', 'Méthode de calcul de surface', 'Nomenclature des types de détermination d''une surface', 'SINP', 'Validé', '2017-09-29 00:00:00', '2017-09-29 00:00:00')
-,(124, 'OCC_COMPORTEMENT', 'Comportement des occurrences observées', 'Nomenclature des domportement des occurrences observées', 'SINP', 'Validé', '2018-05-09 00:00:00', '2018-05-09 00:00:00');
+,(124, 'OCC_COMPORTEMENT', 'Comportement des occurrences observées', 'Nomenclature des comportement des occurrences observées', 'SINP', 'Validé', '2018-05-09 00:00:00', '2018-05-09 00:00:00');
 ;
 
 SELECT setval('ref_nomenclatures.bib_nomenclatures_types_id_type_seq', (SELECT max(id_type) FROM ref_nomenclatures.bib_nomenclatures_types), true);
