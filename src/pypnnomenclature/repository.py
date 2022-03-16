@@ -65,6 +65,8 @@ def get_nomenclature_list(
                     VNomenclatureTaxonomie.group2_inpn.in_(
                         ("all", group2_inpn))
                 )
+    if "cd_nomenclature" in filter_params:
+        q = q.filter(TNomenclatures.cd_nomenclature.in_(filter_params.getlist("cd_nomenclature")))
     # Ordonnancement
     if "orderby" in filter_params:
         order_col = getattr(TNomenclatures, filter_params["orderby"])
