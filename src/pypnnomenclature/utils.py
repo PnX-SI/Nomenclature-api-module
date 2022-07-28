@@ -20,6 +20,8 @@ Usage:
             include_fk = True
             model_converter = NomenclaturesConverter
 """
+
+
 class NomenclaturesConverter(ModelConverter):
     def fields_for_model(self, model, **kwargs):
         fields = super().fields_for_model(model, **kwargs)
@@ -41,12 +43,12 @@ Usage:
 
     assert(MyModel.__nomenclatures__ == ['nomenclature_foo'])
 """
+
+
 class NomenclaturesMixin:
     @classmethod
     def __declare_last__(cls):
         mapper = inspect(cls)
         cls.__nomenclatures__ = [
-            key
-            for key, rel in mapper.relationships.items()
-            if rel.entity.class_ == Nomenclature
+            key for key, rel in mapper.relationships.items() if rel.entity.class_ == Nomenclature
         ]

@@ -24,18 +24,10 @@ class TestNomenclatures:
 
     def test_nomenclature_list_with_filters(self):
         response = self.client.get(
-            url_for(
-                "nomenclatures.get_nomenclature_by_type_list_and_taxonomy"
-            ),
-            query_string={
-                "cd_nomenclature": ["0", "1"],
-                "code_type": "STADE_VIE"
-                }
+            url_for("nomenclatures.get_nomenclature_by_type_list_and_taxonomy"),
+            query_string={"cd_nomenclature": ["0", "1"], "code_type": "STADE_VIE"},
         )
         assert response.status_code == 200
         data = response.json[0]
         assert data["mnemonique"] == "STADE_VIE"
         assert len(data["values"]) == 2
-                
-
-

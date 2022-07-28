@@ -12,16 +12,19 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6015397d686a'
+revision = "6015397d686a"
 down_revision = None
-branch_labels = ('nomenclatures',)
+branch_labels = ("nomenclatures",)
 depends_on = (
-    'fa35dfe5ff27',  # schéma utilisateurs, vers lequel le ref_nomenclatures a quelques FK
-    '3842a6d800a0',  # sql_utils, qui fournit des fonctions de date dans le schema public
+    "fa35dfe5ff27",  # schéma utilisateurs, vers lequel le ref_nomenclatures a quelques FK
+    "3842a6d800a0",  # sql_utils, qui fournit des fonctions de date dans le schema public
 )
 
+
 def upgrade():
-    op.execute(importlib.resources.read_text('pypnnomenclature.migrations.data', 'nomenclatures.sql'))
+    op.execute(
+        importlib.resources.read_text("pypnnomenclature.migrations.data", "nomenclatures.sql")
+    )
 
 
 def downgrade():

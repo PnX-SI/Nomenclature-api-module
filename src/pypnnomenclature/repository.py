@@ -9,7 +9,7 @@ from .models import (
     BibNomenclaturesTypes,
     TNomenclatureTaxonomy,
     VNomenclatureTaxonomie,
-    BibNomenclaturesTypeTaxo
+    BibNomenclaturesTypeTaxo,
 )
 from sqlalchemy import text
 
@@ -25,7 +25,7 @@ def get_nomenclature_list(
     filter_params=None,
 ):
     """
-        Récupération de la liste des termes d'un type de nomenclature
+    Récupération de la liste des termes d'un type de nomenclature
     """
 
     q = db.session.query(BibNomenclaturesTypes)
@@ -57,14 +57,10 @@ def get_nomenclature_list(
         if regne:
             q = q.join(
                 VNomenclatureTaxonomie,
-                VNomenclatureTaxonomie.id_nomenclature
-                == TNomenclatures.id_nomenclature,
+                VNomenclatureTaxonomie.id_nomenclature == TNomenclatures.id_nomenclature,
             ).filter(VNomenclatureTaxonomie.regne.in_(("all", regne)))
             if group2_inpn:
-                q = q.filter(
-                    VNomenclatureTaxonomie.group2_inpn.in_(
-                        ("all", group2_inpn))
-                )
+                q = q.filter(VNomenclatureTaxonomie.group2_inpn.in_(("all", group2_inpn)))
     if "cd_nomenclature" in filter_params:
         q = q.filter(TNomenclatures.cd_nomenclature.in_(filter_params.getlist("cd_nomenclature")))
     # Ordonnancement
@@ -87,15 +83,15 @@ def get_nomenclature_list(
 
 def get_nomenclature_list_formated(nomenclature_params, mapping):
     """
-        Permet de récupérer la liste des données d'une nomenclature et de la
-            formater de façon particulière
-        !! pour le momment ne traite que les objets de type nomenclature
-            et pas nomenclature api
-        exemple:
-        {
-            'id': {'object': 'nomenclature', 'field': 'id_nomenclature'},
-            'libelle': {'object': 'nomenclature', 'field': 'label_default'}
-        }
+    Permet de récupérer la liste des données d'une nomenclature et de la
+        formater de façon particulière
+    !! pour le momment ne traite que les objets de type nomenclature
+        et pas nomenclature api
+    exemple:
+    {
+        'id': {'object': 'nomenclature', 'field': 'id_nomenclature'},
+        'libelle': {'object': 'nomenclature', 'field': 'label_default'}
+    }
     """
     data = list()
     nomenclature_data = get_nomenclature_list(**nomenclature_params)
@@ -114,7 +110,7 @@ def get_nomenclature_list_formated(nomenclature_params, mapping):
 
 def get_nomenclature_with_taxonomy_list():
     """
-        Fetch nomenclature definition list with taxonomy
+    Fetch nomenclature definition list with taxonomy
     """
 
     q = db.session.query(BibNomenclaturesTypeTaxo).order_by("mnemonique")
@@ -139,20 +135,23 @@ def get_nomenclature_with_taxonomy_list():
         nomenclatures = list()
 
         for n in t.taxonomic_nomenclatures:
-            nomenclature_dict = n.as_dict(fields=[
-                "id_nomenclature",
-                "cd_nomenclature",
-                "mnemonique",
-                "hierarchy",
-                "label_default",
-                "label_de",
-                "label_en",
-                "label_es",
-                "label_fr",
-                "label_it",
-            ])
-            nomenclature_dict["taxref"] = [tr.as_dict(fields=["regne", "group2_inpn"])
-                                           for tr in n.taxref]
+            nomenclature_dict = n.as_dict(
+                fields=[
+                    "id_nomenclature",
+                    "cd_nomenclature",
+                    "mnemonique",
+                    "hierarchy",
+                    "label_default",
+                    "label_de",
+                    "label_en",
+                    "label_es",
+                    "label_fr",
+                    "label_it",
+                ]
+            )
+            nomenclature_dict["taxref"] = [
+                tr.as_dict(fields=["regne", "group2_inpn"]) for tr in n.taxref
+            ]
 
             nomenclatures.append(nomenclature_dict)
 
@@ -165,15 +164,15 @@ def get_nomenclature_with_taxonomy_list():
 
 def get_nomenclature_id_term(cd_type, cd_term, raise_exp=True):
     """
-        Fonction retournant l'identifiant d'un term
-        à partir de ses codes mnemoniques
+    Fonction retournant l'identifiant d'un term
+    à partir de ses codes mnemoniques
 
-        paramètres:
-        ----------
-            cd_type : code mnemonique du type de vocabulaire
-            cd_term : code du terme recherché
-            raise_exp : spécifie le comportement de la
-                fonction en cas d'exeception
+    paramètres:
+    ----------
+        cd_type : code mnemonique du type de vocabulaire
+        cd_term : code du terme recherché
+        raise_exp : spécifie le comportement de la
+            fonction en cas d'exeception
     """
 
     t = text("SELECT ref_nomenclatures.get_id_nomenclature(:cd_type, :cd_term) as id")
