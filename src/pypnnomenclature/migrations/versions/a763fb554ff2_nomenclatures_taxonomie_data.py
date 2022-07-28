@@ -8,6 +8,8 @@ import importlib.resources
 
 from alembic import op
 import sqlalchemy as sa
+from sqlalchemy.exc import IntegrityError
+from psycopg2.errors import CheckViolation
 
 
 # revision identifiers, used by Alembic.
@@ -17,16 +19,27 @@ branch_labels = ("nomenclatures_taxonomie_data",)
 depends_on = (
     "f5436084bf17",  # nomenclatures_taxonomie
     "96a713739fdd",  # nomenclatures_inpn_data
-    "f61f95136ec3",  # taxonomie_inpn_data
 )
 
 
 def upgrade():
-    op.execute(
-        importlib.resources.read_text(
-            "pypnnomenclature.migrations.data", "nomenclatures_taxonomie_data.sql"
+    try:
+        op.execute(
+            importlib.resources.read_text(
+                "pypnnomenclature.migrations.data",
+                "nomenclatures_taxonomie_data.sql",
+            )
         )
-    )
+    except IntegrityError as exc:
+        if type(exc.orig) == CheckViolation and exc.orig.diag.constraint_name in [
+            "check_cor_taxref_nomenclature_isregne",
+            "check_cor_taxref_nomenclature_isgroup2inpn",
+        ]:
+            raise Exception(
+                "Avez-vous bien préalablement inséré le référentiel TaxRef dans votre base de données ?"
+            ) from exc
+        else:
+            raise
 
 
 def downgrade():

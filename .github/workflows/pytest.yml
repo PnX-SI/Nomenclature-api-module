@@ -69,6 +69,7 @@ jobs:
         flask db upgrade nomenclatures@head
         flask db upgrade nomenclatures_inpn_data@head
         flask db upgrade nomenclatures_taxonomie@head
+        flask db upgrade taxonomie_inpn_data@head  # will be removed in future in favor of manual command to insert taxref referential
         flask db upgrade nomenclatures_taxonomie_data@head
       env:
         NOMENCLATURE_SETTINGS: test_settings.py
