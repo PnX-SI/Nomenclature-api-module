@@ -1,4 +1,4 @@
-"""insert taxonomic inpn data in ref_nomenclatures
+"""insert taxonomic filtering data in ref_nomenclatures.cor_taxref_nomenclatures
 
 Revision ID: a763fb554ff2
 Revises:
@@ -13,7 +13,7 @@ import sqlalchemy as sa
 # revision identifiers, used by Alembic.
 revision = "a763fb554ff2"
 down_revision = None
-branch_labels = ("nomenclatures_taxonomie_inpn_data",)
+branch_labels = ("nomenclatures_taxonomie_data",)
 depends_on = (
     "f5436084bf17",  # nomenclatures_taxonomie
     "96a713739fdd",  # nomenclatures_inpn_data
@@ -24,7 +24,7 @@ depends_on = (
 def upgrade():
     op.execute(
         importlib.resources.read_text(
-            "pypnnomenclature.migrations.data", "nomenclatures_taxonomie_inpn_data.sql"
+            "pypnnomenclature.migrations.data", "nomenclatures_taxonomie_data.sql"
         )
     )
 
