@@ -35,7 +35,7 @@ def upgrade():
     UPDATE
         ref_nomenclatures.bib_nomenclatures_types
     SET
-        definition_fr = 'Nomenclature des comportement des occurrences observées'
+        definition_fr = 'Nomenclature des comportements des occurrences observées'
     WHERE
         mnemonique = 'OCC_COMPORTEMENT'
     """
