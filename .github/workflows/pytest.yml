@@ -66,6 +66,7 @@ jobs:
           -e file:dependencies/UsersHub-authentification-module#egg=pypnusershub
     - name: Install database
       run: |
+        flask db upgrade ref_geo@head -x local-srid=2154
         flask db upgrade nomenclatures_taxonomie@head
         flask db autoupgrade
         flask db upgrade taxonomie_inpn_data@head  # will be removed in future in favor of manual command to insert taxref referential
