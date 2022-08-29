@@ -4,7 +4,9 @@ Flask-Admin
 flask-sqlalchemy
 flask-migrate
 psycopg2
-utils-flask-sqlalchemy>=0.2.6
 flask-marshmallow
 marshmallow-sqlalchemy
 
+utils-flask-sqlalchemy>=0.2.6
+taxhub>=1.9.2
+pypnusershub>=1.5.10
