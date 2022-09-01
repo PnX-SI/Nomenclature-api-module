@@ -8,7 +8,7 @@ CHANGELOG
 **🚀 Nouveautés**
 
 * Ajout du type de nomenclature « Catégorie de liste rouge » et des nomenclatures associées.
-* La branche ``nomenclature_taxonomie_inpn_data`` est renommé en ``nomenclature_taxonomie_data``, et ne dépend plus du référentiel TaxRef qui doit être importé manuellement.
+* La branche ``nomenclature_taxonomie_inpn_data`` est renommée en ``nomenclature_taxonomie_data``, et ne dépend plus du référentiel TaxRef qui doit être importé manuellement.
 * Le code est désormais formaté avec Black et une Github Action y veille.
 * Possibilité de filtrer les nomenclatures par code (``cd_nomenclature``).
 * Mise à jour des dépendances :
