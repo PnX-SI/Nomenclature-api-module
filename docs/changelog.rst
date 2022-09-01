@@ -2,6 +2,26 @@
 CHANGELOG
 =========
 
+1.5.2 (2022-09-01)
+------------------
+
+**🚀 Nouveautés**
+
+* Ajout du type de nomenclature « Catégorie de liste rouge » et des nomenclatures associées.
+* La branche ``nomenclature_taxonomie_inpn_data`` est renommé en ``nomenclature_taxonomie_data``, et ne dépend plus du référentiel TaxRef qui doit être importé manuellement.
+* Le code est désormais formaté avec Black et une Github Action y veille.
+* Possibilité de filtrer les nomenclatures par code (``cd_nomenclature``).
+* Mise à jour des dépendances :
+
+  * Utils-Flask-SQLAlchemy 0.3.0
+  * TaxHub 1.10.0
+  * UsersHub-authentification-module 1.6.0
+
+**🐛 Corrections**
+
+* Correction de la définition d’un type de nomenclature
+* Correction des tests unitaires
+
 1.5.1 (2022-01-12)
 ------------------
 
