@@ -46,6 +46,12 @@ jobs:
           --health-retries 5
 
     steps:
+    - name: Add postgis_raster database extension
+      if: ${{ matrix.postgis-version >= 3 }}
+      run: |
+        psql -h localhost -U postgres -d postgres -tc 'CREATE EXTENSION "postgis_raster";'
+      env:
+        PGPASSWORD: postgres
     - name: Add database extensions
       run: |
         psql -h localhost -U postgres -d postgres -tc 'CREATE EXTENSION "uuid-ossp";'
