@@ -38,8 +38,12 @@ all relationships to Nomenclature.
 
 Usage:
 
+    from pypnnomenclature.models import TNomenclatures as Nomenclature
+    from pypnnomenclature.utils import NomenclaturesMixin
+
     class MyModel(NomenclaturesMixin, db.Model):
-        nomenclature_foo = relationships(Foo)
+        id_nomenclature_foo = db.Column(db.Integer, ForeignKey(Nomenclature.id_nomenclature))
+        nomenclature_foo = relationships(Nomenclature, foreign_keys=[id_nomenclature_foo])
 
     assert(MyModel.__nomenclatures__ == ['nomenclature_foo'])
 """
