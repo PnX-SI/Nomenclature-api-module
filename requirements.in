@@ -6,6 +6,7 @@ flask-migrate
 psycopg2
 flask-marshmallow
 marshmallow-sqlalchemy
+shapely<2
 
 utils-flask-sqlalchemy>=0.3.0
 taxhub>=1.10.0
