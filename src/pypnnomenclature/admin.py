@@ -19,7 +19,6 @@ class ReloadingIterator:
 
 
 class TNomenclatureFiltersType(BaseSQLAFilter):
-
     # Override to create an appropriate query and apply a filter to
     # said query with the passed value from the filter UI
     def apply(self, query, value, alias=None):
@@ -45,7 +44,6 @@ class TNomenclatureFiltersType(BaseSQLAFilter):
 
 
 class TNomenclatureFiltersMnemonique(BaseSQLAFilter):
-
     # Override to create an appropriate query and apply a filter to
     # said query with the passed value from the filter UI
     def apply(self, query, value, alias=None):
@@ -71,7 +69,6 @@ class TNomenclatureFiltersMnemonique(BaseSQLAFilter):
 
 
 class TNomenclatureFiltersId(BaseSQLAFilter):
-
     # Override to create an appropriate query and apply a filter to said query
     # with the passed value from the filter UI
     def apply(self, query, value, alias=None):
@@ -145,7 +142,6 @@ class BibNomenclatureFiltersLabel(BaseSQLAFilter):
 
 
 class BibNomenclatureFiltersID(BaseSQLAFilter):
-
     # Override to create an appropriate query and apply a filter to said query
     # with the passed value from the filter UI
     def apply(self, query, value, alias=None):
@@ -157,7 +153,6 @@ class BibNomenclatureFiltersID(BaseSQLAFilter):
 
 
 class BibNomenclatureFiltersMnemonique(BaseSQLAFilter):
-
     # Override to create an appropriate query and apply a filter to said query
     # with the passed value from the filter UI
     def apply(self, query, value, alias=None):
