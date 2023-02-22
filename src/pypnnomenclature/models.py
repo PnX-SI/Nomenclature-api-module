@@ -180,18 +180,3 @@ class VNomenclatureTaxonomie(db.Model):
     nomenclature_definition_it = db.Column(db.Unicode)
     id_broader = db.Column(db.Integer)
     hierarchy = db.Column(db.Unicode)
-
-
-# Model for Admin
-class BibNomenclaturesTypesAdmin(BibNomenclaturesTypes):
-    __tablename__ = "bib_nomenclatures_types"
-    __table_args__ = {"schema": "ref_nomenclatures", "extend_existing": True}
-    nomenclature_items = relationship("TNomenclaturesAdmin")
-
-
-class TNomenclaturesAdmin(TNomenclatures):
-    __tablename__ = "t_nomenclatures"
-    __table_args__ = {"schema": "ref_nomenclatures", "extend_existing": True}
-    nomenclature_type_name = relationship(
-        "BibNomenclaturesTypesAdmin", back_populates="nomenclature_items"
-    )

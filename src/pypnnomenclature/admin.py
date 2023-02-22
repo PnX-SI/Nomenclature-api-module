@@ -4,7 +4,7 @@ from functools import partial
 from flask import has_app_context, g
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.contrib.sqla.filters import BaseSQLAFilter
-from .models import TNomenclaturesAdmin, BibNomenclaturesTypesAdmin
+from .models import TNomenclatures, BibNomenclaturesTypes
 from .env import db
 
 
@@ -22,7 +22,7 @@ class TNomenclatureFiltersType(BaseSQLAFilter):
     # Override to create an appropriate query and apply a filter to
     # said query with the passed value from the filter UI
     def apply(self, query, value, alias=None):
-        return query.filter(TNomenclaturesAdmin.id_type == value)
+        return query.filter(TNomenclatures.id_type == value)
 
     # readable operation name. This appears in the middle filter line drop-down
     def operation(self):
@@ -33,8 +33,8 @@ class TNomenclatureFiltersType(BaseSQLAFilter):
             if not hasattr(g, "TNomenclatureFiltersType"):
                 g.TNomenclatureFiltersType = [
                     (nomenclature.id_type, nomenclature.label_default)
-                    for nomenclature in db.session.query(BibNomenclaturesTypesAdmin).order_by(
-                        BibNomenclaturesTypesAdmin.label_default
+                    for nomenclature in db.session.query(BibNomenclaturesTypes).order_by(
+                        BibNomenclaturesTypes.label_default
                     )  # noqa
                 ]
             yield from g.TNomenclatureFiltersType
@@ -47,7 +47,7 @@ class TNomenclatureFiltersMnemonique(BaseSQLAFilter):
     # Override to create an appropriate query and apply a filter to
     # said query with the passed value from the filter UI
     def apply(self, query, value, alias=None):
-        return query.filter(TNomenclaturesAdmin.id_type == value)
+        return query.filter(TNomenclatures.id_type == value)
 
     # readable operation name. This appears in the middle filter line drop-down
     def operation(self):
@@ -58,8 +58,8 @@ class TNomenclatureFiltersMnemonique(BaseSQLAFilter):
             if not hasattr(g, "TNomenclatureFiltersMnemonique"):
                 g.TNomenclatureFiltersMnemonique = [
                     (nomenclature.id_type, nomenclature.mnemonique)
-                    for nomenclature in db.session.query(BibNomenclaturesTypesAdmin).order_by(
-                        BibNomenclaturesTypesAdmin.mnemonique
+                    for nomenclature in db.session.query(BibNomenclaturesTypes).order_by(
+                        BibNomenclaturesTypes.mnemonique
                     )  # noqa
                 ]
             yield from g.TNomenclatureFiltersMnemonique
@@ -72,17 +72,17 @@ class TNomenclatureFiltersId(BaseSQLAFilter):
     # Override to create an appropriate query and apply a filter to said query
     # with the passed value from the filter UI
     def apply(self, query, value, alias=None):
-        return query.filter(TNomenclaturesAdmin.id_nomenclature == value)
+        return query.filter(TNomenclatures.id_nomenclature == value)
 
     # readable operation name. This appears in the middle filter line drop-down
     def operation(self):
         return "equals"
 
 
-class TNomenclaturesAdminConfig(ModelView):
+class TNomenclaturesAdmin(ModelView):
     page_size = 10
     form_columns = [
-        "nomenclature_type_name",
+        "nomenclature_type",
         "cd_nomenclature",
         "mnemonique",
         "label_fr",
@@ -96,7 +96,7 @@ class TNomenclaturesAdminConfig(ModelView):
     ]
     column_list = [
         "id_nomenclature",
-        "nomenclature_type_name",
+        "nomenclature_type",
         "mnemonique",
         "cd_nomenclature",
         "label_default",
@@ -120,7 +120,7 @@ class BibNomenclatureFiltersLabel(BaseSQLAFilter):
     # Override to create an appropriate query and apply a filter to said query
     # with the passed value from the filter UI
     def apply(self, query, value, alias=None):
-        return query.filter(BibNomenclaturesTypesAdmin.label_default == value)
+        return query.filter(BibNomenclaturesTypes.label_default == value)
 
     # readable operation name. This appears in the middle filter line drop-down
     def operation(self):
@@ -131,8 +131,8 @@ class BibNomenclatureFiltersLabel(BaseSQLAFilter):
             if not hasattr(g, "BibNomenclatureFiltersLabel"):
                 g.BibNomenclatureFiltersLabel = [
                     (nomenclature.label_default, nomenclature.label_default)
-                    for nomenclature in db.session.query(BibNomenclaturesTypesAdmin).order_by(
-                        BibNomenclaturesTypesAdmin.label_default
+                    for nomenclature in db.session.query(BibNomenclaturesTypes).order_by(
+                        BibNomenclaturesTypes.label_default
                     )  # noqa
                 ]
             yield from g.BibNomenclatureFiltersLabel
@@ -145,7 +145,7 @@ class BibNomenclatureFiltersID(BaseSQLAFilter):
     # Override to create an appropriate query and apply a filter to said query
     # with the passed value from the filter UI
     def apply(self, query, value, alias=None):
-        return query.filter(BibNomenclaturesTypesAdmin.id_type == value)
+        return query.filter(BibNomenclaturesTypes.id_type == value)
 
     # readable operation name. This appears in the middle filter line drop-down
     def operation(self):
@@ -156,15 +156,15 @@ class BibNomenclatureFiltersMnemonique(BaseSQLAFilter):
     # Override to create an appropriate query and apply a filter to said query
     # with the passed value from the filter UI
     def apply(self, query, value, alias=None):
-        return query.filter(BibNomenclaturesTypesAdmin.mnemonique == value)
+        return query.filter(BibNomenclaturesTypes.mnemonique == value)
 
     def get_dynamic_options(self, view):
         if has_app_context():
             if not hasattr(g, "BibNomenclatureFiltersMnemonique"):
                 g.BibNomenclatureFiltersMnemonique = [
                     (nomenclature.mnemonique, nomenclature.mnemonique)
-                    for nomenclature in db.session.query(BibNomenclaturesTypesAdmin).order_by(
-                        BibNomenclaturesTypesAdmin.mnemonique
+                    for nomenclature in db.session.query(BibNomenclaturesTypes).order_by(
+                        BibNomenclaturesTypes.mnemonique
                     )  # noqa
                 ]
             yield from g.BibNomenclatureFiltersMnemonique
@@ -177,7 +177,7 @@ class BibNomenclatureFiltersMnemonique(BaseSQLAFilter):
         return "equals"
 
 
-class BibNomenclaturesTypesAdminConfig(ModelView):
+class BibNomenclaturesTypesAdmin(ModelView):
     page_size = 10
     column_list = [
         "id_type",
