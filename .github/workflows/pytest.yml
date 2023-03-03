@@ -18,17 +18,30 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        debian-version: [ "10", "11" ]
+        sqlalchemy-version: [ "1.3", "1.4" ]
         include:
-          - name: "Debian 10"
+          - debian-version: "10"
             python-version: "3.7"
             postgres-version: 11
             postgis-version: 2.5
-          - name: "Debian 11"
+          - debian-version: "11"
             python-version: "3.9"
             postgres-version: 13
             postgis-version: 3.2
+          - sqlalchemy-version: '1.3'
+            sqlalchemy-lt-version: '1.4'
+            flask-sqlalchemy-version: '2'
+            flask-sqlalchemy-lt-version: '3'
+          - sqlalchemy-version: '1.4'
+            sqlalchemy-lt-version: '2'
+            flask-sqlalchemy-version: '3'
+            flask-sqlalchemy-lt-version: '4'
+        exclude:
+          - debian-version: "10"
+            sqlalchemy-version: "1.4"
 
-    name: ${{ matrix.name }}
+    name: Debian ${{ matrix.debian-version }} - SQLAlchemy ${{ matrix.sqlalchemy-version }}
 
     services:
       postgres:
@@ -73,7 +86,9 @@ jobs:
           -e .[tests] \
           -e file:dependencies/Utils-Flask-SQLAlchemy#egg=utils-flask-sqlalchemy \
           -e file:dependencies/TaxHub#egg=taxhub \
-          -e file:dependencies/UsersHub-authentification-module#egg=pypnusershub
+          -e file:dependencies/UsersHub-authentification-module#egg=pypnusershub \
+          "sqlalchemy>=${{ matrix.sqlalchemy-version }},<${{ matrix.sqlalchemy-lt-version }}" \
+          "flask-sqlalchemy>=${{ matrix.flask-sqlalchemy-version }},<${{ matrix.flask-sqlalchemy-lt-version }}"
     - name: Install database
       run: |
         flask db upgrade ref_geo@head -x local-srid=2154
@@ -89,7 +104,7 @@ jobs:
       env:
         NOMENCLATURE_SETTINGS: test_settings.py
     - name: Upload coverage to Codecov
-      if: ${{ matrix.name == 'Debian 11' }}
-      uses: codecov/codecov-action@v2
+      if: ${{ matrix.debian-version == '11' && matrix.sqlalchemy-version == '1.4' }}
+      uses: codecov/codecov-action@v3
       with:
         flags: pytest
