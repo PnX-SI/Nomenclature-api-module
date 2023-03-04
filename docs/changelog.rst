@@ -2,6 +2,25 @@
 CHANGELOG
 =========
 
+1.5.4 (2023-03-04)
+------------------
+
+**🚀 Nouveautés**
+
+* Compatibilité SQLAlchemy 1.4
+* Amélioration de la documentation de ``NomenclaturesMixin``
+* Simplification des modèles et de leur homologue Flask-Admin
+* Mise à jour des dépendances :
+
+  * TaxHub 1.11.1
+  * UsersHub-authentification-module 1.6.5
+  * Utils-Flask-SQLAlchemy 0.3.2
+
+**🐛 Corrections**
+
+* Ajout de shapely<2 aux requirements
+
+
 1.5.3 (2022-09-01)
 ------------------
 
