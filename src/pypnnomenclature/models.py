@@ -166,6 +166,7 @@ class VNomenclatureTaxonomie(db.Model):
     type_definition_it = db.Column(db.Unicode)
     regne = db.Column(db.Unicode, primary_key=True)
     group2_inpn = db.Column(db.Unicode, primary_key=True)
+    group3_inpn = db.Column(db.Unicode, primary_key=True)
     id_nomenclature = db.Column(db.Integer, primary_key=True)
     mnemonique = db.Column(db.Unicode)
     nomenclature_label = db.Column(db.Unicode)
