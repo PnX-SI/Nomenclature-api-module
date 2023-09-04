@@ -24,12 +24,14 @@ def get_nomenclature_by_type_and_taxonomy(id_type):
     """
     regne = request.args.get("regne")
     group2inpn = request.args.get("group2_inpn")
+    group3inpn = request.args.get("group3_inpn")
 
     response = repository.get_nomenclature_list(
         **{
             "id_type": id_type,
             "regne": regne,
             "group2_inpn": group2inpn,
+            "group3_inpn": group3inpn,
             "filter_params": request.args,
         }
     )
@@ -50,12 +52,14 @@ def get_nomenclature_by_mnemonique_and_taxonomy(code_type):
     """
     regne = request.args.get("regne")
     group2inpn = request.args.get("group2_inpn")
+    group3inpn = request.args.get("group3_inpn")
 
     response = repository.get_nomenclature_list(
         **{
             "code_type": code_type,
             "regne": regne,
             "group2_inpn": group2inpn,
+            "group3_inpn": group3inpn,
             "filter_params": request.args,
         }
     )
@@ -75,6 +79,7 @@ def get_nomenclature_by_type_list_and_taxonomy():
     """
     regne = request.args.get("regne")
     group2inpn = request.args.get("group2_inpn")
+    group3inpn = request.args.get("group3_inpn")
     types = []
     if "id_type" in request.args:
         types = request.args.getlist("id_type")
@@ -90,6 +95,7 @@ def get_nomenclature_by_type_list_and_taxonomy():
                 param: id_type,
                 "regne": regne,
                 "group2_inpn": group2inpn,
+                "group3_inpn": group3inpn,
                 "filter_params": request.args,
             }
         )

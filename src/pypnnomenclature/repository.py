@@ -21,6 +21,7 @@ def get_nomenclature_list(
     code_type=None,
     regne=None,
     group2_inpn=None,
+    group3_inpn=None,
     hierarchy=None,
     filter_params=None,
 ):
@@ -56,7 +57,9 @@ def get_nomenclature_list(
                 VNomenclatureTaxonomie.id_nomenclature == TNomenclatures.id_nomenclature,
             ).where(VNomenclatureTaxonomie.regne.in_(("all", regne)))
             if group2_inpn:
-                q = q.where(VNomenclatureTaxonomie.group2_inpn.in_(("all", group2_inpn)))
+                q = q.filter(VNomenclatureTaxonomie.group2_inpn.in_(("all", group2_inpn)))
+            if group3_inpn:
+                q = q.filter(VNomenclatureTaxonomie.group3_inpn.in_(("all", group3_inpn)))
     if "cd_nomenclature" in filter_params:
         q = q.where(TNomenclatures.cd_nomenclature.in_(filter_params.getlist("cd_nomenclature")))
     # Ordonnancement
@@ -146,7 +149,7 @@ def get_nomenclature_with_taxonomy_list():
                 ]
             )
             nomenclature_dict["taxref"] = [
-                tr.as_dict(fields=["regne", "group2_inpn"]) for tr in n.taxref
+                tr.as_dict(fields=["regne", "group2_inpn", "group3_inpn"]) for tr in n.taxref
             ]
 
             nomenclatures.append(nomenclature_dict)
