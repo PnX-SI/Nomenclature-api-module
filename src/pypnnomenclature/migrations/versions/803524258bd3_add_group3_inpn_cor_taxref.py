@@ -25,8 +25,17 @@ def upgrade():
     op.execute(
         """ALTER TABLE ref_nomenclatures.cor_taxref_nomenclature 
                ADD CONSTRAINT check_cor_taxref_nomenclature_isgroup3inpn 
-               CHECK ((taxonomie.check_is_group3inpn((group3_inpn)::text) OR ((group3_inpn)::text = 'all'::text))) NOT VALID"""
+               CHECK ((taxonomie.check_is_group3inpn((group3_inpn)::text) OR ((group3_inpn)::text = 'all'::text))) NOT VALID   
+        """
     )
+    with op.batch_alter_table(
+        table_name="cor_taxref_nomenclature", schema="ref_nomenclatures"
+    ) as batch:
+        batch.drop_constraint("pk_cor_taxref_nomenclature")
+        batch.create_primary_key(
+            constraint_name="pk_cor_taxref_nomenclature",
+            columns=["id_nomenclature", "regne", "group2_inpn", "group3_inpn"],
+        )
     op.execute("DROP VIEW ref_nomenclatures.v_nomenclature_taxonomie")
     op.execute(
         """
@@ -73,11 +82,15 @@ AS SELECT tn.id_type,
 
 
 def downgrade():
-    op.drop_constraint(
-        constraint_name="check_cor_taxref_nomenclature_isgroup3inpn",
-        table_name="cor_taxref_nomenclature",
-        schema="ref_nomenclatures",
-    )
+    with op.batch_alter_table(
+        table_name="cor_taxref_nomenclature", schema="ref_nomenclatures"
+    ) as batch:
+        batch.drop_constraint("check_cor_taxref_nomenclature_isgroup3inpn")
+        batch.drop_constraint("pk_cor_taxref_nomenclature")
+        batch.create_primary_key(
+            constraint_name="pk_cor_taxref_nomenclature",
+            columns=["id_nomenclature", "regne", "group2_inpn"],
+        )
     op.execute("DROP VIEW ref_nomenclatures.v_nomenclature_taxonomie")
     op.drop_column("cor_taxref_nomenclature", "group3_inpn", "ref_nomenclatures")
     op.execute(
