@@ -92,7 +92,7 @@ def downgrade():
             columns=["id_nomenclature", "regne", "group2_inpn"],
         )
     op.execute("DROP VIEW ref_nomenclatures.v_nomenclature_taxonomie")
-    op.drop_column("cor_taxref_nomenclature", "group3_inpn", "ref_nomenclatures")
+    op.drop_column("cor_taxref_nomenclature", "group3_inpn", schema="ref_nomenclatures")
     op.execute(
         """
                CREATE VIEW ref_nomenclatures.v_nomenclature_taxonomie
