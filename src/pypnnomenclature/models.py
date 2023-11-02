@@ -47,7 +47,9 @@ class TNomenclatures(db.Model):
     id_type = db.Column(
         db.Integer, ForeignKey("ref_nomenclatures.bib_nomenclatures_types.id_type")
     )
-    nomenclature_type = relationship("BibNomenclaturesTypes", backref="nomenclatures")
+    nomenclature_type = relationship(
+        "BibNomenclaturesTypes", backref="nomenclatures", foreign_keys=id_type
+    )
     cd_nomenclature = db.Column(db.Unicode)
     mnemonique = db.Column(db.Unicode)
     label_default = db.Column(db.Unicode)
@@ -73,14 +75,12 @@ class TNomenclatures(db.Model):
     @staticmethod
     def get_default_nomenclature(mnemonique, id_organism=0):
         q = select(
-            [
-                func.ref_nomenclatures.get_default_nomenclature_value(
-                    mnemonique, id_organism
-                ).label("default")
-            ]
+            func.ref_nomenclatures.get_default_nomenclature_value(mnemonique, id_organism).label(
+                "default"
+            )
         )
         result = db.session.execute(q)
-        return result.fetchone()["default"]
+        return result.fetchone().default
 
 
 class TNomenclatureTaxonomy(TNomenclatures):
@@ -127,7 +127,7 @@ class BibNomenclaturesTypes(db.Model):
             ]
         )
         result = db.session.execute(q)
-        return result.fetchone()["default"]
+        return result.fetchone().default
 
 
 class BibNomenclaturesTypeTaxo(BibNomenclaturesTypes):
@@ -140,6 +140,7 @@ class BibNomenclaturesTypeTaxo(BibNomenclaturesTypes):
         primaryjoin="and_(TNomenclatureTaxonomy.id_type == BibNomenclaturesTypes.id_type, TNomenclatureTaxonomy.active == True)",
         lazy="joined",
         order_by="TNomenclatureTaxonomy.hierarchy",
+        overlaps="nomenclature_type,nomenclatures",
     )
 
 
