@@ -111,7 +111,7 @@ def get_nomenclature_with_taxonomy_list():
 
     q = select(BibNomenclaturesTypeTaxo).order_by("mnemonique")
 
-    nomenclature_types = db.session.scalars(q).all()
+    nomenclature_types = db.session.scalars(q).unique().all()
     data = list()
 
     for t in nomenclature_types:
