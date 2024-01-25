@@ -59,7 +59,8 @@ def get_nomenclature_list(
             if group2_inpn:
                 q = q.filter(VNomenclatureTaxonomie.group2_inpn.in_(("all", group2_inpn)))
             if group3_inpn:
-                q = q.filter(VNomenclatureTaxonomie.group3_inpn.in_(("all", group3_inpn)))
+                q = q.where(VNomenclatureTaxonomie.group3_inpn.in_(("all", group3_inpn)))
+
     if "cd_nomenclature" in filter_params:
         q = q.where(TNomenclatures.cd_nomenclature.in_(filter_params.getlist("cd_nomenclature")))
     # Ordonnancement
