@@ -24,6 +24,7 @@ class CorTaxrefNomenclature(db.Model):
     )
     regne = db.Column(db.Unicode, primary_key=True)
     group2_inpn = db.Column(db.Unicode, primary_key=True)
+    group3_inpn = db.Column(db.Unicode, primary_key=True)
 
 
 @serializable(
