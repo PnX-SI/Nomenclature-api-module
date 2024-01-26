@@ -2,23 +2,32 @@
 CHANGELOG
 =========
 
+1.6.0 (unreleased)
+------------------
+
+- Mise à jour de SQLAlchemy version 1.3 à 1.4 (#52 et #54)
+- Arrêt du support de Debian 10 (#54)
+- Ajout du support de Debian 12 dans les tests automatisés (#54)
+- Ajout de la possibilité d'associer des nomenclatures à des Group3 INPN, en ajoutant le champs ``group3_inpn`` à la table ``cor_taxref_nomenclature`` (#53)
+
+
 1.5.4 (2023-03-04)
 ------------------
 
 **🚀 Nouveautés**
 
-* Compatibilité SQLAlchemy 1.4
-* Amélioration de la documentation de ``NomenclaturesMixin``
-* Simplification des modèles et de leur homologue Flask-Admin
-* Mise à jour des dépendances :
+- Compatibilité SQLAlchemy 1.4
+- Amélioration de la documentation de ``NomenclaturesMixin``
+- Simplification des modèles et de leur homologue Flask-Admin
+- Mise à jour des dépendances :
 
-  * TaxHub 1.11.1
-  * UsersHub-authentification-module 1.6.5
-  * Utils-Flask-SQLAlchemy 0.3.2
+  - TaxHub 1.11.1
+  - UsersHub-authentification-module 1.6.5
+  - Utils-Flask-SQLAlchemy 0.3.2
 
 **🐛 Corrections**
 
-* Ajout de shapely<2 aux requirements
+- Ajout de shapely<2 aux requirements
 
 
 1.5.3 (2022-09-01)
@@ -26,20 +35,21 @@ CHANGELOG
 
 **🚀 Nouveautés**
 
-* Ajout du type de nomenclature « Catégorie de liste rouge » et des nomenclatures associées.
-* La branche ``nomenclature_taxonomie_inpn_data`` est renommée en ``nomenclature_taxonomie_data``, et ne dépend plus du référentiel TaxRef qui doit être importé manuellement.
-* Le code est désormais formaté avec Black et une Github Action y veille.
-* Possibilité de filtrer les nomenclatures par code (``cd_nomenclature``).
-* Mise à jour des dépendances :
+- Ajout du type de nomenclature « Catégorie de liste rouge » et des nomenclatures associées.
+- La branche ``nomenclature_taxonomie_inpn_data`` est renommée en ``nomenclature_taxonomie_data``, et ne dépend plus du référentiel TaxRef qui doit être importé manuellement.
+- Le code est désormais formaté avec Black et une Github Action y veille.
+- Possibilité de filtrer les nomenclatures par code (``cd_nomenclature``).
+- Mise à jour des dépendances :
 
-  * Utils-Flask-SQLAlchemy 0.3.0
-  * TaxHub 1.10.0
-  * UsersHub-authentification-module 1.6.0
+  - Utils-Flask-SQLAlchemy 0.3.0
+  - TaxHub 1.10.0
+  - UsersHub-authentification-module 1.6.0
 
 **🐛 Corrections**
 
-* Correction de la définition d’un type de nomenclature
-* Correction des tests unitaires
+- Correction de la définition d’un type de nomenclature
+- Correction des tests unitaires
+
 
 1.5.1 (2022-01-12)
 ------------------
