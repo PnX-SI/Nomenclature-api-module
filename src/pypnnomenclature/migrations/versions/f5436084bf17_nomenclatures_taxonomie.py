@@ -4,6 +4,7 @@ Revision ID: f5436084bf17
 Create Date: 2021-09-16 15:08:57.784074
 
 """
+
 import importlib.resources
 
 from alembic import op

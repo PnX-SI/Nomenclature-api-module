@@ -1,6 +1,7 @@
 """
     Méthode permettant de manipuler les objets de la nomenclature
 """
+
 from importlib import import_module
 from flask import current_app
 
