@@ -53,7 +53,7 @@ jobs:
         psql -h localhost -U postgres -d postgres -tc 'CREATE EXTENSION "postgis_raster";'
         psql -h localhost -U postgres -d postgres -tc 'CREATE EXTENSION "uuid-ossp";'
         psql -h localhost -U postgres -d postgres -tc 'CREATE EXTENSION "pg_trgm";'
-        psql -h localhost -U taxhubadmin -d taxhub -tc 'CREATE EXTENSION "unaccent";'
+        psql -h localhost -U postgres -d postgres -tc 'CREATE EXTENSION "unaccent";'
       env:
         PGPASSWORD: postgres
     - uses: actions/checkout@v2
