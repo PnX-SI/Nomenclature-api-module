@@ -53,6 +53,7 @@ jobs:
         psql -h localhost -U postgres -d postgres -tc 'CREATE EXTENSION "postgis_raster";'
         psql -h localhost -U postgres -d postgres -tc 'CREATE EXTENSION "uuid-ossp";'
         psql -h localhost -U postgres -d postgres -tc 'CREATE EXTENSION "pg_trgm";'
+        psql -h localhost -U taxhubadmin -d taxhub -tc 'CREATE EXTENSION "unaccent";'
       env:
         PGPASSWORD: postgres
     - uses: actions/checkout@v2
@@ -73,6 +74,7 @@ jobs:
           -e file:dependencies/UsersHub-authentification-module#egg=pypnusershub
     - name: Install database
       run: |
+        flask db upgrade taxonomie@head -x local-srid=2154
         flask db upgrade ref_geo@head -x local-srid=2154
         flask db upgrade nomenclatures_taxonomie@head
         flask db autoupgrade
