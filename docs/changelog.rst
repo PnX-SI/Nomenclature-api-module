@@ -2,14 +2,16 @@
 CHANGELOG
 =========
 
-1.6.0 (unreleased)
+1.6.0 (2024-01-30)
 ------------------
+
+**🚀 Nouveautés**
 
 - Mise à jour de SQLAlchemy version 1.3 à 1.4 (#52 et #54)
 - Arrêt du support de Debian 10 (#54)
 - Ajout du support de Debian 12 dans les tests automatisés (#54)
 - Ajout de la possibilité d'associer des nomenclatures à des Group3 INPN, en ajoutant le champs ``group3_inpn`` à la table ``cor_taxref_nomenclature`` (#53)
-
+- Mise à jour des dépendances Python: TaxHub, Utils-Flask-SQLAlchemy, UsersHub-authentification-module 
 
 1.5.4 (2023-03-04)
 ------------------
