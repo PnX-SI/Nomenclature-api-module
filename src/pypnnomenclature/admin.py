@@ -6,6 +6,7 @@ from flask_admin.contrib.sqla import ModelView
 from flask_admin.contrib.sqla.filters import BaseSQLAFilter
 from .models import TNomenclatures, BibNomenclaturesTypes
 from .env import db
+from sqlalchemy import select
 
 
 # https://github.com/flask-admin/flask-admin/issues/1807
@@ -31,11 +32,12 @@ class TNomenclatureFiltersType(BaseSQLAFilter):
     def get_dynamic_options(self, view):
         if has_app_context():
             if not hasattr(g, "TNomenclatureFiltersType"):
+                bib_nomenc_labels = db.session.scalars(
+                    db.select(BibNomenclaturesTypes).order_by(BibNomenclaturesTypes.label_default)
+                ).all()
                 g.TNomenclatureFiltersType = [
                     (nomenclature.id_type, nomenclature.label_default)
-                    for nomenclature in db.session.query(BibNomenclaturesTypes).order_by(
-                        BibNomenclaturesTypes.label_default
-                    )  # noqa
+                    for nomenclature in bib_nomenc_labels  # noqa
                 ]
             yield from g.TNomenclatureFiltersType
 
@@ -56,11 +58,12 @@ class TNomenclatureFiltersMnemonique(BaseSQLAFilter):
     def get_dynamic_options(self, view):
         if has_app_context():
             if not hasattr(g, "TNomenclatureFiltersMnemonique"):
+                bib_nomenc_type = db.session.scalars(
+                    db.select(BibNomenclaturesTypes).order_by(BibNomenclaturesTypes.mnemonique)
+                ).all()
                 g.TNomenclatureFiltersMnemonique = [
                     (nomenclature.id_type, nomenclature.mnemonique)
-                    for nomenclature in db.session.query(BibNomenclaturesTypes).order_by(
-                        BibNomenclaturesTypes.mnemonique
-                    )  # noqa
+                    for nomenclature in bib_nomenc_type  # noqa
                 ]
             yield from g.TNomenclatureFiltersMnemonique
 
@@ -129,11 +132,12 @@ class BibNomenclatureFiltersLabel(BaseSQLAFilter):
     def get_dynamic_options(self, view):
         if has_app_context():
             if not hasattr(g, "BibNomenclatureFiltersLabel"):
+                nomenc_def_label = db.session.scalars(
+                    select(BibNomenclaturesTypes).order_by(BibNomenclaturesTypes.label_default)
+                ).all()
                 g.BibNomenclatureFiltersLabel = [
                     (nomenclature.label_default, nomenclature.label_default)
-                    for nomenclature in db.session.query(BibNomenclaturesTypes).order_by(
-                        BibNomenclaturesTypes.label_default
-                    )  # noqa
+                    for nomenclature in nomenc_def_label  # noqa
                 ]
             yield from g.BibNomenclatureFiltersLabel
 
@@ -161,11 +165,12 @@ class BibNomenclatureFiltersMnemonique(BaseSQLAFilter):
     def get_dynamic_options(self, view):
         if has_app_context():
             if not hasattr(g, "BibNomenclatureFiltersMnemonique"):
+                nomenc_mnemonique = db.session.scalars(
+                    select(BibNomenclaturesTypes).order_by(BibNomenclaturesTypes.mnemonique)
+                ).all()
                 g.BibNomenclatureFiltersMnemonique = [
                     (nomenclature.mnemonique, nomenclature.mnemonique)
-                    for nomenclature in db.session.query(BibNomenclaturesTypes).order_by(
-                        BibNomenclaturesTypes.mnemonique
-                    )  # noqa
+                    for nomenclature in nomenc_mnemonique  # noqa
                 ]
             yield from g.BibNomenclatureFiltersMnemonique
 

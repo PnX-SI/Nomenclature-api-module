@@ -24,6 +24,7 @@ class CorTaxrefNomenclature(db.Model):
     )
     regne = db.Column(db.Unicode, primary_key=True)
     group2_inpn = db.Column(db.Unicode, primary_key=True)
+    group3_inpn = db.Column(db.Unicode, primary_key=True)
 
 
 @serializable(
@@ -47,7 +48,10 @@ class TNomenclatures(db.Model):
     id_type = db.Column(
         db.Integer, ForeignKey("ref_nomenclatures.bib_nomenclatures_types.id_type")
     )
-    nomenclature_type = relationship("BibNomenclaturesTypes", backref="nomenclatures")
+    nomenclature_type = relationship(
+        "BibNomenclaturesTypes",
+        backref="nomenclatures",
+    )
     cd_nomenclature = db.Column(db.Unicode)
     mnemonique = db.Column(db.Unicode)
     label_default = db.Column(db.Unicode)
@@ -73,14 +77,12 @@ class TNomenclatures(db.Model):
     @staticmethod
     def get_default_nomenclature(mnemonique, id_organism=0):
         q = select(
-            [
-                func.ref_nomenclatures.get_default_nomenclature_value(
-                    mnemonique, id_organism
-                ).label("default")
-            ]
+            func.ref_nomenclatures.get_default_nomenclature_value(mnemonique, id_organism).label(
+                "default"
+            )
         )
         result = db.session.execute(q)
-        return result.fetchone()["default"]
+        return result.fetchone().default
 
 
 class TNomenclatureTaxonomy(TNomenclatures):
@@ -127,7 +129,7 @@ class BibNomenclaturesTypes(db.Model):
             ]
         )
         result = db.session.execute(q)
-        return result.fetchone()["default"]
+        return result.fetchone().default
 
 
 class BibNomenclaturesTypeTaxo(BibNomenclaturesTypes):
@@ -140,6 +142,7 @@ class BibNomenclaturesTypeTaxo(BibNomenclaturesTypes):
         primaryjoin="and_(TNomenclatureTaxonomy.id_type == BibNomenclaturesTypes.id_type, TNomenclatureTaxonomy.active == True)",
         lazy="joined",
         order_by="TNomenclatureTaxonomy.hierarchy",
+        viewonly=True,
     )
 
 
@@ -164,6 +167,7 @@ class VNomenclatureTaxonomie(db.Model):
     type_definition_it = db.Column(db.Unicode)
     regne = db.Column(db.Unicode, primary_key=True)
     group2_inpn = db.Column(db.Unicode, primary_key=True)
+    group3_inpn = db.Column(db.Unicode, primary_key=True)
     id_nomenclature = db.Column(db.Integer, primary_key=True)
     mnemonique = db.Column(db.Unicode)
     nomenclature_label = db.Column(db.Unicode)

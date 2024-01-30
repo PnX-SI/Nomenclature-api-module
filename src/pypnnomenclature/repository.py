@@ -1,6 +1,7 @@
 """
     Méthode permettant de manipuler les objets de la nomenclature
 """
+
 from importlib import import_module
 from flask import current_app
 
@@ -11,7 +12,7 @@ from .models import (
     VNomenclatureTaxonomie,
     BibNomenclaturesTypeTaxo,
 )
-from sqlalchemy import text
+from sqlalchemy import text, select
 
 from .env import db
 
@@ -21,6 +22,7 @@ def get_nomenclature_list(
     code_type=None,
     regne=None,
     group2_inpn=None,
+    group3_inpn=None,
     hierarchy=None,
     filter_params=None,
 ):
@@ -28,14 +30,14 @@ def get_nomenclature_list(
     Récupération de la liste des termes d'un type de nomenclature
     """
 
-    q = db.session.query(BibNomenclaturesTypes)
+    q = select(BibNomenclaturesTypes)
     if filter_params is None:
         filter_params = []
 
     if code_type:
-        nomenclature = q.filter_by(mnemonique=code_type).first()
+        nomenclature = db.session.scalars(q.filter_by(mnemonique=code_type).limit(1)).first()
     elif id_type:
-        nomenclature = q.filter_by(id_type=id_type).first()
+        nomenclature = db.session.scalars(q.filter_by(id_type=id_type).limit(1)).first()
     else:
         nomenclature = None
 
@@ -43,26 +45,25 @@ def get_nomenclature_list(
         return None
 
     # Terme de nomenclatures
-    q = (
-        db.session.query(TNomenclatures)
-        .filter_by(id_type=nomenclature.id_type)
-        .filter_by(active=True)
-    )
+    q = select(TNomenclatures).filter_by(id_type=nomenclature.id_type).filter_by(active=True)
 
     # Filtrer sur la hiérarchie
     if hierarchy:
-        q = q.filter(TNomenclatures.hierarchy.like("{}%".format(hierarchy)))
+        q = q.where(TNomenclatures.hierarchy.like("{}%".format(hierarchy)))
     if current_app.config["ENABLE_NOMENCLATURE_TAXONOMIC_FILTERS"]:
         # Filtrer en fonction du groupe taxonomie
         if regne:
             q = q.join(
                 VNomenclatureTaxonomie,
                 VNomenclatureTaxonomie.id_nomenclature == TNomenclatures.id_nomenclature,
-            ).filter(VNomenclatureTaxonomie.regne.in_(("all", regne)))
+            ).where(VNomenclatureTaxonomie.regne.in_(("all", regne)))
             if group2_inpn:
                 q = q.filter(VNomenclatureTaxonomie.group2_inpn.in_(("all", group2_inpn)))
+            if group3_inpn:
+                q = q.where(VNomenclatureTaxonomie.group3_inpn.in_(("all", group3_inpn)))
+
     if "cd_nomenclature" in filter_params:
-        q = q.filter(TNomenclatures.cd_nomenclature.in_(filter_params.getlist("cd_nomenclature")))
+        q = q.where(TNomenclatures.cd_nomenclature.in_(filter_params.getlist("cd_nomenclature")))
     # Ordonnancement
     if "orderby" in filter_params:
         order_col = getattr(TNomenclatures, filter_params["orderby"])
@@ -73,7 +74,7 @@ def get_nomenclature_list(
 
         q = q.order_by(order_col)
     # @TODO Autres filtres
-    data = q.all()
+    data = db.session.scalars(q).all()
 
     response = nomenclature.as_dict()
     if data:
@@ -113,9 +114,9 @@ def get_nomenclature_with_taxonomy_list():
     Fetch nomenclature definition list with taxonomy
     """
 
-    q = db.session.query(BibNomenclaturesTypeTaxo).order_by("mnemonique")
+    q = select(BibNomenclaturesTypeTaxo).order_by("mnemonique")
 
-    nomenclature_types = q.all()
+    nomenclature_types = db.session.scalars(q).unique().all()
     data = list()
 
     for t in nomenclature_types:
@@ -150,7 +151,7 @@ def get_nomenclature_with_taxonomy_list():
                 ]
             )
             nomenclature_dict["taxref"] = [
-                tr.as_dict(fields=["regne", "group2_inpn"]) for tr in n.taxref
+                tr.as_dict(fields=["regne", "group2_inpn", "group3_inpn"]) for tr in n.taxref
             ]
 
             nomenclatures.append(nomenclature_dict)
@@ -177,11 +178,9 @@ def get_nomenclature_id_term(cd_type, cd_term, raise_exp=True):
 
     t = text("SELECT ref_nomenclatures.get_id_nomenclature(:cd_type, :cd_term) as id")
     try:
-        value = (
-            db.session.query("id")
-            .from_statement(t.params(cd_type=cd_type, cd_term=cd_term))
-            .first()
-        )
+        value = db.session.scalars(
+            select("id").from_statement(t.params(cd_type=cd_type, cd_term=cd_term).limit(1))
+        ).first()
         return value
     except Exception as e:
         if raise_exp:
