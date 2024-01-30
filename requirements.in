@@ -8,6 +8,6 @@ flask-marshmallow
 marshmallow-sqlalchemy
 sqlalchemy
 
-utils-flask-sqlalchemy>=0.3.1
+utils-flask-sqlalchemy>=0.4.1
 taxhub>=1.13.2
 pypnusershub>=2.1.1
