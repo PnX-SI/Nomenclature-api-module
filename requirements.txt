@@ -182,7 +182,7 @@ sqlalchemy==1.4.51
     #   taxhub
     #   utils-flask-sqlalchemy
     #   utils-flask-sqlalchemy-geo
-taxhub==1.13.2
+taxhub==1.13.3
     # via -r requirements.in
 typing-extensions==4.9.0
     # via alembic
