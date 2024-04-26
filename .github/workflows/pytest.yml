@@ -78,7 +78,7 @@ jobs:
         flask db upgrade ref_geo@head -x local-srid=2154
         flask db upgrade nomenclatures_taxonomie@head
         flask db autoupgrade
-        flask taxref import-v15 --skip-bdc-statuts
+        flask taxref import-v17 --skip-bdc-statuts
         flask db upgrade nomenclatures_taxonomie_data@head
       env:
         NOMENCLATURE_SETTINGS: test_settings.py
