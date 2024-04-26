@@ -135,7 +135,7 @@ packaging==23.2
     #   gunicorn
     #   marshmallow
     #   marshmallow-sqlalchemy
-pillow==10.2.0
+pillow==10.3.0
     # via taxhub
 psycopg2==2.9.9
     # via
