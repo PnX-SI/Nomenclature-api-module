@@ -145,9 +145,9 @@ psycopg2==2.9.9
     #   taxhub
 pycparser==2.21
     # via cffi
-pypn-ref-geo==1.5.1
+pypn-ref-geo==1.5.2
     # via taxhub
-pypnusershub==2.1.1
+pypnusershub==2.1.4
     # via
     #   -r requirements.in
     #   taxhub
@@ -182,7 +182,7 @@ sqlalchemy==1.4.51
     #   taxhub
     #   utils-flask-sqlalchemy
     #   utils-flask-sqlalchemy-geo
-taxhub==1.13.3
+taxhub==1.14.0
     # via -r requirements.in
 typing-extensions==4.9.0
     # via alembic

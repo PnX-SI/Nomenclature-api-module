@@ -9,5 +9,5 @@ marshmallow-sqlalchemy
 sqlalchemy
 
 utils-flask-sqlalchemy>=0.4.1
-taxhub>=1.13.3
-pypnusershub>=2.1.1
+taxhub>=1.14.0
+pypnusershub>=2.1.4
