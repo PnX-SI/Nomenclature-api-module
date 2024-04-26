@@ -2,6 +2,14 @@
 CHANGELOG
 =========
 
+1.6.2 (2024-04-26)
+------------------
+
+**🚀 Nouveautés**
+
+- Mise à jour vers TaxHub 1.14.0
+- Mise à jour vers UserHub-authentication-module 2.1.4
+
 1.6.1 (2024-02-12)
 ------------------
 
