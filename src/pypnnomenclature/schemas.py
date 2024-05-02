@@ -1,5 +1,11 @@
 from pypnnomenclature.env import ma
-from pypnnomenclature.models import TNomenclatures
+from pypnnomenclature.models import TNomenclatures, BibNomenclaturesTypes
+
+
+class BibNomenclaturesTypesSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = BibNomenclaturesTypes
+        include_fk = True
 
 
 class NomenclatureSchema(ma.SQLAlchemyAutoSchema):
