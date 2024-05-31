@@ -179,8 +179,7 @@ def get_nomenclature_id_term(cd_type, cd_term, raise_exp=True):
     t = text("SELECT ref_nomenclatures.get_id_nomenclature(:cd_type, :cd_term) as id")
     try:
         value = db.session.scalars(
-            select("id").from_statement(t.params(cd_type=cd_type, cd_term=cd_term).limit(1))
-        ).first()
+            t.params(cd_type=cd_type, cd_term=cd_term)).first()
         return value
     except Exception as e:
         if raise_exp:
