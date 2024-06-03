@@ -12,7 +12,7 @@ from .models import (
     VNomenclatureTaxonomie,
     BibNomenclaturesTypeTaxo,
 )
-from sqlalchemy import text, select
+from sqlalchemy import select, func
 
 from .env import db
 
@@ -176,10 +176,10 @@ def get_nomenclature_id_term(cd_type, cd_term, raise_exp=True):
             fonction en cas d'exeception
     """
 
-    t = text("SELECT ref_nomenclatures.get_id_nomenclature(:cd_type, :cd_term) as id")
     try:
-        value = db.session.scalars(
-            t.params(cd_type=cd_type, cd_term=cd_term)).first()
+        value = db.session.scalar(
+            select(func.ref_nomenclatures.get_id_nomenclature(cd_type,cd_term))
+        )
         return value
     except Exception as e:
         if raise_exp:
