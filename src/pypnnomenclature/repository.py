@@ -178,7 +178,7 @@ def get_nomenclature_id_term(cd_type, cd_term, raise_exp=True):
 
     try:
         value = db.session.scalar(
-            select(func.ref_nomenclatures.get_id_nomenclature(cd_type,cd_term))
+            select(func.ref_nomenclatures.get_id_nomenclature(cd_type, cd_term))
         )
         return value
     except Exception as e:
