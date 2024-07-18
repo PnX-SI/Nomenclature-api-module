@@ -1,7 +1,7 @@
 """add_nomenclatures_for_occhab
 
 Revision ID: 5e882af04ff6
-Revises: b820c66d8daa
+Revises: ee1146f6c0f4
 Create Date: 2024-07-18 14:38:21.143524
 
 """
@@ -9,11 +9,12 @@ Create Date: 2024-07-18 14:38:21.143524
 from alembic import op
 from pypnnomenclature.models import BibNomenclaturesTypes, TNomenclatures
 import sqlalchemy as sa
+from sqlalchemy.orm.session import Session
 
 
 # revision identifiers, used by Alembic.
 revision = "5e882af04ff6"
-down_revision = "b820c66d8daa"
+down_revision = "ee1146f6c0f4"
 branch_labels = None
 depends_on = None
 
@@ -96,8 +97,15 @@ peut être facilement rattachée à aucune des catégories citées précédemmen
 
 
 def downgrade():
+    session = Session(bind=op.get_bind())
+    id_nomenclature_type = session.scalar(
+        sa.select(sa.func.ref_nomenclatures.get_id_nomenclature_type("MOSAIQUE_HAB"))
+    )
+    session.close()
     op.execute(
-        sa.delete(TNomenclatures).where(TNomenclatures.mnemonique == "MOSAIQUE_HAB"),
+        sa.delete(TNomenclatures).where(
+            TNomenclatures.id_type == id_nomenclature_type,
+        ),
     )
     op.execute(
         sa.delete(BibNomenclaturesTypes).where(BibNomenclaturesTypes.mnemonique == "MOSAIQUE_HAB")
