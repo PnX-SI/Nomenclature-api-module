@@ -5,7 +5,7 @@
 from importlib import import_module
 from flask import current_app
 
-from .models import (
+from pypnnomenclature.models import (
     TNomenclatures,
     BibNomenclaturesTypes,
     TNomenclatureTaxonomy,
@@ -14,7 +14,7 @@ from .models import (
 )
 from sqlalchemy import select, func
 
-from .env import db
+from pypnnomenclature.env import db
 
 
 def get_nomenclature_list(

@@ -2,8 +2,8 @@ from sqlalchemy import inspect
 from marshmallow_sqlalchemy.convert import ModelConverter
 from marshmallow.fields import Nested
 
-from .models import TNomenclatures as Nomenclature
-from .schemas import NomenclatureSchema
+from pypnnomenclature.models import TNomenclatures as Nomenclature
+from pypnnomenclature.schemas import NomenclatureSchema
 
 """
 This converter automatically add Nested(NomenclatureSchema) fields

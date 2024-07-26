@@ -4,8 +4,8 @@ from functools import partial
 from flask import has_app_context, g
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.contrib.sqla.filters import BaseSQLAFilter
-from .models import TNomenclatures, BibNomenclaturesTypes
-from .env import db
+from pypnnomenclature.models import TNomenclatures, BibNomenclaturesTypes
+from pypnnomenclature.env import db
 from sqlalchemy import select
 
 

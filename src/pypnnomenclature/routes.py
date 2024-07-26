@@ -4,7 +4,7 @@ from __future__ import unicode_literals, print_function, absolute_import, divisi
 from flask import Blueprint, request, jsonify
 from utils_flask_sqla.response import json_resp
 
-from . import repository
+from pypnnomenclature import repository
 
 
 routes = Blueprint("nomenclatures", __name__)
