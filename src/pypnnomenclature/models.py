@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.sql import select, func
 from utils_flask_sqla.serializers import serializable
 
-from .env import db
+from pypnnomenclature.env import db
 
 
 @serializable
