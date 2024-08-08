@@ -10,4 +10,3 @@ sqlalchemy
 
 utils-flask-sqlalchemy>=0.4.1
 taxhub>=1.14.1
-pypnusershub>=2.1.5

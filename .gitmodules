@@ -4,6 +4,3 @@
 [submodule "dependencies/TaxHub"]
 	path = dependencies/TaxHub
 	url = https://github.com/PnX-SI/TaxHub.git
-[submodule "dependencies/UsersHub-authentification-module"]
-	path = dependencies/UsersHub-authentification-module
-	url = https://github.com/PnX-SI/UsersHub-authentification-module.git
