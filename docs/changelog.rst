@@ -2,6 +2,21 @@
 CHANGELOG
 =========
 
+1.6.4 (2024-09-09)
+------------------
+
+**🚀 Nouveautés**
+
+- Ajout de nouvelles valeurs de nomenclature : "MosaiqueValue" (mnemonique = "MOSAIQUE_HAB") (#74)
+
+**🐛 Corrections**
+
+- Correction de la fonction `get_nomenclature_id_term()` ()
+
+** Notes de version**
+
+- Le module `UsersHub-Authentification-module` n'est plus requis au fonctionnement de `Nomenclature-api-module` (#76)
+
 1.6.3 (2024-05-27)
 ------------------
 
