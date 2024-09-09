@@ -11,7 +11,7 @@ CHANGELOG
 
 **🐛 Corrections**
 
-- Correction de la fonction `get_nomenclature_id_term()` ()
+- Correction de la fonction `get_nomenclature_id_term()` (#72)
 
 ** Notes de version**
 
