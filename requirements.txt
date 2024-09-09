@@ -134,7 +134,6 @@ packaging==24.0
     #   geoalchemy2
     #   gunicorn
     #   marshmallow
-    #   marshmallow-sqlalchemy
 pillow==10.3.0
     # via taxhub
 psycopg2==2.9.9
@@ -148,9 +147,7 @@ pycparser==2.22
 pypn-ref-geo==1.5.2
     # via taxhub
 pypnusershub==2.1.5
-    # via
-    #   -r requirements.in
-    #   taxhub
+    # via taxhub
 python-dateutil==2.9.0.post0
     # via
     #   botocore
@@ -185,9 +182,7 @@ sqlalchemy==1.4.52
 taxhub==1.14.1
     # via -r requirements.in
 typing-extensions==4.11.0
-    # via
-    #   alembic
-    #   sqlalchemy
+    # via alembic
 urllib3==1.26.18
     # via
     #   botocore
