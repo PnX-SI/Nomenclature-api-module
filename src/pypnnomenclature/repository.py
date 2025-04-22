@@ -1,5 +1,5 @@
 """
-    Méthode permettant de manipuler les objets de la nomenclature
+Méthode permettant de manipuler les objets de la nomenclature
 """
 
 from importlib import import_module
