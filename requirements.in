@@ -7,6 +7,7 @@ psycopg2
 flask-marshmallow
 marshmallow-sqlalchemy
 sqlalchemy
+backports.entry-points-selectable
 
 utils-flask-sqlalchemy>=0.4.1
 taxhub>=1.14.1
