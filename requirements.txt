@@ -13,19 +13,16 @@ attrs==23.2.0
     # via fiona
 authlib==1.3.0
     # via pypnusershub
+babel==2.17.0
+    # via flask-babel
 backports-entry-points-selectable==1.3.0
     # via
     #   -r requirements.in
+    #   taxhub
 bcrypt==4.1.3
     # via pypnusershub
 blinker==1.8.2
     # via flask
-boto3==1.34.111
-    # via taxhub
-botocore==1.34.111
-    # via
-    #   boto3
-    #   s3transfer
 certifi==2024.2.2
     # via
     #   fiona
@@ -53,6 +50,7 @@ flask==3.0.3
     # via
     #   -r requirements.in
     #   flask-admin
+    #   flask-babel
     #   flask-cors
     #   flask-login
     #   flask-marshmallow
@@ -63,7 +61,11 @@ flask==3.0.3
     #   taxhub
     #   utils-flask-sqlalchemy
 flask-admin==1.6.1
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   taxhub
+flask-babel==4.0.0
+    # via taxhub
 flask-cors==4.0.1
     # via taxhub
 flask-login==0.6.3
@@ -103,11 +105,9 @@ importlib-metadata==7.1.0
 itsdangerous==2.2.0
     # via flask
 jinja2==3.1.4
-    # via flask
-jmespath==1.0.1
     # via
-    #   boto3
-    #   botocore
+    #   flask
+    #   flask-babel
 mako==1.3.5
     # via alembic
 markupsafe==2.1.5
@@ -137,7 +137,7 @@ packaging==24.0
     #   geoalchemy2
     #   gunicorn
     #   marshmallow
-pillow==10.3.0
+pillow==11.2.1
     # via taxhub
 psycopg2==2.9.9
     # via
@@ -149,21 +149,19 @@ pycparser==2.22
     # via cffi
 pypn-ref-geo==1.5.2
     # via taxhub
-pypnusershub==2.1.5
+pypnusershub==3.0.3
     # via taxhub
 python-dateutil==2.9.0.post0
-    # via
-    #   botocore
-    #   utils-flask-sqlalchemy
+    # via utils-flask-sqlalchemy
 python-dotenv==1.0.1
     # via
     #   -r requirements.in
     #   pypn-ref-geo
     #   taxhub
+pytz==2025.2
+    # via flask-babel
 requests==2.32.2
     # via pypnusershub
-s3transfer==0.10.1
-    # via boto3
 shapely==2.0.4
     # via utils-flask-sqlalchemy-geo
 six==1.16.0
@@ -182,13 +180,12 @@ sqlalchemy==1.4.52
     #   taxhub
     #   utils-flask-sqlalchemy
     #   utils-flask-sqlalchemy-geo
-taxhub==1.14.1
-    # via -r requirements.in
+toml==0.10.2
+    # via taxhub
 typing-extensions==4.11.0
     # via alembic
 urllib3==1.26.18
     # via
-    #   botocore
     #   requests
     #   taxhub
 utils-flask-sqlalchemy==0.4.1
@@ -205,6 +202,10 @@ werkzeug==3.0.3
     #   flask
     #   flask-login
 wtforms==3.1.2
-    # via flask-admin
+    # via
+    #   flask-admin
+    #   taxhub
+xmltodict==0.14.2
+    # via pypnusershub
 zipp==3.18.2
     # via importlib-metadata
