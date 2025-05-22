@@ -4,28 +4,25 @@
 
 **🚀 Nouveautés**
 
-- Ajout de nouvelles valeurs de nomenclature : \"TypeSol\"
-  (mnemonique = \"TYPE_SOL\") (#79)
+- Ajout de la nomenclature du SINP "Type de sol" pour les occurrences d'habitat (#79)
 - Ajout du support de Debian 13 dans les tests automatisés (#78)
-- Mise à jour de TaxHub en 2.2.0
-- Mise à jour de Utils-Flask-SQLAlchemy en 0.4.2
+- Mise à jour de TaxHub en version 2.2.0
+- Mise à jour de Utils-Flask-SQLAlchemy en version 0.4.2
 
 ## 1.6.4 (2024-09-09)
 
 **🚀 Nouveautés**
 
-- Ajout de nouvelles valeurs de nomenclature : \"MosaiqueValue\"
-  (mnemonique = \"MOSAIQUE_HAB\") (#74)
+- Ajout de la nomenclature du SINP "Type de mosaïque d'habitats" (#74)
 
 **🐛 Corrections**
 
-- Correction de la fonction [get_nomenclature_id_term()]{.title-ref}
-  (#72)
+- Correction de la fonction `get_nomenclature_id_term()` (#72)
 
-\*\* Notes de version\*\*
+**⚠️ Notes de version**
 
-- Le module [UsersHub-Authentification-module]{.title-ref} n\'est plus
-  requis au fonctionnement de [Nomenclature-api-module]{.title-ref}
+- Le module `UsersHub-Authentification-module` n'est plus
+  requis au fonctionnement de `Nomenclature-api-module`
   (#76)
 
 ## 1.6.3 (2024-05-27)
@@ -55,10 +52,10 @@
 - Mise à jour de SQLAlchemy version 1.3 à 1.4 (#52 et #54)
 - Arrêt du support de Debian 10 (#54)
 - Ajout du support de Debian 12 dans les tests automatisés (#54)
-- Ajout de la possibilité d\'associer des nomenclatures à des Group3
+- Ajout de la possibilité d'associer des nomenclatures à des Group3
   INPN, en ajoutant le champs `group3_inpn` à la table
   `cor_taxref_nomenclature` (#53)
-- Mise à jour des dépendances Python: TaxHub, Utils-Flask-SQLAlchemy,
+- Mise à jour des dépendances Python : TaxHub, Utils-Flask-SQLAlchemy,
   UsersHub-authentification-module
 
 ## 1.5.4 (2023-03-04)
@@ -75,7 +72,7 @@
 
 **🐛 Corrections**
 
-- Ajout de shapely\<2 aux requirements
+- Ajout de shapely <2 aux requirements
 
 ## 1.5.3 (2022-09-01)
 
@@ -221,8 +218,8 @@
 
 **🚀 Nouveautés**
 
-- Passage de l\'instance de SQLAlchemy du module parent via une
-  variable d\'environnement
+- Passage de l'instance de SQLAlchemy du module parent via une
+  variable d'environnement
 
 **🐛 Corrections**
 
@@ -241,14 +238,14 @@
 
 - Compatibilité avec la version 2.0 du standard Occurrences de taxons
   du SINP
-- Ajout de la nomenclature \"Comportement\" et ses correspondances
+- Ajout de la nomenclature "Comportement" et ses correspondances
   avec la taxonomie
-- Mise à jour de la nomenclature \"Statut biologique\"
-- Ajouts mineurs dans les nomenclatures \"Floutage DEE\", \"Techniques
-  d\'observation\" (anciennement \"Méthode d\'observation\"), \"Stade
-  de vie\"
+- Mise à jour de la nomenclature "Statut biologique"
+- Ajouts mineurs dans les nomenclatures "Floutage DEE", "Techniques
+  d'observation" (anciennement "Méthode d'observation"), "Stade
+  de vie"
 - Compatibilité avec la version 1.3.10 du standard Métadonnées du SINP
-- Mise à jour de la nomenclature \"Objectifs du cadre d\'acquisition\"
+- Mise à jour de la nomenclature "Objectifs du cadre d'acquisition"
 
 **⚠️ Notes de version**
 
@@ -260,7 +257,7 @@
 **🐛 Corrections**
 
 - Correction des dates des nomenclatures (#32)
-- Correction des définitions SINP des nomenclatures d\'habitats (#33)
+- Correction des définitions SINP des nomenclatures d'habitats (#33)
 - Mise à jour des nomenclatures de type `DATA_TYP` (#33)
 - Taxref 13 : Les group2_inpn `Fougères` et `Algues brunes` ont été
   remplacés par `Ptéridophytes` et `Ochrophytes`. Répercussion dans la
@@ -291,7 +288,7 @@
 
 - Utilisation de la librairie Utils-Flask-SQLAlchemy
 - Ajout de nomenclatures SINP concernant les habitats
-- Ajout d\'une contrainte d\'unicité sur la combinaison des champs
+- Ajout d'une contrainte d'unicité sur la combinaison des champs
   `id_type` et `cd_nomenclature` de la table `t_nomenclatures` (#28)
 
 **🐛 Corrections**
@@ -302,8 +299,8 @@
 
 **Nouveautés**
 
-- Ajout d\'une route pour remettre à plat toutes les nomenclatures et
-  leurs correspondances taxonomiques (par \@sgrimault)
+- Ajout d'une route pour remettre à plat toutes les nomenclatures et
+  leurs correspondances taxonomiques (par @sgrimault)
 - Passage à Flask 1.1.1
 
 ## 1.2.6 (2019-07-19)
@@ -311,8 +308,8 @@
 **Corrections**
 
 - Le module Flask-admin a été retiré du sous-module. Il est désormais
-  à la charge de l\'application qui utilise le sous-module de
-  l\'instancier.
+  à la charge de l'application qui utilise le sous-module de
+  l'instancier.
 
 ## 1.2.5 (2019-05-29)
 
@@ -324,9 +321,9 @@
 
 **Corrections**
 
-- Suppression d\'un item de nomenclature absent du standard SINP
-- Ajouts d\'items sur les types \'Valeur de confidentialité\' et
-  \'Sociabilité\' (PR \@xavyeah39)
+- Suppression d'un item de nomenclature absent du standard SINP
+- Ajouts d'items sur les types 'Valeur de confidentialité' et
+  'Sociabilité' (PR @xavyeah39)
 
 **Notes de version**
 
@@ -337,9 +334,9 @@
 
 **Corrections**
 
-- Optimisation des accès à la BDD en utilisant l\'instance `DB` de
-  l\'application dans laquelle est utilisée ce sous-module. Cependant
-  si elle n\'existe pas, alors l\'instance `DB` de SQLAlchemy est
+- Optimisation des accès à la BDD en utilisant l'instance `DB` de
+  l'application dans laquelle est utilisée ce sous-module. Cependant
+  si elle n'existe pas, alors l'instance `DB` de SQLAlchemy est
   créée automatiquement (#17)
 - Correction de la fonction `ref_nomenclatures.get_nomenclature_label`
 - Récupération dynamique du numéro de version du module à partir du
@@ -361,25 +358,25 @@
 
 **Nouveautés**
 
-- Ajout d\'une fonction BDD de récupération du label à partir du
+- Ajout d'une fonction BDD de récupération du label à partir du
   cd_nomenclature, code_type et de la langue
   (`get_nomenclature_label_by_cdnom_mnemonique_and_language`)
-- Ajout d\'une fonction BDD de récupération du label à partir de
-  l\'id_nomenclature et de la langue
+- Ajout d'une fonction BDD de récupération du label à partir de
+  l'id_nomenclature et de la langue
   (`get_nomenclature_label_by_cdnom_mnemonique`)
-- Ajout d\'une fonction BDD de récupération du label à partir d\'un
+- Ajout d'une fonction BDD de récupération du label à partir d'un
   id_nomenclature (`get_nomenclature_label`)
-- Création d\'une fonction Python retournant l\'identifiant d\'une
+- Création d'une fonction Python retournant l'identifiant d'une
   nomenclature à partir de ses codes mnemoniques
   (`get_nomenclature_id_term`)
-- Création d\'un script SQL de mise à jour de la BDD
+- Création d'un script SQL de mise à jour de la BDD
 - Mise à jour de Flask (0.12.2 à 1.0.2)
 
 **Corrections**
 
-- Correction d\'un bug sur la fonction BDD
+- Correction d'un bug sur la fonction BDD
   `get_nomenclature_by_type_list_and_taxonomy` si on ne passe passe
-  pas d\'`id_type` ou de `code_type`
+  pas d'`id_type` ou de `code_type`
 
 **Notes de version**
 
@@ -391,14 +388,14 @@
 
 **Nouveautés**
 
-- Création d\'une interface d\'administration (Flask-admin) pour gérer
+- Création d'une interface d'administration (Flask-admin) pour gérer
   les nomenclatures et leurs types. URL paramétrable avec
   `URL_ADMIN_NOMENCLATURES` dans le fichier `config.py`
   (`/nomenclatures/admin` par défaut)
 - Intégration des scripts SQL dans le dépôt du module et suppression
   du dépôt GeoNature (#3)
 - Gestion des conflits de nomenclatures en ne définissant ni
-  n\'utilisant les `id_type` ni `id_nomenclature` dans le SQL et le
+  n'utilisant les `id_type` ni `id_nomenclature` dans le SQL et le
   code du module et des applications qui utilisent la nomenclature
   (#9)
 - Ajout de fonctions pour retrouver ces ID à partir des codes des
