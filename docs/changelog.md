@@ -1,12 +1,12 @@
 # CHANGELOG
 
-## 1.6.5 (2025-05-22)
+## 1.6.5 (2025-05-23)
 
 **🚀 Nouveautés**
 
 - Ajout de la nomenclature du SINP "Type de sol" pour les occurrences d'habitat (#79)
 - Ajout du support de Debian 13 dans les tests automatisés (#78)
-- Mise à jour de TaxHub en version 2.2.0
+- Mise à jour de TaxHub en version 2.2.1
 - Mise à jour de Utils-Flask-SQLAlchemy en version 0.4.2
 
 ## 1.6.4 (2024-09-09)
