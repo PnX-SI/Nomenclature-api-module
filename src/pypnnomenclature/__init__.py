@@ -7,7 +7,6 @@ from flask_migrate import Migrate
 from pypnnomenclature.env import db, ma
 from pypnnomenclature.routes import routes
 
-
 migrate = Migrate()
 
 

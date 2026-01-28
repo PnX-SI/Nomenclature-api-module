@@ -12,7 +12,6 @@ import sqlalchemy as sa
 from sqlalchemy.exc import IntegrityError
 from psycopg2.errors import CheckViolation
 
-
 # revision identifiers, used by Alembic.
 revision = "a763fb554ff2"
 down_revision = None

@@ -9,7 +9,6 @@ Create Date: 2021-12-10 10:07:09.478526
 from alembic import op
 import sqlalchemy as sa
 
-
 # revision identifiers, used by Alembic.
 revision = "b820c66d8daa"
 down_revision = "f8c2c8482419"
@@ -18,8 +17,7 @@ depends_on = None
 
 
 def upgrade():
-    op.execute(
-        """
+    op.execute("""
         CREATE OR REPLACE FUNCTION ref_nomenclatures.get_nomenclature_label(
             myidnomenclature integer DEFAULT NULL::integer,
             mylanguage character varying DEFAULT 'fr'::character varying)
@@ -48,13 +46,11 @@ def upgrade():
         END;
         $function$
         ;
-    """
-    )
+    """)
 
 
 def downgrade():
-    op.execute(
-        """
+    op.execute("""
         CREATE OR REPLACE FUNCTION ref_nomenclatures.get_nomenclature_label(
             myidnomenclature integer DEFAULT NULL::integer,
             mylanguage character varying DEFAULT 'fr'::character varying)
@@ -75,5 +71,4 @@ def downgrade():
         END;
         $function$
         ;
-    """
-    )
+    """)

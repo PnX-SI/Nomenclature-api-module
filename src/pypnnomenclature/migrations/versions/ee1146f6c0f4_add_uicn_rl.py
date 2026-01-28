@@ -9,7 +9,6 @@ Create Date: 2022-07-28 15:01:47.927979
 from alembic import op
 import sqlalchemy as sa
 
-
 # revision identifiers, used by Alembic.
 revision = "ee1146f6c0f4"
 down_revision = "618542880d1f"
@@ -18,8 +17,7 @@ depends_on = None
 
 
 def upgrade():
-    op.execute(
-        """
+    op.execute("""
     INSERT INTO
         ref_nomenclatures.bib_nomenclatures_types (
             mnemonique,
@@ -43,10 +41,8 @@ def upgrade():
             '2019-04-11 00:00:00',
             '2019-04-11 00:00:00'
         )
-    """
-    )
-    op.execute(
-        """
+    """)
+    op.execute("""
     INSERT INTO
         ref_nomenclatures.t_nomenclatures (
             id_type,
@@ -76,10 +72,8 @@ def upgrade():
         ,(ref_nomenclatures.get_id_nomenclature_type('CAT_LISTE_ROUGE'), 'NA', 'NA', 'Non applicable', 'Catégorie réservée à un taxon considéré comme impossible à évaluer au niveau régional. Un  taxon  peut  entrer  dans  la  catégorie  NA  parce  qu’il  ne  s’agit  pas  d’une  population sauvage ou parce qu’il n’est pas dans son aire de répartition naturelle dans cette région, ou  encore  parce  qu’il  est  erratique  dans  la  région.  Un  taxon  peut  aussi  entrer  dans  la catégorie  NA  parce  qu’il  n’est  présent  qu’en  très  petit  nombre  dans  la  région  (p.  ex. lorsque l’autorité régionale pour la Liste rouge a décidé d’utiliser un «filtre» pour exclure certains  taxons  avant  la  procédure  d’évaluation)  ou  parce  qu’il  est  classé  à  un  niveau taxonomique inférieur (p. ex. au-dessous du niveau de l’espèce ou de la sous-espèce) aux  niveaux  considérés  comme  éligibles  par  l’autorité  régionale  pour  la  Liste  rouge.  À la  différence  d’autres  catégories  de  la  Liste  rouge,  il  n’est  pas  obligatoire  d’assigner  la catégorie NA à tous les taxons auxquels elle s’applique mais c’est cependant recommandé lorsque cela a une valeur informative.', 'UICN', 'Validé', 0, NULL, '2019-04-11 00:00:00', '2019-04-11 00:00:00', true, '')
         ,(ref_nomenclatures.get_id_nomenclature_type('CAT_LISTE_ROUGE'), 'DD', 'DD', 'Données insuffisantes', 'Un  taxon  entre  dans  la  catégorie Données  insuffisantes  lorsqu’on  ne  dispose  pas d’assez  de  données  pour  évaluer  directement  ou  indirectement  le  risque  d’extinction en  fonction  de  sa  distribution  et/ou  de  l’état  de  sa  population.  Un  taxon  inscrit  dans cette catégorie peut avoir fait l’objet d’études approfondies et sa biologie peut être bien connue, sans que l’on dispose pour autant de données pertinentes sur l’abondance et/ou la distribution. Il ne s’agit donc pas d’une catégorie Menacé. L’inscription d’un taxon dans cette catégorie indique qu’il est nécessaire de rassembler davantage de données et n’exclut pas la possibilité de démontrer, grâce à de futures recherches, que le taxon aurait pu être classé dans une catégorie Menacé. Il est impératif d’utiliser pleinement toutes les données disponibles.', 'UICN', 'Validé', 0, NULL, '2019-04-11 00:00:00', '2019-04-11 00:00:00', true, '')
         ,(ref_nomenclatures.get_id_nomenclature_type('CAT_LISTE_ROUGE'), 'NE', 'NE', 'Non évalué', 'Un taxon est dit Non évalué lorsqu’il n’a pas encore été confronté aux critères.', 'UICN', 'Validé', 0, NULL, '2019-04-11 00:00:00', '2019-04-11 00:00:00', true, '')
-    """
-    )
-    op.execute(
-        """
+    """)
+    op.execute("""
     UPDATE
         ref_nomenclatures.t_nomenclatures
     SET
@@ -87,24 +81,19 @@ def upgrade():
         definition_default = definition_fr
     WHERE
         id_type = ref_nomenclatures.get_id_nomenclature_type('CAT_LISTE_ROUGE')
-    """
-    )
+    """)
 
 
 def downgrade():
-    op.execute(
-        """
+    op.execute("""
     DELETE FROM
         ref_nomenclatures.t_nomenclatures
     WHERE
         id_type = ref_nomenclatures.get_id_nomenclature_type('CAT_LISTE_ROUGE')
-    """
-    )
-    op.execute(
-        """
+    """)
+    op.execute("""
     DELETE FROM
         ref_nomenclatures.bib_nomenclatures_types
     WHERE
         mnemonique = 'CAT_LISTE_ROUGE'
-    """
-    )
+    """)

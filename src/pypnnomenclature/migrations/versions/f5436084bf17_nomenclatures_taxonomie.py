@@ -10,7 +10,6 @@ import importlib.resources
 from alembic import op
 import sqlalchemy as sa
 
-
 # revision identifiers, used by Alembic.
 revision = "f5436084bf17"
 down_revision = None
@@ -30,8 +29,7 @@ def upgrade():
 
 
 def downgrade():
-    op.execute(
-        """
+    op.execute("""
     DROP VIEW ref_nomenclatures.v_meth_determin;
     DROP VIEW ref_nomenclatures.v_sampling_units_typ;
     DROP VIEW ref_nomenclatures.v_sampling_plan_typ;
@@ -54,5 +52,4 @@ def downgrade():
 
     DROP TABLE ref_nomenclatures.cor_taxref_nomenclature;
     DROP FUNCTION ref_nomenclatures.get_filtered_nomenclature(character varying, character varying, character varying)
-    """
-    )
+    """)

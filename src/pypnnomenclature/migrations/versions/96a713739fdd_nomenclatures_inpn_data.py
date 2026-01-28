@@ -28,12 +28,10 @@ def upgrade():
 
 # On supprime toutes les données de source GEONATURE, SINP & CAMPANULE
 def downgrade():
-    op.execute(
-        """
+    op.execute("""
     DELETE FROM ref_nomenclatures.defaults_nomenclatures_value dn USING ref_nomenclatures.t_nomenclatures n
     WHERE dn.id_nomenclature = n.id_nomenclature AND source in ('GEONATURE', 'SINP', 'CAMPANULE')
-    """
-    )
+    """)
     op.execute(
         "DELETE FROM ref_nomenclatures.t_nomenclatures WHERE source in ('GEONATURE', 'SINP', 'CAMPANULE')"
     )

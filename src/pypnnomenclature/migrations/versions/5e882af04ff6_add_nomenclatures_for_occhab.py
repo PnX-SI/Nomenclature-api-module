@@ -11,7 +11,6 @@ from pypnnomenclature.models import BibNomenclaturesTypes, TNomenclatures
 import sqlalchemy as sa
 from sqlalchemy.orm.session import Session
 
-
 # revision identifiers, used by Alembic.
 revision = "5e882af04ff6"
 down_revision = "ee1146f6c0f4"

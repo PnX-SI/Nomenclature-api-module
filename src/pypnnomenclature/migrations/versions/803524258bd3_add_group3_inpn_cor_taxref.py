@@ -9,7 +9,6 @@ Create Date: 2023-09-04 07:57:35.371378
 from alembic import op
 import sqlalchemy as sa
 
-
 # revision identifiers, used by Alembic.
 revision = "803524258bd3"
 down_revision = "f5436084bf17"
@@ -23,12 +22,10 @@ def upgrade():
         column=sa.Column("group3_inpn", sa.VARCHAR(255), server_default="all"),
         schema="ref_nomenclatures",
     )
-    op.execute(
-        """ALTER TABLE ref_nomenclatures.cor_taxref_nomenclature 
+    op.execute("""ALTER TABLE ref_nomenclatures.cor_taxref_nomenclature 
                ADD CONSTRAINT check_cor_taxref_nomenclature_isgroup3inpn 
                CHECK ((taxonomie.check_is_group3inpn((group3_inpn)::text) OR ((group3_inpn)::text = 'all'::text))) NOT VALID   
-        """
-    )
+        """)
     with op.batch_alter_table(
         table_name="cor_taxref_nomenclature", schema="ref_nomenclatures"
     ) as batch:
@@ -38,8 +35,7 @@ def upgrade():
             columns=["id_nomenclature", "regne", "group2_inpn", "group3_inpn"],
         )
     op.execute("DROP VIEW ref_nomenclatures.v_nomenclature_taxonomie")
-    op.execute(
-        """
+    op.execute("""
 CREATE OR REPLACE VIEW ref_nomenclatures.v_nomenclature_taxonomie
 AS SELECT tn.id_type,
     tn.label_default AS type_label,
@@ -78,8 +74,7 @@ AS SELECT tn.id_type,
      JOIN ref_nomenclatures.cor_taxref_nomenclature ctn ON ctn.id_nomenclature = n.id_nomenclature
   WHERE n.active = true
   ORDER BY tn.id_type, ctn.regne, ctn.group2_inpn, n.id_nomenclature;
-        """
-    )
+        """)
 
 
 def downgrade():
@@ -94,8 +89,7 @@ def downgrade():
         )
     op.execute("DROP VIEW ref_nomenclatures.v_nomenclature_taxonomie")
     op.drop_column("cor_taxref_nomenclature", "group3_inpn", schema="ref_nomenclatures")
-    op.execute(
-        """
+    op.execute("""
                CREATE VIEW ref_nomenclatures.v_nomenclature_taxonomie
 AS SELECT tn.id_type,
     tn.label_default AS type_label,
@@ -132,5 +126,4 @@ AS SELECT tn.id_type,
      JOIN ref_nomenclatures.bib_nomenclatures_types tn ON tn.id_type = n.id_type
      JOIN ref_nomenclatures.cor_taxref_nomenclature ctn ON ctn.id_nomenclature = n.id_nomenclature
   WHERE n.active = true
-  ORDER BY tn.id_type, ctn.regne, ctn.group2_inpn, n.id_nomenclature;"""
-    )
+  ORDER BY tn.id_type, ctn.regne, ctn.group2_inpn, n.id_nomenclature;""")

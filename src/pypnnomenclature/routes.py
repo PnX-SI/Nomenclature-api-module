@@ -6,7 +6,6 @@ from utils_flask_sqla.response import json_resp
 
 from pypnnomenclature import repository
 
-
 routes = Blueprint("nomenclatures", __name__)
 
 

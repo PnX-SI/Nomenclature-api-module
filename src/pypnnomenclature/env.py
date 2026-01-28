@@ -5,7 +5,6 @@ from flask_marshmallow import Marshmallow
 
 from flask_sqlalchemy import SQLAlchemy
 
-
 db_path = environ.get("FLASK_SQLALCHEMY_DB")
 if db_path:
     db_module_name, db_object_name = db_path.rsplit(".", 1)

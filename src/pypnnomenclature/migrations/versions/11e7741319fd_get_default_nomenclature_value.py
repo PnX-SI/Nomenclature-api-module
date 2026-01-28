@@ -9,7 +9,6 @@ Create Date: 2021-10-04 17:51:48.491261
 from alembic import op
 import sqlalchemy as sa
 
-
 # revision identifiers, used by Alembic.
 revision = "11e7741319fd"
 down_revision = "6015397d686a"
@@ -18,8 +17,7 @@ depends_on = None
 
 
 def upgrade():
-    op.execute(
-        """
+    op.execute("""
     CREATE OR REPLACE FUNCTION ref_nomenclatures.get_default_nomenclature_value(mytype character varying, myidorganism integer DEFAULT NULL)
      RETURNS integer
      LANGUAGE plpgsql
@@ -44,13 +42,11 @@ def upgrade():
       END;
     $function$
     ;
-    """
-    )
+    """)
 
 
 def downgrade():
-    op.execute(
-        """
+    op.execute("""
     CREATE OR REPLACE FUNCTION ref_nomenclatures.get_default_nomenclature_value(mytype character varying, myidorganism integer DEFAULT 0)
      RETURNS integer
      LANGUAGE plpgsql
@@ -73,5 +69,4 @@ def downgrade():
       END;
     $function$
     ;
-    """
-    )
+    """)
