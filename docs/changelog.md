@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.6.6 (2026-02-25)
+
+**🚀 Nouveautés**
+
+- Mise à jour des dépendances
+
 ## 1.6.5 (2025-05-23)
 
 **🚀 Nouveautés**
