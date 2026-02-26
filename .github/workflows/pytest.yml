@@ -74,9 +74,7 @@ jobs:
             pytest-cov \
             -e .[tests] \
             -e file:dependencies/Utils-Flask-SQLAlchemy#egg=utils-flask-sqlalchemy \
-            -e file:dependencies/TaxHub#egg=taxhub \
-            -e file:dependencies/TaxHub/dependencies/RefGeo#egg=pypn-ref-geo \
-            -e file:dependencies/TaxHub/dependencies/Utils-Flask-SQLAlchemy-Geo#egg=utils-flask-sqlalchemy-geo
+            -e file:dependencies/TaxHub#egg=taxhub
       - name: Install database
         run: |
           flask db upgrade taxonomie@head -x local-srid=2154
