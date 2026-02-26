@@ -1,10 +1,10 @@
 # CHANGELOG
 
-## 1.6.6 (2026-02-25)
+## 1.6.6 (2026-02-26)
 
 **🚀 Nouveautés**
 
-- Mise à jour des dépendances
+- Mise à jour de TaxHub en 2.3.0 (#86 par @jacquesfize)
 
 ## 1.6.5 (2025-05-23)
 
