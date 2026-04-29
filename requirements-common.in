@@ -1,0 +1,11 @@
+python-dotenv
+flask
+Flask-Admin
+flask-sqlalchemy
+flask-migrate
+psycopg2
+flask-marshmallow
+marshmallow-sqlalchemy
+sqlalchemy>2
+backports.entry-points-selectable
+
