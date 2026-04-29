@@ -1,9 +1,11 @@
 import pytest
 from flask import request
-from utils_flask_sqla.tests.utils import JSONClient
+from utils_flask_sqla.tests.utils import JSONClient, TestSession
 
 from pypnnomenclature import create_app
 from pypnnomenclature.env import db
+
+db.session = db._make_scoped_session({"class_": TestSession})
 
 
 @pytest.fixture(scope="session")
