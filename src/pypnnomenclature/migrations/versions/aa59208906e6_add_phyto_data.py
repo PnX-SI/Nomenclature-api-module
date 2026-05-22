@@ -45,5 +45,6 @@ def upgrade():
 
 
 def downgrade():
+    #ToDo : Verify if the downgrade works
     delete_nomenclatures("STRATE_VEGETATION")
     delete_nomenclatures("PHYTO_ABUNDANCE")
