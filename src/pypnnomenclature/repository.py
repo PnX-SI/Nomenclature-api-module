@@ -5,6 +5,7 @@ Méthode permettant de manipuler les objets de la nomenclature
 from importlib import import_module
 from flask import current_app
 
+from utils_flask_sqla.db import ordered
 from pypnnomenclature.models import (
     TNomenclatures,
     BibNomenclaturesTypes,
@@ -28,57 +29,85 @@ def get_nomenclature_list(
 ):
     """
     Récupération de la liste des termes d'un type de nomenclature
+
+    Parameters
+    ----------
+    id_type : int, optional
+        Identifiant du type de nomenclature
+    code_type : str, optional
+        Code mnemonique du type de nomenclature
+    regne : str, optional
+        Filtre sur le règne taxonomique
+    group2_inpn : str, optional
+        Filtre sur le groupe taxonomique 2
+    group3_inpn : str, optional
+        Filtre sur le groupe taxonomique 3
+    hierarchy : str, optional
+        Filtre sur la hiérarchie
+    filter_params : dict, optional
+        Paramètres de filtrage additionnels
+
+    Returns
+    -------
+    dict
+        Dictionnaire contenant le type de nomenclature et ses termes actifs
     """
 
-    q = select(BibNomenclaturesTypes)
-    if filter_params is None:
-        filter_params = []
+    query = select(BibNomenclaturesTypes)
+    filter_params = [] if filter_params is None else filter_params
 
+    # Récupération du type de nomenclature
+    type_nomenclature = None
     if code_type:
-        nomenclature = db.session.scalars(q.filter_by(mnemonique=code_type).limit(1)).first()
+        type_nomenclature = db.session.scalars(
+            query.filter_by(mnemonique=code_type).limit(1)
+        ).first()
     elif id_type:
-        nomenclature = db.session.scalars(q.filter_by(id_type=id_type).limit(1)).first()
-    else:
-        nomenclature = None
+        type_nomenclature = db.session.get(BibNomenclaturesTypes, id_type)
 
-    if not nomenclature:
-        return None
-
-    # Terme de nomenclatures
-    q = select(TNomenclatures).filter_by(id_type=nomenclature.id_type).filter_by(active=True)
+    # Requête de base pour récupérer les termes actifs du type de nomenclature
+    query = select(TNomenclatures).filter_by(id_type=type_nomenclature.id_type, active=True)
 
     # Filtrer sur la hiérarchie
     if hierarchy:
-        q = q.where(TNomenclatures.hierarchy.like("{}%".format(hierarchy)))
+        query = query.where(TNomenclatures.hierarchy.like("{}%".format(hierarchy)))
+
     if current_app.config["ENABLE_NOMENCLATURE_TAXONOMIC_FILTERS"]:
         # Filtrer en fonction du groupe taxonomie
         if regne:
-            q = q.join(
+            query = query.join(
                 VNomenclatureTaxonomie,
                 VNomenclatureTaxonomie.id_nomenclature == TNomenclatures.id_nomenclature,
             ).where(VNomenclatureTaxonomie.regne.in_(("all", regne)))
             if group2_inpn:
-                q = q.filter(VNomenclatureTaxonomie.group2_inpn.in_(("all", group2_inpn)))
+                query = query.where(VNomenclatureTaxonomie.group2_inpn.in_(("all", group2_inpn)))
             if group3_inpn:
-                q = q.where(VNomenclatureTaxonomie.group3_inpn.in_(("all", group3_inpn)))
+                query = query.where(VNomenclatureTaxonomie.group3_inpn.in_(("all", group3_inpn)))
 
     if "cd_nomenclature" in filter_params:
-        q = q.where(TNomenclatures.cd_nomenclature.in_(filter_params.getlist("cd_nomenclature")))
+        query = query.where(
+            TNomenclatures.cd_nomenclature.in_(filter_params.getlist("cd_nomenclature"))
+        )
     # Ordonnancement
     if "orderby" in filter_params:
         order_col = getattr(TNomenclatures, filter_params["orderby"])
 
-        if "order" in filter_params:
-            if filter_params["order"] == "desc":
-                order_col = order_col.desc()
-
-        q = q.order_by(order_col)
+        query = ordered(
+            query,
+            TNomenclatures,
+            order_by=(
+                order_col.desc()
+                if "order" in filter_params and filter_params["order"] == "desc"
+                else order_col.asc()
+            ),
+            join=False,
+        )
     # @TODO Autres filtres
-    data = db.session.scalars(q).all()
+    active_terms = db.session.scalars(query).unique().all()
 
-    response = nomenclature.as_dict()
-    if data:
-        response["values"] = [n.as_dict() for n in data]
+    response = type_nomenclature.as_dict()
+    if active_terms:
+        response["values"] = [n.as_dict() for n in active_terms]
     return response
 
 
