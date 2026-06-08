@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.6.7 (2026-06-08)
+
+**🐛 Corrections**
+
+- Correction des doublons dans la liste de nomenclature (#91 par @jacquesfize)
+
 ## 1.6.6 (2026-02-26)
 
 **🚀 Nouveautés**
