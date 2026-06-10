@@ -1,0 +1,2 @@
+-e file:dependencies/Utils-Flask-SQLAlchemy#egg=utils-flask-sqlalchemy
+-e file:dependencies/TaxHub#egg=taxhub
