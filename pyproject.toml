@@ -1,17 +1,62 @@
+[build-system]
+requires = ["setuptools>=77.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pypnnomenclature"
+version = "1.6.7"
+description = "Python lib related to nomenclatures"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "python-dotenv",
+    "flask",
+    "Flask-Admin",
+    "flask-sqlalchemy",
+    "flask-migrate",
+    "psycopg2",
+    "flask-marshmallow",
+    "marshmallow-sqlalchemy",
+    "sqlalchemy<2.0",
+    "utils-flask-sqlalchemy>=0.4.5",
+]
+maintainers = [
+    { name = "Parcs nationaux des Écrins et des Cévennes", email = "geonature@ecrins-parcnational.fr" },
+]
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: GNU Affero General Public License v3",
+    "Operating System :: OS Independent",
+]
+urls = { "Homepage" = "https://github.com/PnX-SI/Nomenclature-api-module" }
+
+[project.optional-dependencies]
+tests = ["pytest", "pytest-flask"]
+
+[project.entry-points."alembic"]
+migrations = "pypnnomenclature.migrations:versions"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"pypnnomenclature.migrations" = ["data/*.sql"]
+
 [tool.pytest.ini_options]
 minversion = "6.0"
-testpaths = [
-    "src",
-]
+testpaths = ["src"]
 
 [tool.coverage.run]
-source = [
-    "pypnnomenclature",
-]
-omit = [
-    "*/tests/*",
-    "*/migrations/*",
-]
+source = ["pypnnomenclature"]
+omit = ["*/tests/*", "*/migrations/*"]
 
 [tool.black]
 line-length = 99
