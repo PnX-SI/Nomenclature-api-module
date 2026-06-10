@@ -1,5 +1,5 @@
 from pathlib import Path
-from backports.entry_points_selectable import entry_points
+from importlib.metadata import entry_points
 
 from flask import Flask
 from flask_migrate import Migrate
