@@ -19,10 +19,15 @@ depends_on = None
 
 
 def upgrade():
-    metadata = MetaData(bind=op.get_bind())
-    nomenclature = Table("t_nomenclatures", metadata, schema="ref_nomenclatures", autoload=True)
+    metadata = MetaData()
+    nomenclature = Table(
+        "t_nomenclatures", metadata, schema="ref_nomenclatures", autoload_with=op.get_bind()
+    )
     nomenclature_type = Table(
-        "bib_nomenclatures_types", metadata, schema="ref_nomenclatures", autoload=True
+        "bib_nomenclatures_types",
+        metadata,
+        schema="ref_nomenclatures",
+        autoload_with=op.get_bind(),
     )
 
     op.execute(
@@ -488,12 +493,15 @@ def upgrade():
 
 
 def downgrade():
-    metadata = MetaData(bind=op.get_bind())
-    session = Session(bind=op.get_bind())
+    metadata = MetaData()
+    conn = op.get_bind()
+    session = Session(bind=conn)
 
-    nomenclature = Table("t_nomenclatures", metadata, schema="ref_nomenclatures", autoload=True)
+    nomenclature = Table(
+        "t_nomenclatures", metadata, schema="ref_nomenclatures", autoload_with=conn
+    )
     nomenclature_type = Table(
-        "bib_nomenclatures_types", metadata, schema="ref_nomenclatures", autoload=True
+        "bib_nomenclatures_types", metadata, schema="ref_nomenclatures", autoload_with=conn
     )
 
     id_type_nomenclature = session.scalar(
