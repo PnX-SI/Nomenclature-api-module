@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 1.7.0 (2026-02-26)
+
+**🚀 Nouveautés**
+
+- SQLAlchemy 2.0.x est la version minimum supportée. Mise à jour de Utils-Flask-SQLAlchemy (0.4.0) et TaxHub (2.4.0)  (#88 par @jacquesfize) 
+
+**🚀 Nouveautés**
+
 ## 1.6.7 (2026-06-08)
 
 **🐛 Corrections**
