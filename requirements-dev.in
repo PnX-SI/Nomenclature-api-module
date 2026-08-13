@@ -1,2 +1,5 @@
 -e file:dependencies/Utils-Flask-SQLAlchemy#egg=utils-flask-sqlalchemy
 -e file:dependencies/TaxHub#egg=taxhub
+-e file:dependencies/TaxHub/dependencies/UsersHub-authentification-module#egg=pypnusershub
+-e file:dependencies/TaxHub/dependencies/RefGeo#egg=pypn-ref-geo
+-e file:dependencies/TaxHub/dependencies/Utils-Flask-SQLAlchemy-Geo#egg=utils-flask-sqlalchemy-geo
