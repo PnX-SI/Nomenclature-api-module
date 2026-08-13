@@ -2,6 +2,18 @@
 #    uv pip compile pyproject.toml requirements-dev.in -o requirements-dev.txt
 -e file:dependencies/TaxHub#egg=taxhub
     # via -r requirements-dev.in
+-e file:dependencies/TaxHub/dependencies/RefGeo#egg=pypn-ref-geo
+    # via
+    #   -r requirements-dev.in
+    #   taxhub
+-e file:dependencies/TaxHub/dependencies/UsersHub-authentification-module#egg=pypnusershub
+    # via
+    #   -r requirements-dev.in
+    #   taxhub
+-e file:dependencies/TaxHub/dependencies/Utils-Flask-SQLAlchemy-Geo#egg=utils-flask-sqlalchemy-geo
+    # via
+    #   -r requirements-dev.in
+    #   pypn-ref-geo
 -e file:dependencies/Utils-Flask-SQLAlchemy#egg=utils-flask-sqlalchemy
     # via
     #   -r requirements-dev.in
@@ -10,7 +22,7 @@
     #   pypnusershub
     #   taxhub
     #   utils-flask-sqlalchemy-geo
-alembic==1.18.4
+alembic==1.19.1
     # via
     #   flask-migrate
     #   pypn-ref-geo
@@ -21,25 +33,19 @@ authlib==1.7.2
     # via pypnusershub
 babel==2.18.0
     # via flask-babel
-backports-datetime-fromisoformat==2.0.3
-    # via marshmallow
-backports-entry-points-selectable==1.3.0
-    # via
-    #   pypn-ref-geo
-    #   taxhub
 bcrypt==5.0.0
     # via pypnusershub
 blinker==1.9.0
     # via flask
-certifi==2026.5.20
+certifi==2026.7.22
     # via
     #   fiona
     #   requests
-cffi==2.0.0
+cffi==2.1.1
     # via cryptography
-charset-normalizer==3.4.7
+charset-normalizer==3.5.0
     # via requests
-click==8.4.1
+click==8.4.2
     # via
     #   click-plugins
     #   cligj
@@ -50,7 +56,7 @@ click-plugins==1.1.1.2
     # via fiona
 cligj==0.7.2
     # via fiona
-cryptography==48.0.1
+cryptography==50.0.0
     # via
     #   authlib
     #   joserfc
@@ -102,14 +108,12 @@ geoalchemy2==0.20.0
     # via utils-flask-sqlalchemy-geo
 geojson==3.3.0
     # via utils-flask-sqlalchemy-geo
-greenlet==3.5.1
+greenlet==3.5.5
     # via sqlalchemy
 gunicorn==26.0.0
     # via taxhub
 idna==3.18
     # via requests
-isodate==0.7.2
-    # via rdflib
 itsdangerous==2.2.0
     # via flask
 jinja2==3.1.6
@@ -117,9 +121,11 @@ jinja2==3.1.6
     #   flask
     #   flask-admin
     #   flask-babel
-joserfc==1.7.1
-    # via authlib
-mako==1.3.12
+joserfc==1.7.4
+    # via
+    #   authlib
+    #   pypnusershub
+mako==1.4.1
     # via alembic
 markupsafe==3.0.3
     # via
@@ -129,7 +135,7 @@ markupsafe==3.0.3
     #   mako
     #   werkzeug
     #   wtforms
-marshmallow==4.3.0
+marshmallow==4.3.1
     # via
     #   flask-marshmallow
     #   marshmallow-sqlalchemy
@@ -141,13 +147,13 @@ marshmallow-sqlalchemy==1.5.0
     #   pypnusershub
     #   taxhub
     #   utils-flask-sqlalchemy-geo
-numpy==2.2.6
+numpy==2.5.2
     # via shapely
-packaging==26.2
+packaging==26.3
     # via
     #   geoalchemy2
     #   gunicorn
-pillow==12.2.0
+pillow==12.3.0
     # via taxhub
 psycopg2==2.9.12
     # via
@@ -159,10 +165,6 @@ pycparser==3.0
     # via cffi
 pyparsing==3.3.2
     # via rdflib
-pypn-ref-geo==1.5.7
-    # via taxhub
-pypnusershub==3.2.2
-    # via taxhub
 python-dateutil==2.9.0.post0
     # via utils-flask-sqlalchemy
 python-dotenv==1.2.2
@@ -170,7 +172,7 @@ python-dotenv==1.2.2
     #   pypnnomenclature (pyproject.toml)
     #   pypn-ref-geo
     #   taxhub
-pytz==2026.2
+pytz==2026.3.post1
     # via flask-babel
 rdflib==7.6.0
     # via sparqlwrapper
@@ -182,7 +184,7 @@ six==1.17.0
     # via python-dateutil
 sparqlwrapper==2.0.0
     # via taxhub
-sqlalchemy==1.4.54
+sqlalchemy==2.0.52
     # via
     #   pypnnomenclature (pyproject.toml)
     #   alembic
@@ -196,21 +198,14 @@ sqlalchemy==1.4.54
     #   utils-flask-sqlalchemy-geo
 toml==0.10.2
     # via taxhub
-tomli==2.4.1
-    # via alembic
-typing-extensions==4.15.0
+typing-extensions==4.16.0
     # via
     #   alembic
-    #   cryptography
-    #   flask-admin
-    #   flask-cors
-    #   marshmallow
+    #   sqlalchemy
 urllib3==2.7.0
     # via
     #   requests
     #   taxhub
-utils-flask-sqlalchemy-geo==0.3.4
-    # via pypn-ref-geo
 werkzeug==3.1.8
     # via
     #   flask

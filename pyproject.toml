@@ -17,7 +17,7 @@ dependencies = [
     "psycopg2",
     "flask-marshmallow",
     "marshmallow-sqlalchemy",
-    "sqlalchemy<2.0",
+    "sqlalchemy>2.0",
     "utils-flask-sqlalchemy>=0.4.5",
 ]
 maintainers = [
