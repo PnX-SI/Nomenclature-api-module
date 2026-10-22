@@ -17,8 +17,8 @@ dependencies = [
     "psycopg2",
     "flask-marshmallow",
     "marshmallow-sqlalchemy",
-    "sqlalchemy>2.0",
-    "utils-flask-sqlalchemy>=0.4.5",
+    "sqlalchemy<2.1",
+    "utils-flask-sqlalchemy>=0.5.0",
 ]
 maintainers = [
     { name = "Parcs nationaux des Écrins et des Cévennes", email = "geonature@ecrins-parcnational.fr" },
@@ -28,7 +28,9 @@ classifiers = [
     "Intended Audience :: Developers",
     "Natural Language :: English",
     "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "License :: OSI Approved :: GNU Affero General Public License v3",
     "Operating System :: OS Independent",
