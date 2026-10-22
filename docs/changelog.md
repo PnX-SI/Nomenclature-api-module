@@ -1,12 +1,15 @@
 # CHANGELOG
 
-## 1.7.0 (2026-02-26)
+## 1.7.0 (2026-10-22)
 
 **🚀 Nouveautés**
 
-- SQLAlchemy 2.0.x est la version minimum supportée. Mise à jour de Utils-Flask-SQLAlchemy (0.4.0) et TaxHub (2.4.0)  (#88 par @jacquesfize) 
+- SQLAlchemy 2.0.x est la version minimum supportée. Mise à jour de Utils-Flask-SQLAlchemy (0.5.0) et TaxHub (2.5.0) (#88 par @jacquesfize)
+- Migration de la configuration du projet de `setup.py` vers `pyproject.toml` (#93 par @jacquesfize)
 
-**🚀 Nouveautés**
+**⚠️ Notes de version**
+
+- Python 3.9 n'est plus supporté (#93 par @jacquesfize)
 
 ## 1.6.7 (2026-06-08)
 
