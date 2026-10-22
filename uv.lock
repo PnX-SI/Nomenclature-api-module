@@ -488,7 +488,6 @@ wheels = [
 
 [[package]]
 name = "pypnnomenclature"
-version = "1.6.7"
 source = { editable = "." }
 dependencies = [
     { name = "flask" },

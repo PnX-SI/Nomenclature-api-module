@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pypnnomenclature"
-version = "1.6.7"
+dynamic = ["version"]
 description = "Python lib related to nomenclatures"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -45,6 +45,9 @@ migrations = "pypnnomenclature.migrations:versions"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
+
+[tool.setuptools.dynamic]
+version = { file = "VERSION" }
 
 [tool.setuptools.packages.find]
 where = ["src"]
