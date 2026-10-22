@@ -85,7 +85,8 @@ jobs:
         env:
           NOMENCLATURE_SETTINGS: test_settings.py
       - name: Upload coverage to Codecov
-        if: ${{ matrix.debian-version == '12' }}
+        if: ${{ matrix.debian-version == '13' }}
         uses: codecov/codecov-action@v7
         with:
           flags: pytest
+          token: ${{ secrets.CODECOV_TOKEN }}
